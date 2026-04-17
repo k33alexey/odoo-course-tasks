@@ -1,0 +1,6 @@
+.idea/
+__pycache__/
+*.py[cod]
+odoo_db_data/
+.DS_Store
+docker-compose.yml
