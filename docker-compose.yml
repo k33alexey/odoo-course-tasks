@@ -17,6 +17,7 @@ services:
       - PASSWORD=${DB_PASSWORD}
       # Важно для дебага: заставляем Odoo работать в один поток
       - ODOO_WORKERS=0
+    command: odoo --http-interface=0.0.0.0
 
   db:
     image: postgres:${POSTGRES_VERSION}
