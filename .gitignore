@@ -1,6 +1,6 @@
 .env
 .idea/
-DB_store
+.DS_Store
 *.log
 __pycache__/
 *.pyc
