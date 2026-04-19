@@ -1,2 +1,8 @@
 .env
 docker-compose.yml
+Dockerfile
+.idea/
+DB_store
+*.log
+__pycache__/
+*.pyc
