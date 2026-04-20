@@ -1,4 +1,4 @@
-from . import hospital
+from . import disease
 from . import doctor
 from . import patient
-from . import disease
+from . import visit

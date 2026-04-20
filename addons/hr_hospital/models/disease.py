@@ -1,5 +1,5 @@
 from odoo import models
 
 class HospitalDisease(models.Model):
-    _name = 'hospital.disease'
+    _name = 'hr_hospital.disease'
     _description = 'Disease'
