@@ -10,10 +10,10 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
+        'data/sequence.xml',
         'views/hr_hospital_menu.xml',
-        # 'views/disease_views.xml',
-        # 'views/doctor_views.xml',
-        # 'views/patient_views.xml',
+        'views/doctor_views.xml',
+        'views/patient_views.xml',
         'views/visit_views.xml'
     ],
     'application': True,

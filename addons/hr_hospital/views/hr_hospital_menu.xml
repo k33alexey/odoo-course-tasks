@@ -2,15 +2,11 @@
     <menuitem id="hr_hospital_main_menu"
               name="Hospital"/>
 
-    <menuitem id="hr_hospital_visit_menu_catalog"
-              name="Visits"
+    <menuitem id="hr_hospital_menu_document_catalog"
+              name="Documents"
               parent="hr_hospital_main_menu"/>
 
-<!--    <menuitem id="hr_hospital_visit_doctor_menu_catalog"-->
-<!--              name="Doctors"-->
-<!--              parent="hr_hospital_main_menu"/>-->
-
-<!--    <menuitem id="hr_hospital_visit_patient_menu_catalog"-->
-<!--              name="Patients"-->
-<!--              parent="hr_hospital_main_menu"/>-->
+    <menuitem id="hr_hospital_menu_reference_catalog"
+              name="References"
+              parent="hr_hospital_main_menu"/>
 </odoo>

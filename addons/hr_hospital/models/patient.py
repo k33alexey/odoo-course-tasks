@@ -14,7 +14,6 @@ class HospitalPatient(models.Model):
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
-        ('other', 'Other'),
     ], string='Gender', default='male')
     visit_ids = fields.One2many(
         'hr_hospital.visit',
