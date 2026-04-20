@@ -1,0 +1,16 @@
+<odoo>
+    <record id="doctor_house" model="hr_hospital.doctor">
+        <field name="name">Gregory House</field>
+        <field name="specialty">Diagnostic Medicine</field>
+    </record>
+
+    <record id="doctor_cameron" model="hr_hospital.doctor">
+        <field name="name">Myke Tyson</field>
+        <field name="specialty">Immunology</field>
+    </record>
+
+    <record id="doctor_foreman" model="hr_hospital.doctor">
+        <field name="name">Eric Foreman</field>
+        <field name="specialty">Neurology</field>
+    </record>
+</odoo>

@@ -11,10 +11,16 @@
     'data': [
         'security/ir.model.access.csv',
         'data/sequence.xml',
+        'data/disease.xml',
         'views/hr_hospital_menu.xml',
         'views/doctor_views.xml',
         'views/patient_views.xml',
         'views/visit_views.xml'
+    ],
+    'demo': [
+        'demo/doctor.xml',
+        'demo/patient.xml',
+        'demo/visit.xml'
     ],
     'application': True,
     'installable': True,
