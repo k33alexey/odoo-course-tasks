@@ -1,4 +1,9 @@
+import logging
+
 from odoo import models, fields
+
+_logger = logging.getLogger(__name__)
+
 
 class Visit(models.Model):
     _name = 'hr_hospital.visit'

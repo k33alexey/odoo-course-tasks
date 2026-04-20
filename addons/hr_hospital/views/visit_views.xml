@@ -1,0 +1,29 @@
+<odoo>
+    <record model="ir.ui.view" id="hr_hospital_visit_view_tree">
+        <field name="name">hr.hospital.visit.tree</field>
+        <field name="model">hr_hospital.visit</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="visit_date"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="disease_ids" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_hospital_disease_view_form">
+        <field name="name">hr.hospital.disease.form</field>
+        <field name="model">hr_hospital.disease</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
