@@ -28,6 +28,7 @@ class Visit(models.Model):
     )
     notes = fields.Text(string='Doctor Notes')
 
+    @api.depends('name', 'visit_date')
     def _compute_display_name(self):
         for rec in self:
             date_part = fields.Date.to_string(rec.visit_date.date()) if rec.visit_date else ''
