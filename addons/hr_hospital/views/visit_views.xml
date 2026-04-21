@@ -1,5 +1,5 @@
 <odoo>
-    <record id="view_visit_tree" model="ir.ui.view">
+    <record id="visit_view_tree" model="ir.ui.view">
         <field name="name">hr.hospital.visit.list</field>
         <field name="model">hr_hospital.visit</field>
         <field name="arch" type="xml">
@@ -13,14 +13,16 @@
         </field>
     </record>
 
-    <record id="view_visit_form" model="ir.ui.view">
+    <record id="visit_view_form" model="ir.ui.view">
         <field name="name">hr.hospital.visit.form</field>
         <field name="model">hr_hospital.visit</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <div class="oe_title">
-                        <field name="name"/>
+                        <h1>
+                            <field name="name" readonly="True"/>
+                        </h1>
                     </div>
                     <group>
                         <group string="Planning">
@@ -46,7 +48,7 @@
         </field>
     </record>
 
-    <record id="action_visit" model="ir.actions.act_window">
+    <record id="visit_action" model="ir.actions.act_window">
         <field name="name">Hospital Visits</field>
         <field name="res_model">hr_hospital.visit</field>
         <field name="view_mode">list,form</field>
@@ -57,9 +59,11 @@
         </field>
     </record>
 
-    <menuitem id="menu_visit"
-              name="Visits"
-              parent="menu_document_catalog"
-              action="action_visit"/>
+    <record id="visit_menu" model="ir.ui.menu">
+        <field name="name">Visits</field>
+        <field name="parent_id" ref="hr_hospital_menu_documents"/>
+        <field name="action" ref="visit_action"/>
+        <field name="sequence">10</field>
+    </record>
 
 </odoo>
