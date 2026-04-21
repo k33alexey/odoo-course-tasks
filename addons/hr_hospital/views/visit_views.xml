@@ -1,5 +1,5 @@
 <odoo>
-    <record id="hr_hospital_visit_view_list" model="ir.ui.view">
+    <record id="view_visit_tree" model="ir.ui.view">
         <field name="name">hr.hospital.visit.list</field>
         <field name="model">hr_hospital.visit</field>
         <field name="arch" type="xml">
@@ -13,7 +13,7 @@
         </field>
     </record>
 
-    <record id="hr_hospital_visit_view_form" model="ir.ui.view">
+    <record id="view_visit_form" model="ir.ui.view">
         <field name="name">hr.hospital.visit.form</field>
         <field name="model">hr_hospital.visit</field>
         <field name="arch" type="xml">
@@ -31,7 +31,6 @@
                             <field name="patient_id" options="{'no_quick_create': True}"/>
                         </group>
                     </group>
-
                     <notebook>
                         <page string="Medical Details" name="details">
                             <separator string="Diagnosis"/>
@@ -47,7 +46,7 @@
         </field>
     </record>
 
-    <record id="action_hr_hospital_visit" model="ir.actions.act_window">
+    <record id="action_visit" model="ir.actions.act_window">
         <field name="name">Hospital Visits</field>
         <field name="res_model">hr_hospital.visit</field>
         <field name="view_mode">list,form</field>
@@ -58,9 +57,9 @@
         </field>
     </record>
 
-    <menuitem id="hr_hospital_visit_menu"
+    <menuitem id="menu_visit"
               name="Visits"
-              parent="hr_hospital_menu_document_catalog"
-              action="action_hr_hospital_visit"/>
+              parent="menu_document_catalog"
+              action="action_visit"/>
 
 </odoo>

@@ -1,12 +1,12 @@
 <odoo>
-    <menuitem id="hr_hospital_main_menu"
+    <menuitem id="menu_root"
               name="Hospital"/>
 
-    <menuitem id="hr_hospital_menu_document_catalog"
+    <menuitem id="menu_document_catalog"
               name="Documents"
-              parent="hr_hospital_main_menu"/>
+              parent="menu_root"/>
 
-    <menuitem id="hr_hospital_menu_reference_catalog"
+    <menuitem id="menu_reference_catalog"
               name="References"
-              parent="hr_hospital_main_menu"/>
+              parent="menu_root"/>
 </odoo>
