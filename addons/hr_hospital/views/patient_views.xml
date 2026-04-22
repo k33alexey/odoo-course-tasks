@@ -42,11 +42,9 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <record id="patient_menu" model="ir.ui.menu">
-        <field name="name">Patients</field>
-        <field name="parent_id" ref="hr_hospital_menu_references"/>
-        <field name="action" ref="patient_action"/>
-        <field name="sequence">20</field>
-    </record>
-
+    <menuitem id="patient_menu"
+          name="👤 Patients"
+          parent="hr_hospital_menu_references"
+          action="patient_action"
+          sequence="20"/>
 </odoo>

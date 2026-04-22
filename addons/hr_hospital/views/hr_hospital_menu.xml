@@ -1,18 +1,15 @@
 <odoo>
-    <record id="hr_hospital_menu" model="ir.ui.menu">
-        <field name="name">Hospital</field>
-        <field name="sequence">1</field>
-    </record>
+    <menuitem id="hr_hospital_menu"
+              name="🏥 Hospital"
+              sequence="1"/>
 
-    <record id="hr_hospital_menu_documents" model="ir.ui.menu">
-        <field name="name">Documents</field>
-        <field name="parent_id" ref="hr_hospital_menu"/>
-        <field name="sequence">10</field>
-    </record>
+    <menuitem id="hr_hospital_menu_documents"
+              name="📂 Documents"
+              parent="hr_hospital_menu"
+              sequence="10"/>
 
-    <record id="hr_hospital_menu_references" model="ir.ui.menu">
-        <field name="name">References</field>
-        <field name="parent_id" ref="hr_hospital_menu"/>
-        <field name="sequence">20</field>
-    </record>
+    <menuitem id="hr_hospital_menu_references"
+              name="📖 References"
+              parent="hr_hospital_menu"
+              sequence="20"/>
 </odoo>

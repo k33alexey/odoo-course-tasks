@@ -41,11 +41,10 @@
         </field>
     </record>
 
-    <record id="doctor_menu" model="ir.ui.menu">
-        <field name="name">Doctors</field>
-        <field name="parent_id" ref="hr_hospital_menu_references"/>
-        <field name="action" ref="doctor_action"/>
-        <field name="sequence">10</field>
-    </record>
+    <menuitem id="doctor_menu"
+          name="👨‍⚕️ Doctors"
+          parent="hr_hospital_menu_references"
+          action="doctor_action"
+          sequence="10"/>
 
 </odoo>

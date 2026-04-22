@@ -59,11 +59,10 @@
         </field>
     </record>
 
-    <record id="visit_menu" model="ir.ui.menu">
-        <field name="name">Visits</field>
-        <field name="parent_id" ref="hr_hospital_menu_documents"/>
-        <field name="action" ref="visit_action"/>
-        <field name="sequence">10</field>
-    </record>
+    <menuitem id="visit_menu"
+          name="📅 Visits"
+          parent="hr_hospital_menu_documents"
+          action="visit_action"
+          sequence="10"/>
 
 </odoo>
