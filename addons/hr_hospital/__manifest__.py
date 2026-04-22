@@ -1,6 +1,6 @@
 {
     'name': "Hospital Management",
-    'version': '1.0',
+    'version': '19.0.1.0.3',
     'category': 'Healthcare',
     'summary': "Manage doctors, patients, diseases and hospital visits",
     'description': "",
