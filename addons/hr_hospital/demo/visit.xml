@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="visit_demo_1" model="hr_hospital.visit">
         <field name="name">OSV-00001</field>
         <field name="visit_date" eval="datetime.now()"/>
-        <field name="doctor_id" ref="hr_hospital.doctor_house"/>
+        <field name="doctor_id" ref="hr_hospital.demo_object_doctor_1"/>
         <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
         <field name="disease_ids" eval="[(4, ref('hr_hospital.disease_flu'))]"/>
         <field name="notes">The patient has a typical case of seasonal flu</field>

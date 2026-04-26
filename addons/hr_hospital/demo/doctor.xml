@@ -1,16 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="doctor_house" model="hr_hospital.doctor">
-        <field name="name">Gregory House</field>
-        <field name="specialty">Diagnostic Medicine</field>
-    </record>
+    <data noupdate="1">
+        <record id="demo_object_doctor_1" model="hr_hospital.doctor">
+            <field name="last_name">Иванов</field>
+            <field name="first_name">Иван</field>
+            <field name="middle_name">Иванович</field>
+            <field name="gender">male</field>
+            <field name="birth_date">1990-05-15</field>
+            <field name="phone">+79001112233</field>
+            <field name="email">ivanov@example.com</field>
+            <field name="country_id" ref="base.ru"/>
+        </record>
 
-    <record id="doctor_cameron" model="hr_hospital.doctor">
-        <field name="name">Myke Tyson</field>
-        <field name="specialty">Immunology</field>
-    </record>
+        <record id="demo_object_doctor_2" model="hr_hospital.doctor">
+            <field name="last_name">Smith</field>
+            <field name="first_name">John</field>
+            <field name="gender">male</field>
+            <field name="birth_date">1985-10-20</field>
+            <field name="phone">+1 555-010-999</field>
+            <field name="email">jsmith@global.com</field>
+            <field name="country_id" ref="base.us"/>
+        </record>
 
-    <record id="doctor_foreman" model="hr_hospital.doctor">
-        <field name="name">Eric Foreman</field>
-        <field name="specialty">Neurology</field>
-    </record>
+        <record id="demo_object_doctor_3" model="hr_hospital.doctor">
+            <field name="last_name">Ковальчук</field>
+            <field name="first_name">Елена</field>
+            <field name="middle_name">Петровна</field>
+            <field name="gender">female</field>
+            <field name="birth_date">1995-03-12</field>
+            <field name="phone">+380501234567</field>
+            <field name="email">elena.k@ua.mail</field>
+            <field name="country_id" ref="base.ua"/>
+        </record>
+
+        <record id="demo_object_doctor_4" model="hr_hospital.doctor">
+            <field name="last_name">Ошибка</field>
+            <field name="first_name">Тест</field>
+            <field name="gender">female</field>
+            <field name="birth_date">2000-01-01</field>
+            <field name="phone">12345</field>
+            <field name="email">not-an-email</field>
+            <field name="country_id" ref="base.ru"/>
+        </record>
+
+        <record id="demo_object_doctor_5" model="hr_hospital.doctor">
+            <field name="last_name">Долгожитель</field>
+            <field name="first_name">Афанасий</field>
+            <field name="gender">male</field>
+            <field name="birth_date">1945-09-02</field>
+            <field name="phone">+79119998877</field>
+            <field name="country_id" ref="base.ru"/>
+        </record>
+    </data>
 </odoo>

@@ -1,11 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="doctor_view_list" model="ir.ui.view">
         <field name="name">hr.hospital.doctor.list</field>
         <field name="model">hr_hospital.doctor</field>
         <field name="arch" type="xml">
-            <list>
-                <field name="name"/>
-                <field name="specialty"/>
+            <list decoration-muted="not active">
+                <field name="full_name"/>
+                <field name="phone" optional="show"/>
+                <field name="email" optional="show"/>
+                <button name="action_archive" type="object" icon="fa-archive" invisible="not active"/>
+                <button name="action_unarchive" type="object" icon="oi-unarchive" invisible="active"/>
             </list>
         </field>
     </record>
@@ -18,15 +22,28 @@
                 <sheet>
                     <separator string="Doctor Information"/>
                     <group>
-                        <field name="name"/>
-                    </group>
-                    <group>
-                        <group>
-                            <field name="specialty"/>
-                        </group>
+                        <field name="full_name"/>
+                        <field name="email_state" invisible="1"/>
+                        <field name="phone_state" invisible="1"/>
+                        <field name="email" string="Email" widget="email"/>
+                        <field name="phone" widget="phone"/>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="doctor_view_search" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.search</field>
+        <field name="model">hr_hospital.doctor</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="full_name"/>
+                <field name="phone"/>
+                <filter string="Archived"
+                        name="filter_archived"
+                        domain="[('active', '=', False)]"/>
+            </search>
         </field>
     </record>
 
@@ -42,9 +59,9 @@
     </record>
 
     <menuitem id="doctor_menu"
-          name="👨‍⚕️ Doctors"
-          parent="hr_hospital_menu_references"
-          action="doctor_action"
-          sequence="10"/>
+              name="Doctors"
+              parent="hr_hospital_menu_references"
+              action="doctor_action"
+              sequence="10"/>
 
 </odoo>

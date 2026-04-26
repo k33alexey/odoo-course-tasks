@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="patient_view_list" model="ir.ui.view">
         <field name="name">hr.hospital.patient.list</field>
@@ -43,7 +44,7 @@
     </record>
 
     <menuitem id="patient_menu"
-          name="👤 Patients"
+          name="Patients"
           parent="hr_hospital_menu_references"
           action="patient_action"
           sequence="20"/>

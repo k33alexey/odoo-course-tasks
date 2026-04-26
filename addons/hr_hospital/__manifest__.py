@@ -1,13 +1,17 @@
 {
     'name': "Hospital Management",
-    'version': '19.0.1.0.3',
+    'version': '19.0.1.1.1',
     'category': 'Healthcare',
     'summary': "Manage doctors, patients, diseases and hospital visits",
     'description': "",
     'author': "Oleksii Kalinin",
     'website': "https://github.com/k33alexey/odoo-school",
     'license': "OPL-1",
-    'depends': ['base'],
+    'depends': [
+        'base',
+        'mail',
+        'phone_validation'
+    ],
     'data': [
         'security/ir.model.access.csv',
         'data/sequence.xml',

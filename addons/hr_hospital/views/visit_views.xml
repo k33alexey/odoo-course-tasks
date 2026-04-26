@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="visit_view_list" model="ir.ui.view">
         <field name="name">hr.hospital.visit.list</field>
@@ -60,7 +61,7 @@
     </record>
 
     <menuitem id="visit_menu"
-          name="📅 Visits"
+          name="Visits"
           parent="hr_hospital_menu_documents"
           action="visit_action"
           sequence="10"/>

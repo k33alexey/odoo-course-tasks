@@ -14,5 +14,4 @@ class HospitalDisease(models.Model):
     code = fields.Char(string='ICD Code')
     color = fields.Integer(
         string='Color Index',
-        default=lambda self: random.randint(1, 11)
-    )
+        default=lambda self: random.randint(1, 11))

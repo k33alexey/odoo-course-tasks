@@ -19,5 +19,4 @@ class HospitalPatient(models.Model):
         'hr_hospital.visit',
         'patient_id',
         string='Visit History',
-        readonly=True
-    )
+        readonly=True)
