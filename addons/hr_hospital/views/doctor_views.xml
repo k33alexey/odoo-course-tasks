@@ -8,8 +8,17 @@
                 <field name="full_name"/>
                 <field name="phone" optional="show"/>
                 <field name="email" optional="show"/>
-                <button name="action_archive" type="object" icon="fa-archive" invisible="not active"/>
-                <button name="action_unarchive" type="object" icon="oi-unarchive" invisible="active"/>
+                <button name="action_archive"
+                        type="object"
+                        icon="fa-archive"
+                        string="Archive"
+                        invisible="not active"/>
+
+                <button name="action_unarchive"
+                        type="object"
+                        icon="oi-unarchive"
+                        string="Unarchive"
+                        invisible="active"/>
             </list>
         </field>
     </record>
@@ -23,8 +32,8 @@
                     <separator string="Doctor Information"/>
                     <group>
                         <field name="full_name"/>
-                        <field name="email_state" invisible="1"/>
-                        <field name="phone_state" invisible="1"/>
+                        <field name="email_state" invisible="True"/>
+                        <field name="phone_state" invisible="True"/>
                         <field name="email" string="Email" widget="email"/>
                         <field name="phone" widget="phone"/>
                     </group>
@@ -60,8 +69,12 @@
 
     <menuitem id="doctor_menu"
               name="Doctors"
-              parent="hr_hospital_menu_references"
-              action="doctor_action"
+              parent="hr_hospital.hr_hospital_menu_references"
               sequence="10"/>
+
+    <menuitem id="doctor_all_menu"
+              name="Doctors"
+              parent="doctor_menu"
+              action="doctor_action" sequence="10"/>
 
 </odoo>

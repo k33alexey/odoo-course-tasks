@@ -3,3 +3,5 @@ access_hr_hospital_disease,hr_hospital.disease,model_hr_hospital_disease,base.gr
 access_hr_hospital_doctor,hr_hospital.doctor,model_hr_hospital_doctor,base.group_user,1,1,1,1
 access_hr_hospital_patient,hr_hospital.patient,model_hr_hospital_patient,base.group_user,1,1,1,1
 access_hr_hospital_visit,hr_hospital.visit,model_hr_hospital_visit,base.group_user,1,1,1,1
+access_hr_hospital_doctor_history,hr_hospital.doctor.history,model_hr_hospital_doctor_history,base.group_user,1,1,1,1
+access_hr_hospital_doctor_category,hr_hospital.doctor.category,model_hr_hospital_doctor_category,base.group_user,1,1,1,1

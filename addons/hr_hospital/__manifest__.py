@@ -1,6 +1,6 @@
 {
     'name': "Hospital Management",
-    'version': '19.0.1.1.1',
+    'version': '19.0.1.2.1',
     'category': 'Healthcare',
     'summary': "Manage doctors, patients, diseases and hospital visits",
     'description': "",
@@ -10,14 +10,17 @@
     'depends': [
         'base',
         'mail',
-        'phone_validation'
+        'phone_validation',
     ],
     'data': [
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'data/disease.xml',
+        'data/doctor_category.xml',
         'views/hr_hospital_menu.xml',
         'views/doctor_views.xml',
+        'views/doctor_category.xml',
+        'views/doctor_history.xml',
         'views/patient_views.xml',
         'views/visit_views.xml'
     ],
