@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- menu -->
     <menuitem id="hr_hospital_menu"
               name="Hospital"
               web_icon="hr_hospital,static/description/icon.png"

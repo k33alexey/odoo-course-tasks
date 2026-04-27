@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="demo_object_doctor_history_1" model="hr_hospital.doctor.history">
+            <field name="doctor_id" ref="demo_object_doctor_1"/>
+            <field name="patient_id" ref="hr_hospital.patient_jane_smith"/>
+            <field name="assigned_date">2026-04-01</field>
+            <field name="shift_date">2026-04-01</field>
+            <field name="active" eval="True"/>
+        </record>
+
+         <record id="demo_object_doctor_history_2" model="hr_hospital.doctor.history">
+            <field name="doctor_id" ref="demo_object_doctor_2"/>
+            <field name="patient_id" ref="hr_hospital.patient_robert_chase"/>
+            <field name="assigned_date">2026-04-02</field>
+            <field name="shift_date">2026-04-02</field>
+            <field name="active" eval="True"/>
+        </record>
+
+         <record id="demo_object_doctor_history_3" model="hr_hospital.doctor.history">
+            <field name="doctor_id" ref="demo_object_doctor_3"/>
+            <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
+            <field name="assigned_date">2026-04-02</field>
+            <field name="shift_date">2026-04-02</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

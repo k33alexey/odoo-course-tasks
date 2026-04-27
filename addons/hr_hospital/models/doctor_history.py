@@ -11,11 +11,15 @@ class DoctorHistory(models.Model):
     shift_date = fields.Date(string='Shift Date')
     active = fields.Boolean(string='Active', default=True)
 
-    @api.depends('doctor_id', 'assigned_date')
+    @api.depends('patient_id', 'doctor_id', 'doctor_id.category_id', 'assigned_date')
     def _compute_display_name(self):
-        for doctor_history in self:
-            if doctor_history.doctor_id and doctor_history.assigned_date:
-                doctor_history.display_name = f"{doctor_history.doctor_id.full_name} from {doctor_history.assigned_date}"
+        for record in self:
+            patient_name = record.patient_id.name or _('Unknown Patient')
+            doctor_name = record.doctor_id.full_name or _('Unknown Doctor')
+            category = record.doctor_id.category_id.name or _('No Category')
+            date_str = record.assigned_date.strftime('%d.%m.%Y') if record.assigned_date else ''
+
+            record.display_name = f"{patient_name} - {doctor_name} ({category}) {date_str}"
 
     @api.onchange('assigned_date', 'shift_date')
     def _onchange_dates(self):

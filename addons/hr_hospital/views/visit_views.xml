@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- list -->
     <record id="visit_view_list" model="ir.ui.view">
         <field name="name">hr.hospital.visit.list</field>
         <field name="model">hr_hospital.visit</field>
@@ -14,6 +15,7 @@
         </field>
     </record>
 
+    <!-- form -->
     <record id="visit_view_form" model="ir.ui.view">
         <field name="name">hr.hospital.visit.form</field>
         <field name="model">hr_hospital.visit</field>
@@ -49,6 +51,7 @@
         </field>
     </record>
 
+    <!-- action -->
     <record id="visit_action" model="ir.actions.act_window">
         <field name="name">Hospital Visits</field>
         <field name="res_model">hr_hospital.visit</field>
@@ -60,6 +63,7 @@
         </field>
     </record>
 
+    <!-- menu -->
     <menuitem id="visit_menu"
           name="Visits"
           parent="hr_hospital_menu_documents"

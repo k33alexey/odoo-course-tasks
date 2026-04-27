@@ -1,4 +1,4 @@
-from . import person
+from . import medic_info
 from . import doctor
 from . import doctor_category
 from . import doctor_history

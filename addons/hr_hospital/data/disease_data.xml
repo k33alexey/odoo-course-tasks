@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="disease_flu" model="hr_hospital.disease">
+            <field name="name">Flu</field>
+            <field name="code">J11</field>
+            <field name="color">1</field>
+        </record>
+
+        <record id="disease_covid" model="hr_hospital.disease">
+            <field name="name">COVID-19</field>
+            <field name="code">U07.1</field>
+            <field name="color">2</field>
+        </record>
+
+        <record id="disease_cold" model="hr_hospital.disease">
+            <field name="name">Common Cold</field>
+            <field name="code">J00</field>
+            <field name="color">3</field>
+        </record>
+
+        <record id="disease_intestinal" model="hr_hospital.disease">
+            <field name="name">Intestinal infectious diseases</field>
+            <field name="code">A00-A09</field>
+            <field name="color">5</field>
+        </record>
+
+        <record id="disease_cholera" model="hr_hospital.disease">
+            <field name="name">Cholera</field>
+            <field name="code">A00</field>
+            <field name="parent_id" ref="disease_intestinal"/>
+            <field name="color">6</field>
+        </record>
+
+        <record id="disease_respiratory" model="hr_hospital.disease">
+            <field name="name">Respiratory diseases</field>
+            <field name="code">J00-J99</field>
+            <field name="parent_id" ref="disease_intestinal"/>
+            <field name="color">7</field>
+        </record>
+
+    </data>
+</odoo>

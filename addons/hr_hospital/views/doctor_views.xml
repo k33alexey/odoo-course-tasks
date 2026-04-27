@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- list -->
     <record id="doctor_view_list" model="ir.ui.view">
         <field name="name">hr.hospital.doctor.list</field>
         <field name="model">hr_hospital.doctor</field>
         <field name="arch" type="xml">
             <list decoration-muted="not active">
                 <field name="full_name"/>
+                <field name="category_id"/>
                 <field name="phone" optional="show"/>
                 <field name="email" optional="show"/>
+                <field name="intern_label"
+                       widget="badge"
+                       decoration-success="is_intern"
+                       invisible="not is_intern"
+                       nolabel="1"/>
                 <button name="action_archive"
                         type="object"
                         icon="fa-archive"
                         string="Archive"
                         invisible="not active"/>
-
                 <button name="action_unarchive"
                         type="object"
                         icon="oi-unarchive"
@@ -23,25 +29,40 @@
         </field>
     </record>
 
+    <!-- form -->
     <record id="doctor_view_form" model="ir.ui.view">
         <field name="name">hr.hospital.doctor.form</field>
         <field name="model">hr_hospital.doctor</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <separator string="Doctor Information"/>
+                    <field name="image_1920" widget="image" class="oe_avatar"
+                           options="{'preview_image': 'image_128'}"/>
                     <group>
-                        <field name="full_name"/>
-                        <field name="email_state" invisible="True"/>
-                        <field name="phone_state" invisible="True"/>
-                        <field name="email" string="Email" widget="email"/>
-                        <field name="phone" widget="phone"/>
+                        <group>
+                            <separator string="Doctor Information"/>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="middle_name"/>
+                            <field name="category_id"/>
+                            <field name="mentor_id"
+                                   readonly="not is_intern"
+                                   domain="[('is_intern', '=', False), ('id', '!=', id)]"/>
+                        </group>
+                        <group>
+                            <separator string="Contact Information"/>
+                            <field name="email_state" invisible="True"/>
+                            <field name="phone_state" invisible="True"/>
+                            <field name="email" string="Email" widget="email"/>
+                            <field name="phone" widget="phone"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <!-- search -->
     <record id="doctor_view_search" model="ir.ui.view">
         <field name="name">hr.hospital.doctor.search</field>
         <field name="model">hr_hospital.doctor</field>
@@ -56,6 +77,7 @@
         </field>
     </record>
 
+    <!-- action -->
     <record id="doctor_action" model="ir.actions.act_window">
         <field name="name">Doctors</field>
         <field name="res_model">hr_hospital.doctor</field>
@@ -67,6 +89,7 @@
         </field>
     </record>
 
+    <!-- menu -->
     <menuitem id="doctor_menu"
               name="Doctors"
               parent="hr_hospital.hr_hospital_menu_references"

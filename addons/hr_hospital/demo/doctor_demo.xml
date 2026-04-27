@@ -10,6 +10,7 @@
             <field name="phone">+79001112233</field>
             <field name="email">ivanov@example.com</field>
             <field name="country_id" ref="base.ru"/>
+            <field name="category_id" ref="hr_hospital.doctor_category_expert"/>
         </record>
 
         <record id="demo_object_doctor_2" model="hr_hospital.doctor">
@@ -20,6 +21,7 @@
             <field name="phone">+1 555-010-999</field>
             <field name="email">jsmith@global.com</field>
             <field name="country_id" ref="base.us"/>
+            <field name="category_id" ref="hr_hospital.doctor_category_specialist"/>
         </record>
 
         <record id="demo_object_doctor_3" model="hr_hospital.doctor">
@@ -31,6 +33,7 @@
             <field name="phone">+380501234567</field>
             <field name="email">elena.k@ua.mail</field>
             <field name="country_id" ref="base.ua"/>
+            <field name="category_id" ref="hr_hospital.doctor_category_specialist"/>
         </record>
 
         <record id="demo_object_doctor_4" model="hr_hospital.doctor">
@@ -41,6 +44,7 @@
             <field name="phone">12345</field>
             <field name="email">not-an-email</field>
             <field name="country_id" ref="base.ru"/>
+            <field name="category_id" ref="hr_hospital.doctor_category_intern"/>
         </record>
 
         <record id="demo_object_doctor_5" model="hr_hospital.doctor">
@@ -50,6 +54,7 @@
             <field name="birth_date">1945-09-02</field>
             <field name="phone">+79119998877</field>
             <field name="country_id" ref="base.ru"/>
+            <field name="category_id" ref="hr_hospital.doctor_category_intern"/>
         </record>
     </data>
 </odoo>
