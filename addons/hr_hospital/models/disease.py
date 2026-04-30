@@ -30,8 +30,9 @@ class HospitalDisease(models.Model):
 
     @api.constrains('parent_id')
     def _check_hierarchy(self):
-        if self._has_cycle():
-            raise ValidationError(_('Error! You cannot create recursive hierarchy.'))
+        for patient in self:
+            if patient._has_cycle():
+                raise ValidationError(_('Error! You cannot create recursive hierarchy.'))
 
     @api.depends('name')
     def _compute_display_name(self):
