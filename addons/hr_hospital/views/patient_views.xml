@@ -9,6 +9,7 @@
                 <field name="name"/>
                 <field name="birth_date"/>
                 <field name="gender"/>
+                <field name="doctor_id"/>
             </list>
         </field>
     </record>
@@ -25,6 +26,7 @@
                         <field name="name"/>
                         <field name="birth_date"/>
                         <field name="gender" widget="radio" options="{'horizontal': True}"/>
+                        <field name="doctor_id"/>
                     </group>
                     <separator string="Visit History"/>
                     <field name="visit_ids">
@@ -35,6 +37,7 @@
                         </list>
                     </field>
                 </sheet>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -48,8 +51,8 @@
 
     <!-- menu -->
     <menuitem id="patient_menu"
-          name="Patients"
-          parent="hr_hospital_menu_references"
-          action="patient_action"
-          sequence="20"/>
+              name="Patients"
+              parent="hr_hospital_menu_references"
+              action="patient_action"
+              sequence="20"/>
 </odoo>

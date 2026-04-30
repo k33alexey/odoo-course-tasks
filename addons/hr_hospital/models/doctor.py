@@ -16,7 +16,7 @@ class HospitalDoctor(models.Model):
     is_intern = fields.Boolean('Is Intern', compute='_compute_is_intern', default=False, store=True)
     system_user_id = fields.Many2one('res.users', string='System User')
     mentor_id = fields.Many2one('hr_hospital.doctor', string='Mentor')
-    intern_label = fields.Char(string='Status Label', compute='_compute_is_intern', store=True)
+    intern_label = fields.Char(string='Status Label', compute='_compute_is_intern')
 
     @api.depends('full_name', 'category_id')
     def _compute_display_name(self):

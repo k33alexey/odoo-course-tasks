@@ -5,12 +5,24 @@
         <field name="name">hr.hospital.visit.list</field>
         <field name="model">hr_hospital.visit</field>
         <field name="arch" type="xml">
-            <list>
+            <list decoration-muted="not active">
                 <field name="name" string="Number"/>
                 <field name="visit_date"/>
                 <field name="doctor_id"/>
                 <field name="patient_id"/>
-                <field name="disease_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="disease_ids"
+                       widget="many2many_tags"
+                       options="{'color_field': 'color'}"/>
+                <button name="action_archive"
+                        type="object"
+                        icon="fa-archive"
+                        string="Archive"
+                        invisible="not active"/>
+                <button name="action_unarchive"
+                        type="object"
+                        icon="oi-unarchive"
+                        string="Unarchive"
+                        invisible="active"/>
             </list>
         </field>
     </record>
@@ -21,7 +33,11 @@
         <field name="model">hr_hospital.visit</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
+                    <field name="state" widget="badge" decoration-success="state == 'done'"/>
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="True"/>
@@ -65,9 +81,9 @@
 
     <!-- menu -->
     <menuitem id="visit_menu"
-          name="Visits"
-          parent="hr_hospital_menu_documents"
-          action="visit_action"
-          sequence="10"/>
+              name="Visits"
+              parent="hr_hospital_menu_documents"
+              action="visit_action"
+              sequence="10"/>
 
 </odoo>
