@@ -28,14 +28,27 @@
                         <field name="gender" widget="radio" options="{'horizontal': True}"/>
                         <field name="doctor_id"/>
                     </group>
-                    <separator string="Visit History"/>
-                    <field name="visit_ids">
-                        <list>
-                            <field name="visit_date"/>
-                            <field name="doctor_id"/>
-                            <field name="disease_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                        </list>
-                    </field>
+                    <notebook>
+                        <page string="Visit history">
+                            <field name="visit_ids">
+                                <list>
+                                    <field name="visit_date"/>
+                                    <field name="doctor_id"/>
+                                    <field name="disease_ids" widget="many2many_tags"
+                                           options="{'color_field': 'color'}"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Personal doctor history">
+                            <field name="personal_doctor_ids">
+                                <list decoration-muted="not active">
+                                    <field name="assigned_date"/>
+                                    <field name="doctor_id"/>
+                                    <field name="active" widget="boolean_toggle"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
                 <chatter/>
             </form>

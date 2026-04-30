@@ -22,6 +22,22 @@
             <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
             <field name="assigned_date">2026-04-02</field>
             <field name="shift_date">2026-04-02</field>
+            <field name="active" eval="False"/>
+        </record>
+
+         <record id="demo_object_doctor_history_4" model="hr_hospital.doctor.history">
+            <field name="doctor_id" ref="demo_object_doctor_4"/>
+            <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
+            <field name="assigned_date">2026-04-29</field>
+            <field name="shift_date">2026-04-29</field>
+            <field name="active" eval="False"/>
+        </record>
+
+         <record id="demo_object_doctor_history_5" model="hr_hospital.doctor.history">
+            <field name="doctor_id" ref="demo_object_doctor_5"/>
+            <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
+            <field name="assigned_date">2026-04-30</field>
+            <field name="shift_date">2026-04-30</field>
             <field name="active" eval="True"/>
         </record>
     </data>

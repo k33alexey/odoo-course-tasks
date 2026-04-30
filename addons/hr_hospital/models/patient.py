@@ -1,6 +1,6 @@
 import logging
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 _logger = logging.getLogger(__name__)
 
@@ -23,3 +23,29 @@ class HospitalPatient(models.Model):
         'patient_id',
         string='Visit History',
         readonly=True)
+    personal_doctor_ids = fields.One2many(
+        'hr_hospital.doctor.history',
+        'patient_id',
+        string='Personal Doctor History',
+        readonly=True,
+        context={'active_test': False})
+
+    def write(self, vals):
+        if vals.get('doctor_id'):
+            assigned_date = self.env.context.get('assigned_date') or fields.Date.today()
+
+            for patient in self:
+                active_personal_doctor = patient.personal_doctor_ids.filtered(lambda x: x.active)
+
+                if active_personal_doctor:
+                    active_personal_doctor.write({'active': False})
+
+                self.env['hr_hospital.doctor.history'].create({
+                    'patient_id': patient.id,
+                    'doctor_id': vals.get('doctor_id'),
+                    'assigned_date': assigned_date,
+                    'shift_date': assigned_date,
+                    'active': True,
+                })
+
+        return super(HospitalPatient, self).write(vals)
