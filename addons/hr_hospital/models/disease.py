@@ -28,9 +28,9 @@ class HospitalDisease(models.Model):
         'parent_id',
         string='Child Diseases')
 
-    @api.deprecated('parent_id')
+    @api.constrains('parent_id')
     def _check_hierarchy(self):
-        if not self._has_cycle():
+        if self._has_cycle():
             raise ValidationError(_('Error! You cannot create recursive hierarchy.'))
 
     @api.depends('name')
