@@ -13,13 +13,13 @@ class DoctorHistory(models.Model):
 
     @api.depends('patient_id', 'doctor_id', 'doctor_id.category_id', 'assigned_date')
     def _compute_display_name(self):
-        for record in self:
-            patient_name = record.patient_id.name or _('Unknown Patient')
-            doctor_name = record.doctor_id.full_name or _('Unknown Doctor')
-            category = record.doctor_id.category_id.name or _('No Category')
-            date_str = record.assigned_date.strftime('%d.%m.%Y') if record.assigned_date else ''
+        for doctor_history in self:
+            patient_name = doctor_history.patient_id.name or _('Unknown Patient')
+            doctor_name = doctor_history.doctor_id.full_name or _('Unknown Doctor')
+            category = doctor_history.doctor_id.category_id.name or _('No Category')
+            date_str = doctor_history.assigned_date.strftime('%d.%m.%Y') if doctor_history.assigned_date else ''
 
-            record.display_name = f"{patient_name} - {doctor_name} ({category}) {date_str}"
+            doctor_history.display_name = f"{patient_name} - {doctor_name} ({category}) {date_str}"
 
     @api.onchange('assigned_date', 'shift_date')
     def _onchange_dates(self):
