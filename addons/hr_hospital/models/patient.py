@@ -35,10 +35,10 @@ class HospitalPatient(models.Model):
             assigned_date = self.env.context.get('assigned_date') or fields.Date.today()
 
             for patient in self:
-                active_personal_doctor = patient.personal_doctor_ids.filtered(lambda x: x.active)
+                active_personal_doctor_ids = patient.personal_doctor_ids.filtered(lambda x: x.active)
 
-                if active_personal_doctor:
-                    active_personal_doctor.write({'active': False})
+                if active_personal_doctor_ids:
+                    active_personal_doctor_ids.write({'active': False})
 
                 self.env['hr_hospital.doctor.history'].create({
                     'patient_id': patient.id,
