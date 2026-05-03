@@ -32,7 +32,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar"/>
+                    <field name="state" widget="statusbar" options="{'clickable': True}"/>
                 </header>
                 <sheet>
                     <field name="state" widget="badge" decoration-success="state == 'done'"/>
