@@ -1,7 +1,7 @@
 import logging
 import random
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -31,9 +31,9 @@ class HospitalDisease(models.Model):
     @api.constrains('parent_id')
     def _check_hierarchy(self):
         if self._has_cycle():
-            raise ValidationError(_('Error! You cannot create recursive hierarchy.'))
+            raise ValidationError(self.env._('Error! You cannot create recursive hierarchy.'))
 
-    @api.depends('name')
+    @api.depends('name', 'parent_id')
     def _compute_display_name(self):
         for disease in self:
             if disease.parent_id:

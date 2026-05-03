@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="patient_john_doe" model="hr_hospital.patient">
-        <field name="name">John Doe</field>
+        <field name="first_name">John</field>
+        <field name="last_name">Doe</field>
         <field name="birth_date">1985-05-12</field>
         <field name="gender">male</field>
         <field name="doctor_id" ref="demo_object_doctor_1"/>
     </record>
 
     <record id="patient_jane_smith" model="hr_hospital.patient">
-        <field name="name">Jane Smith</field>
+        <field name="first_name">Jane</field>
+        <field name="last_name">Smith</field>
         <field name="birth_date">1992-08-24</field>
         <field name="gender">female</field>
         <field name="doctor_id" ref="demo_object_doctor_1"/>
     </record>
 
     <record id="patient_robert_chase" model="hr_hospital.patient">
-        <field name="name">Roberto Carlos</field>
+        <field name="first_name">Roberto</field>
+        <field name="last_name">Carlos</field>
         <field name="birth_date">1979-02-10</field>
         <field name="gender">male</field>
         <field name="doctor_id" ref="demo_object_doctor_2"/>

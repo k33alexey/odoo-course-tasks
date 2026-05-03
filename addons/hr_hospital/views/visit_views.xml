@@ -10,9 +10,7 @@
                 <field name="visit_date"/>
                 <field name="doctor_id"/>
                 <field name="patient_id"/>
-                <field name="disease_ids"
-                       widget="many2many_tags"
-                       options="{'color_field': 'color'}"/>
+                <field name="disease_id"/>
                 <button name="action_archive"
                         type="object"
                         icon="fa-archive"
@@ -55,9 +53,7 @@
                     <notebook>
                         <page string="Medical Details" name="details">
                             <separator string="Diagnosis"/>
-                            <field name="disease_ids"
-                                   widget="many2many_tags"
-                                   options="{'color_field': 'color', 'no_quick_create': True}"/>
+                            <field name="disease_id"/>
                             <separator string="Doctor Notes"/>
                             <field name="notes"/>
                         </page>

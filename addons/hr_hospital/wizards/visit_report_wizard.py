@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, Command
 
 
 class VisitReportWizard(models.TransientModel):
@@ -14,16 +14,18 @@ class VisitReportWizard(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        result = super(VisitReportWizard, self).default_get(fields_list)
+        result = super().default_get(fields_list)
 
         active_ids = self.env.context.get('active_ids')
         active_model = self.env.context.get('active_model')
 
         if active_ids and active_model:
+            ids = active_ids if isinstance(active_ids, list) else [active_ids]
+
             if active_model == 'hr_hospital.doctor':
-                result['doctor_ids'] = [(6, 0, active_ids)]
+                result['doctor_ids'] = [Command.set(ids)]
             elif active_model == 'hr_hospital.patient':
-                result['patient_ids'] = [(6, 0, active_ids)]
+                result['patient_ids'] = [Command.set(ids)]
 
         return result
 
@@ -48,7 +50,7 @@ class VisitReportWizard(models.TransientModel):
             domain.append(('state', '=', 'done'))
 
         if self.disease_id:
-            domain.append(('disease_ids', 'in', [self.disease_id.id]))
+            domain.append(('disease_id', '=', self.disease_id.id))
 
         return {
             'name': 'Visit Report',

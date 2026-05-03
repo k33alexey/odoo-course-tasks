@@ -1,4 +1,4 @@
-from odoo import fields, models, api, _
+from odoo import fields, models, api
 
 
 class DoctorHistory(models.Model):
@@ -14,9 +14,9 @@ class DoctorHistory(models.Model):
     @api.depends('patient_id', 'doctor_id', 'doctor_id.category_id', 'assigned_date')
     def _compute_display_name(self):
         for doctor_history in self:
-            patient_name = doctor_history.patient_id.name or _('Unknown Patient')
-            doctor_name = doctor_history.doctor_id.full_name or _('Unknown Doctor')
-            category = doctor_history.doctor_id.category_id.name or _('No Category')
+            patient_name = doctor_history.patient_id.full_name or self.env._('Unknown Patient')
+            doctor_name = doctor_history.doctor_id.full_name or self.env._('Unknown Doctor')
+            category = doctor_history.doctor_id.category_id.name or self.env._('No Category')
             date_str = doctor_history.assigned_date.strftime('%d.%m.%Y') if doctor_history.assigned_date else ''
 
             doctor_history.display_name = f"{patient_name} - {doctor_name} ({category}) {date_str}"
@@ -29,7 +29,7 @@ class DoctorHistory(models.Model):
                     doctor_history.shift_date = False
                     return {
                         'warning': {
-                            'title': _("Invalid shift date"),
-                            'message': _("Shift date cannot be earlier than assigned date."),
+                            'title': self.env._("Invalid shift date"),
+                            'message': self.env._("Shift date cannot be earlier than assigned date."),
                         }
                     }

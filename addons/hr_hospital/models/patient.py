@@ -8,14 +8,8 @@ _logger = logging.getLogger(__name__)
 class HospitalPatient(models.Model):
     _name = 'hr_hospital.patient'
     _description = 'Patient'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['hr_hospital.medic.info', 'mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char(string='Full Name', required=True)
-    birth_date = fields.Date(string='Date of Birth')
-    gender = fields.Selection([
-        ('male', 'Male'),
-        ('female', 'Female'),
-    ], string='Gender', default='male')
     doctor_id = fields.Many2one('hr_hospital.doctor', string='Personal doctor', tracking=True)
     policy_number = fields.Char(string='Policy Number', size=20)
     visit_ids = fields.One2many(
@@ -35,7 +29,7 @@ class HospitalPatient(models.Model):
             assigned_date = self.env.context.get('assigned_date') or fields.Date.today()
 
             for patient in self:
-                active_personal_doctor_ids = patient.personal_doctor_ids.filtered(lambda x: x.active)
+                active_personal_doctor_ids = patient.personal_doctor_ids.filtered(lambda val: val.active)
 
                 if active_personal_doctor_ids:
                     active_personal_doctor_ids.write({'active': False})
@@ -48,4 +42,4 @@ class HospitalPatient(models.Model):
                     'active': True,
                 })
 
-        return super(HospitalPatient, self).write(vals)
+        return super().write(vals)

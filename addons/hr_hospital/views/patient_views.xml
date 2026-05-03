@@ -6,7 +6,7 @@
         <field name="model">hr_hospital.patient</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
+                <field name="full_name"/>
                 <field name="birth_date"/>
                 <field name="gender"/>
                 <field name="doctor_id"/>
@@ -23,7 +23,7 @@
                 <sheet>
                     <separator string="Patient Information"/>
                     <group>
-                        <field name="name"/>
+                        <field name="full_name"/>
                         <field name="birth_date"/>
                         <field name="gender" widget="radio" options="{'horizontal': True}"/>
                         <field name="doctor_id"/>
@@ -34,8 +34,7 @@
                                 <list>
                                     <field name="visit_date"/>
                                     <field name="doctor_id"/>
-                                    <field name="disease_ids" widget="many2many_tags"
-                                           options="{'color_field': 'color'}"/>
+                                    <field name="disease_id"/>
                                 </list>
                             </field>
                         </page>

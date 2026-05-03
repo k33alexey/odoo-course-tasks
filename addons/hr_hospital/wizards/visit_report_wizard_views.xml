@@ -6,14 +6,10 @@
         <field name="arch" type="xml">
             <form string="Generating a visit report">
                 <group>
-                    <group>
-                        <field name="date_from"/>
-                        <field name="date_to"/>
-                        <field name="only_done"/>
-                    </group>
-                    <group>
-                        <field name="disease_id"/>
-                    </group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="only_done"/>
+                    <field name="disease_id"/>
                 </group>
                 <group>
                     <field name="doctor_ids" widget="many2many_tags"/>

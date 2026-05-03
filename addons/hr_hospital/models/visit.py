@@ -1,6 +1,6 @@
 import logging
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -26,19 +26,14 @@ class Visit(models.Model):
     ], string='Status', default='planned')
     doctor_id = fields.Many2one('hr_hospital.doctor', string='Doctor', required=True)
     patient_id = fields.Many2one('hr_hospital.patient', string='Patient', required=True)
-    disease_ids = fields.Many2many(
-        'hr_hospital.disease',
-        'visit_disease_rel',
-        'visit_id',
-        'disease_id',
-        string='Diagnoses')
+    disease_id = fields.Many2one('hr_hospital.disease', string='Diagnose')
     notes = fields.Html(string='Summary')
 
     @api.depends('name', 'visit_date')
     def _compute_display_name(self):
-        for rec in self:
-            date_part = fields.Date.to_string(rec.visit_date.date()) if rec.visit_date else ''
-            rec.display_name = f"Visit #{rec.name} from {date_part}"
+        for visit in self:
+            date_part = fields.Date.to_string(visit.visit_date.date()) if visit.visit_date else ''
+            visit.display_name = f"Visit #{visit.name} from {date_part}"
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -53,9 +48,16 @@ class Visit(models.Model):
             return
         for visit in self:
             if visit.state == 'done':
-                raise ValidationError(_('Cannot change the values. Visit already done'))
+                raise ValidationError(self.env._('Cannot change the values. Visit already done'))
 
     def unlink(self):
-        for visit in self:
-            if visit.state == 'done':
-                raise ValidationError(_('Not allowed to delete the record. Visit already done'))
+        if any(visit.state == 'done' for visit in self):
+            raise ValidationError(self.env._('Not allowed to delete the record. Visit already done'))
+
+        return super().unlink()
+
+    def action_archive(self):
+        if any(visit.state == 'done' for visit in self):
+            raise ValidationError(self.env._('Not allowed to archive the record. Visit already done'))
+
+        return super().action_archive()
