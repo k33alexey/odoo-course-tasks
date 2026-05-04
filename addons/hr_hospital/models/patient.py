@@ -25,27 +25,25 @@ class HospitalPatient(models.Model):
         context={'active_test': False}) # ПАМЯТКА: для xml, чтоб видеть архив.записи
 
     def write(self, vals):
+        doctor_id = vals.get('doctor_id')
         patients_to_update = self.filtered(
-            lambda val: 'doctor_id' in vals and val.doctor_id.id != vals.get('doctor_id')
+            lambda val: 'doctor_id' in vals and val.doctor_id.id != doctor_id
         )
 
         result = super().write(vals)
 
         if patients_to_update:
-            doctor_id = vals.get('doctor_id')
             assigned_date = self.env.context.get('assigned_date') or fields.Date.today()
 
-            self.mapped('personal_doctor_ids').filtered(lambda val: val.active).write({'active': False})
+            patients_to_update.mapped('personal_doctor_ids').filtered(lambda val: val.active).write({'active': False})
 
             if doctor_id:
-                history_vals = []
-                for patient in self:
-                    history_vals.append({
-                        'patient_id': patient.id,
-                        'doctor_id': doctor_id,
-                        'assigned_date': assigned_date,
-                        'active': True,
-                    })
+                history_vals = [{
+                    'patient_id': patient.id,
+                    'doctor_id': doctor_id,
+                    'assigned_date': assigned_date,
+                    'active': True,
+                } for patient in patients_to_update]
 
                 if history_vals:
                     self.env['hr_hospital.doctor.history'].create(history_vals)
