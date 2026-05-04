@@ -74,7 +74,7 @@
         <field name="disease_id" ref="hr_hospital.disease_cold"/>
         <field name="notes">The patient has a typical case of seasonal cold</field>
         <field name="active" eval="True"/>
-        <field name="state">planned</field>
+        <field name="state">done</field>
     </record>
 
       <record id="visit_demo_8" model="hr_hospital.visit">
@@ -96,7 +96,7 @@
         <field name="disease_id" ref="hr_hospital.disease_cold"/>
         <field name="notes">The patient has a typical case of seasonal cold</field>
         <field name="active" eval="True"/>
-        <field name="state">planned</field>
+        <field name="state">done</field>
     </record>
 
       <record id="visit_demo_10" model="hr_hospital.visit">
@@ -107,6 +107,6 @@
         <field name="disease_id" ref="hr_hospital.disease_cold"/>
         <field name="notes">The patient has a typical case of seasonal cold</field>
         <field name="active" eval="True"/>
-        <field name="state">planned</field>
+        <field name="state">done</field>
     </record>
 </odoo>
