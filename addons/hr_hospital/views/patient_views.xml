@@ -20,13 +20,26 @@
         <field name="model">hr_hospital.patient</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_view_hospital_visits"
+                        string="Patient Visits"
+                        type="object"
+                        class="oe_highlight"/>
+                </header>
                 <sheet>
                     <separator string="Patient Information"/>
                     <group>
-                        <field name="full_name"/>
-                        <field name="birth_date"/>
-                        <field name="gender" widget="radio" options="{'horizontal': True}"/>
-                        <field name="doctor_id"/>
+                        <group>
+                            <field name="full_name"/>
+                            <field name="last_name"/>
+                            <field name="first_name"/>
+                            <field name="middle_name"/>
+                        </group>
+                        <group>
+                            <field name="birth_date"/>
+                            <field name="gender" widget="radio" options="{'horizontal': True}"/>
+                            <field name="doctor_id"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Visit history">

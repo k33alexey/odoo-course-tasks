@@ -16,13 +16,13 @@ class HospitalPatient(models.Model):
         'hr_hospital.visit',
         'patient_id',
         string='Visit History',
-        readonly=True)
+    )
     personal_doctor_ids = fields.One2many(
         'hr_hospital.doctor.history',
         'patient_id',
         string='Personal Doctor History',
         readonly=True,
-        context={'active_test': False}) # ПАМЯТКА: для xml, чтоб видеть архив.записи
+        context={'active_test': False})  # ПАМЯТКА: для xml, чтоб видеть архив.записи
 
     def write(self, vals):
         doctor_id = vals.get('doctor_id')
@@ -49,3 +49,18 @@ class HospitalPatient(models.Model):
                     self.env['hr_hospital.doctor.history'].create(history_vals)
 
         return result
+
+    def action_view_hospital_visits(self):
+        self.ensure_one()
+
+        return {
+            'name': self.env._('Visits of %s', self.full_name),
+            'type': 'ir.actions.act_window',
+            'res_model': 'hr_hospital.visit',
+            'view_mode': 'list,form',
+            'domain': [('patient_id', '=', self.id)],
+            'context': {
+                'default_patient_id': self.id,
+            },
+            'target': 'current',
+        }

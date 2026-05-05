@@ -16,17 +16,33 @@ class Visit(models.Model):
         required=True,
         copy=False,
         readonly=True,
-        default='New')
+        default='New'
+    )
     visit_date = fields.Datetime(string='Visit Date', default=fields.Datetime.now)
     completion_date = fields.Datetime(string='Completion Date')
-    state = fields.Selection([
-        ('planned', 'Planned'),
-        ('cancel', 'Cancel'),
-        ('done', 'Done'),
-    ], string='Status', default='planned')
-    doctor_id = fields.Many2one('hr_hospital.doctor', string='Doctor', required=True)
-    patient_id = fields.Many2one('hr_hospital.patient', string='Patient', required=True)
-    disease_id = fields.Many2one('hr_hospital.disease', string='Diagnose')
+    state = fields.Selection(
+        selection=[
+            ('planned', 'Planned'),
+            ('cancel', 'Cancel'),
+            ('done', 'Done'),
+        ],
+        string='Status',
+        default='planned'
+    )
+    doctor_id = fields.Many2one(
+        comodel_name='hr_hospital.doctor',
+        string='Doctor',
+        required=True
+    )
+    patient_id = fields.Many2one(
+        comodel_name='hr_hospital.patient',
+        string='Patient',
+        required=True
+    )
+    disease_id = fields.Many2one(
+        comodel_name='hr_hospital.disease',
+        string='Diagnose'
+    )
     notes = fields.Html(string='Summary')
 
     @api.depends('name', 'visit_date')
