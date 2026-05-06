@@ -1,9 +1,9 @@
 from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
-from odoo.tools import email_normalize_all
-from odoo.exceptions import UserError
 from odoo.addons.mail.tools import mail_validation
 from odoo.addons.phone_validation.tools import phone_validation
+from odoo.exceptions import UserError
+from odoo.tools import email_normalize_all
 
 
 class MedicInfo(models.AbstractModel):
@@ -18,28 +18,45 @@ class MedicInfo(models.AbstractModel):
     last_name = fields.Char(string='Last Name', required=True)
     first_name = fields.Char(string='First Name', required=True)
     middle_name = fields.Char(string='Middle Name', required=False)
-    phone = fields.Char()
-    email = fields.Char()
-    phone_state = fields.Selection([
-        ('correct', 'Correct'),
-        ('incorrect', 'Incorrect')], string='Phone Quality', compute="_compute_phone_state", store=True)
-    email_state = fields.Selection([
-        ('correct', 'Correct'),
-        ('incorrect', 'Incorrect')], string='Email Quality', compute="_compute_email_state", store=True)
-    gender = fields.Selection([
-        ('male', 'Male'),
-        ('female', 'Female'),
-    ], string='Gender', default='male')
-    blood_type = fields.Selection([
-        ('o_plus', 'O(I)+'),
-        ('o_minus', 'O(I)-'),
-        ('a_plus', 'A(II)+'),
-        ('a_minus', 'A(II)-'),
-        ('b_plus', 'B(III)+'),
-        ('b_minus', 'B(III)-'),
-        ('ab_plus', 'AB(IV)+'),
-        ('ab_minus', 'AB(IV)-'),
-    ], string='Blood Type')
+    phone = fields.Char(string='Phone')
+    email = fields.Char(string='Email')
+    phone_state = fields.Selection(
+        selection=[
+            ('correct', 'Correct'),
+            ('incorrect', 'Incorrect')
+        ],
+        string='Phone Quality',
+        compute="_compute_phone_state",
+        store=True
+    )
+    email_state = fields.Selection(
+        selection=[
+            ('correct', 'Correct'),
+            ('incorrect', 'Incorrect')
+        ],
+        string='Email Quality',
+        compute="_compute_email_state",
+        store=True
+    )
+    gender = fields.Selection(
+        selection=[
+            ('male', 'Male'),
+            ('female', 'Female'),
+        ],
+        string='Gender',
+        default='male')
+    blood_type = fields.Selection(
+        selection=[
+            ('o_plus', 'O(I)+'),
+            ('o_minus', 'O(I)-'),
+            ('a_plus', 'A(II)+'),
+            ('a_minus', 'A(II)-'),
+            ('b_plus', 'B(III)+'),
+            ('b_minus', 'B(III)-'),
+            ('ab_plus', 'AB(IV)+'),
+            ('ab_minus', 'AB(IV)-'),
+        ],
+        string='Blood Type')
     birth_date = fields.Date(string='Date of Birth')
     age = fields.Integer(string='Age', compute='_compute_age', store=False)
     full_name = fields.Char(
@@ -47,8 +64,8 @@ class MedicInfo(models.AbstractModel):
         compute='_compute_full_name',
         store=True,
         index=True)
-    country_id = fields.Many2one('res.country', string='Country')
-    language_id = fields.Many2one('res.lang', string='Language')
+    country_id = fields.Many2one(comodel_name='res.country', string='Country')
+    language_id = fields.Many2one(comodel_name='res.lang', string='Language')
 
     @api.depends('birth_date')
     def _compute_age(self):

@@ -5,6 +5,7 @@
         <field name="last_name">Doe</field>
         <field name="birth_date">1985-05-12</field>
         <field name="gender">male</field>
+        <field name="phone">+380660950011</field>
         <field name="doctor_id" ref="demo_object_doctor_1"/>
     </record>
 
@@ -13,6 +14,7 @@
         <field name="last_name">Smith</field>
         <field name="birth_date">1992-08-24</field>
         <field name="gender">female</field>
+        <field name="phone">+380730954321</field>
         <field name="doctor_id" ref="demo_object_doctor_1"/>
     </record>
 
@@ -21,6 +23,7 @@
         <field name="last_name">Carlos</field>
         <field name="birth_date">1979-02-10</field>
         <field name="gender">male</field>
+        <field name="phone">+380950957711</field>
         <field name="doctor_id" ref="demo_object_doctor_2"/>
     </record>
 </odoo>

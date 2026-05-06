@@ -7,7 +7,7 @@
             <field name="middle_name">Иванович</field>
             <field name="gender">male</field>
             <field name="birth_date">1990-05-15</field>
-            <field name="phone">+79001112233</field>
+            <field name="phone">+59001112233</field>
             <field name="email">ivanov@example.com</field>
             <field name="country_id" ref="base.ru"/>
             <field name="category_id" ref="hr_hospital.doctor_category_expert"/>
@@ -45,6 +45,7 @@
             <field name="email">not-an-email</field>
             <field name="country_id" ref="base.ru"/>
             <field name="category_id" ref="hr_hospital.doctor_category_intern"/>
+            <field name="mentor_id" ref="demo_object_doctor_1"/>
         </record>
 
         <record id="demo_object_doctor_5" model="hr_hospital.doctor">
@@ -52,9 +53,32 @@
             <field name="first_name">Афанасий</field>
             <field name="gender">male</field>
             <field name="birth_date">1945-09-02</field>
-            <field name="phone">+79119998877</field>
+            <field name="phone">+49119998877</field>
             <field name="country_id" ref="base.ru"/>
             <field name="category_id" ref="hr_hospital.doctor_category_intern"/>
+            <field name="mentor_id" ref="demo_object_doctor_1"/>
+        </record>
+
+        <record id="demo_object_doctor_6" model="hr_hospital.doctor">
+            <field name="last_name">Петров</field>
+            <field name="first_name">Валентин</field>
+            <field name="gender">male</field>
+            <field name="birth_date">1980-10-01</field>
+            <field name="phone">+59119087877</field>
+            <field name="country_id" ref="base.ru"/>
+            <field name="category_id" ref="hr_hospital.doctor_category_intern"/>
+            <field name="mentor_id" ref="demo_object_doctor_2"/>
+        </record>
+
+        <record id="demo_object_doctor_7" model="hr_hospital.doctor">
+            <field name="last_name">Иванов</field>
+            <field name="first_name">Александр</field>
+            <field name="gender">male</field>
+            <field name="birth_date">1966-03-20</field>
+            <field name="phone">+49111238877</field>
+            <field name="country_id" ref="base.ru"/>
+            <field name="category_id" ref="hr_hospital.doctor_category_intern"/>
+            <field name="mentor_id" ref="demo_object_doctor_3"/>
         </record>
     </data>
 </odoo>

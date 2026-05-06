@@ -57,6 +57,16 @@
                             <field name="phone" widget="phone"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Interns">
+                            <field name="intern_ids" readonly="True">
+                                <list>
+                                    <field name="full_name"/>
+                                    <field name="category_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

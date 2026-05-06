@@ -9,6 +9,7 @@
                 <field name="full_name"/>
                 <field name="birth_date"/>
                 <field name="gender"/>
+                <field name="phone"/>
                 <field name="doctor_id"/>
             </list>
         </field>
@@ -22,9 +23,9 @@
             <form>
                 <header>
                     <button name="action_view_hospital_visits"
-                        string="Patient Visits"
-                        type="object"
-                        class="oe_highlight"/>
+                            string="Patient Visits"
+                            type="object"
+                            class="oe_highlight"/>
                 </header>
                 <sheet>
                     <separator string="Patient Information"/>
@@ -38,6 +39,8 @@
                         <group>
                             <field name="birth_date"/>
                             <field name="gender" widget="radio" options="{'horizontal': True}"/>
+                            <field name="phone"/>
+                            <field name="policy_number"/>
                             <field name="doctor_id"/>
                         </group>
                     </group>
@@ -64,6 +67,22 @@
                 </sheet>
                 <chatter/>
             </form>
+        </field>
+    </record>
+
+    <!-- search -->
+    <record id="patient_view_search" model="ir.ui.view">
+        <field name="name">hr.hospital.patient.search</field>
+        <field name="model">hr_hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="full_name" string="Patient or Phone"
+                       filter_domain="[
+                            '|',
+                            ('full_name', 'ilike', self),
+                            ('phone', 'ilike', self)
+                       ]"/>
+            </search>
         </field>
     </record>
 

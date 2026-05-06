@@ -19,13 +19,13 @@ class HospitalDisease(models.Model):
         default=lambda self: random.randint(1, 11))
     parent_path = fields.Char(index=True)
     parent_id = fields.Many2one(
-        'hr_hospital.disease',
+        comodel_name='hr_hospital.disease',
         string='Parent Disease',
         ondelete='cascade',
         index=True)
     child_ids = fields.One2many(
-        'hr_hospital.disease',
-        'parent_id',
+        comodel_name='hr_hospital.disease',
+        inverse_name='parent_id',
         string='Child Diseases')
 
     @api.constrains('parent_id')

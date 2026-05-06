@@ -11,12 +11,18 @@ class HospitalDoctor(models.Model):
     _description = 'Doctor'
     _inherit = ['hr_hospital.medic.info']
 
-    active = fields.Boolean('Active', default=True)
-    category_id = fields.Many2one('hr_hospital.doctor.category', string='Doctor Category', required=True)
-    is_intern = fields.Boolean('Is Intern', compute='_compute_is_intern', default=False, store=True)
-    system_user_id = fields.Many2one('res.users', string='System User')
-    mentor_id = fields.Many2one('hr_hospital.doctor', string='Mentor')
+    active = fields.Boolean(string='Active', default=True)
+    category_id = fields.Many2one(comodel_name='hr_hospital.doctor.category', string='Doctor Category', required=True)
+    is_intern = fields.Boolean(string='Is Intern', compute='_compute_is_intern', default=False, store=True)
+    system_user_id = fields.Many2one(comodel_name='res.users', string='System User')
+    mentor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Mentor')
     intern_label = fields.Char(string='Status Label', compute='_compute_is_intern')
+    intern_ids = fields.One2many(
+        comodel_name='hr_hospital.doctor',
+        inverse_name='mentor_id',
+        string='Interns',
+        readonly=True,
+    )
 
     @api.depends('full_name', 'category_id')
     def _compute_display_name(self):

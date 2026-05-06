@@ -10,16 +10,16 @@ class HospitalPatient(models.Model):
     _description = 'Patient'
     _inherit = ['hr_hospital.medic.info', 'mail.thread', 'mail.activity.mixin']
 
-    doctor_id = fields.Many2one('hr_hospital.doctor', string='Personal doctor', tracking=True)
+    doctor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Personal doctor', tracking=True)
     policy_number = fields.Char(string='Policy Number', size=20)
     visit_ids = fields.One2many(
-        'hr_hospital.visit',
-        'patient_id',
+        comodel_name='hr_hospital.visit',
+        inverse_name='patient_id',
         string='Visit History',
     )
     personal_doctor_ids = fields.One2many(
-        'hr_hospital.doctor.history',
-        'patient_id',
+        comodel_name='hr_hospital.doctor.history',
+        inverse_name='patient_id',
         string='Personal Doctor History',
         readonly=True,
         context={'active_test': False})  # ПАМЯТКА: для xml, чтоб видеть архив.записи

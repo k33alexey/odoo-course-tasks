@@ -5,8 +5,8 @@ class DoctorHistory(models.Model):
     _name = 'hr_hospital.doctor.history'
     _description = 'Doctor History'
 
-    doctor_id = fields.Many2one('hr_hospital.doctor', string='Doctor', required=True)
-    patient_id = fields.Many2one('hr_hospital.patient', string='Patient', required=True)
+    doctor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Doctor', required=True)
+    patient_id = fields.Many2one(comodel_name='hr_hospital.patient', string='Patient', required=True)
     assigned_date = fields.Date(string='Assigned Date', required=True, default=fields.Datetime.now)
     shift_date = fields.Date(string='Shift Date')
     active = fields.Boolean(string='Active', default=True)
