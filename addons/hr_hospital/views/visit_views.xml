@@ -67,6 +67,37 @@
         </field>
     </record>
 
+    <!-- search -->
+    <record id="visit_view_search" model="ir.ui.view">
+        <field name="name">hr.hospital.visit.search</field>
+        <field name="model">hr_hospital.visit</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="doctor_id"/>
+                <filter string="Current month"
+                        name="filter_current_month"
+                        domain="[
+                            ('visit_date', '&gt;=', context_today().strftime('%Y-%m-01')),
+                            ('visit_date', '&lt;', (context_today() + relativedelta(months=1)).strftime('%Y-%m-01'))
+                        ]"/>
+                <group>
+                    <filter string="State" name="group_by_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Doctor" name="group_by_doctor"
+                            context="{'group_by': 'doctor_id'}"/>
+                    <filter string="State" name="group_by_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Disease" name="group_by_disease"
+                            context="{'group_by': 'disease_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="doctor_id"
+                           icon="fa-users"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
     <!-- calendar -->
     <record id="visit_view_calendar" model="ir.ui.view">
         <field name="name">hr.hospital.visit.calendar</field>
@@ -107,37 +138,6 @@
                 <field name="visit_date" interval="month"/>
                 <field name="disease_id"/>
             </graph>
-        </field>
-    </record>
-
-    <!-- search -->
-    <record id="visit_view_search" model="ir.ui.view">
-        <field name="name">hr.hospital.visit.search</field>
-        <field name="model">hr_hospital.visit</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="doctor_id"/>
-                <filter string="Current month"
-                        name="filter_current_month"
-                        domain="[
-                            ('visit_date', '&gt;=', context_today().strftime('%Y-%m-01')),
-                            ('visit_date', '&lt;', (context_today() + relativedelta(months=1)).strftime('%Y-%m-01'))
-                        ]"/>
-                <group>
-                    <filter string="State" name="group_by_state"
-                            context="{'group_by': 'state'}"/>
-                    <filter string="Doctor" name="group_by_doctor"
-                            context="{'group_by': 'doctor_id'}"/>
-                    <filter string="State" name="group_by_state"
-                            context="{'group_by': 'state'}"/>
-                    <filter string="Disease" name="group_by_disease"
-                            context="{'group_by': 'disease_id'}"/>
-                </group>
-                <searchpanel>
-                    <field name="doctor_id"
-                           icon="fa-users"/>
-                </searchpanel>
-            </search>
         </field>
     </record>
 
