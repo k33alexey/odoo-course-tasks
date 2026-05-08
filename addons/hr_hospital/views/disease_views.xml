@@ -9,7 +9,9 @@
                 <field name="name"/>
                 <searchpanel>
                     <field name="parent_id"
-                           icon="fa-users"/>
+                           icon="fa-filter"
+                           hierarchize="0"
+                           enable_counters="1"/>
                 </searchpanel>
             </search>
         </field>
