@@ -5,22 +5,22 @@ class VisitReportWizard(models.TransientModel):
     _name = 'hr_hospital.visit.report.wizard'
     _description = 'Visit Report Wizard'
 
-    doctor_ids = fields.Many2many('hr_hospital.doctor', string='Doctors')
-    patient_ids = fields.Many2many('hr_hospital.patient', string='Patients')
+    doctor_ids = fields.Many2many(comodel_name='hr_hospital.doctor', string='Doctors')
+    patient_ids = fields.Many2many(comodel_name='hr_hospital.patient', string='Patients')
     date_from = fields.Date(string='Date from')
     date_to = fields.Date(string='Date to')
     only_done = fields.Boolean(string='Only Visit Done')
-    disease_id = fields.Many2one('hr_hospital.disease', string='Disease')
+    disease_ids = fields.Many2many(comodel_name='hr_hospital.disease', string='Disease')
 
     @api.model
     def default_get(self, fields_list):
-        result = super().default_get(fields_list)
+        result: dict = super().default_get(fields_list)
 
         active_ids = self.env.context.get('active_ids')
         active_model = self.env.context.get('active_model')
 
         if active_ids and active_model:
-            ids = active_ids if isinstance(active_ids, list) else [active_ids]
+            ids: list = active_ids if isinstance(active_ids, list) else [active_ids]
 
             if active_model == 'hr_hospital.doctor':
                 result['doctor_ids'] = [Command.set(ids)]
@@ -49,8 +49,8 @@ class VisitReportWizard(models.TransientModel):
         if self.only_done:
             domain.append(('state', '=', 'done'))
 
-        if self.disease_id:
-            domain.append(('disease_id', '=', self.disease_id.id))
+        if self.disease_ids:
+            domain.append(('disease_id', 'in', self.disease_ids.ids))
 
         return {
             'name': 'Visit Report',
@@ -58,4 +58,5 @@ class VisitReportWizard(models.TransientModel):
             'res_model': 'hr_hospital.visit',
             'view_mode': 'list',
             'domain': domain,
+            'context': {'search_default_group_by_disease': 1},
         }

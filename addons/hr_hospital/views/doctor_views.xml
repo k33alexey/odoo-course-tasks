@@ -58,12 +58,44 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Interns">
-                            <field name="intern_ids" readonly="True">
-                                <list>
+                        <page string="Interns" invisible="is_intern or not intern_ids">
+                            <field name="intern_ids">
+                                <kanban quick_create="false" group_create="false">
+                                    <field name="id"/>
                                     <field name="full_name"/>
                                     <field name="category_id"/>
-                                </list>
+                                    <templates>
+                                        <t t-name="card">
+                                            <div class="oe_kanban_global_click">
+                                                <div class="oe_kanban_details">
+                                                    <strong>
+                                                        <field name="full_name"/>
+                                                    </strong>
+                                                    <div>
+                                                        <div class="mt-2">
+                                                            <strong>Age: </strong>
+                                                            <field name="age"/>
+                                                        </div>
+                                                        <div>
+                                                            <i class="fa fa-phone-square me-2"
+                                                               title="Phone"/>
+                                                            <field name="phone"/>
+                                                        </div>
+                                                        <div>
+                                                            <i class="fa fa-envelope me-2"
+                                                               title="Email"/>
+                                                            <field name="email"/>
+                                                        </div>
+                                                        <div>
+                                                            <strong>Gender: </strong>
+                                                            <field name="gender"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
                             </field>
                         </page>
                     </notebook>
@@ -78,12 +110,65 @@
         <field name="model">hr_hospital.doctor</field>
         <field name="arch" type="xml">
             <search>
-                <field name="full_name"/>
-                <field name="phone"/>
-                <filter string="Archived"
-                        name="filter_archived"
+                <field name="full_name"
+                       string="Doctor or Phone"
+                       filter_domain="[
+                            '|',
+                            ('full_name', 'ilike', self),
+                            ('phone', 'ilike', self)
+                       ]"/>
+                <filter name="filter_mentors"
+                        string="Mentors"
+                        domain="[('intern_ids', '!=', False)]"/>
+                <filter name="filter_interns"
+                        string="Interns"
+                        domain="[('is_intern', '=', True)]"/>
+                <filter name="filter_archived"
+                        string="Archived"
                         domain="[('active', '=', False)]"/>
             </search>
+        </field>
+    </record>
+
+    <!-- kanban -->
+    <record id="doctor_view_kanban" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.kanban</field>
+        <field name="model">hr_hospital.doctor</field>
+        <field name="arch" type="xml">
+            <kanban
+                    class="o_kanban_mobile"
+                    sample="1"
+                    default_group_by="category_id"
+                    quick_create="False"
+                    group_create="False">
+                <field name="id"/>
+                <field name="full_name"/>
+                <field name="category_id"/>
+                <field name="intern_ids"/>
+
+                <templates>
+                    <t t-name="card">
+                        <div>
+                            <strong class="o_kanban_record_title">
+                                <field name="full_name"/>
+                            </strong>
+                            <div class="o_kanban_record_subtitle">
+                                <field name="category_id"/>
+                            </div>
+                            <div>
+                                <field name="intern_ids" widget="many2many_tags"/>
+                            </div>
+                            <div>
+                                <button name="action_quick_create_visit"
+                                        type="object"
+                                        class="btn btn-primary mt-3">
+                                    New Visit
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
@@ -91,7 +176,12 @@
     <record id="doctor_action" model="ir.actions.act_window">
         <field name="name">Doctors</field>
         <field name="res_model">hr_hospital.doctor</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="context">
+            {
+                'search_default_group_by_category_id': 1
+            }
+        </field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first doctor!

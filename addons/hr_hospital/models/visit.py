@@ -77,3 +77,15 @@ class Visit(models.Model):
             raise ValidationError(self.env._('Not allowed to archive the record. Visit already done'))
 
         return super().action_archive()
+
+    def action_view_visits_by_disease(self):
+        self.ensure_one()
+
+        return {
+            'name': self.env._('Visits by %s', self.disease_id.id),
+            'type': 'ir.actions.act_window',
+            'res_model': 'hr_hospital.visit',
+            'view_mode': 'list',
+            'domain': [('disease_id', '=', self.disease_id.id)],
+            'target': 'current',
+        }

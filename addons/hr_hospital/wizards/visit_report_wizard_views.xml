@@ -9,11 +9,11 @@
                     <field name="date_from"/>
                     <field name="date_to"/>
                     <field name="only_done"/>
-                    <field name="disease_id"/>
                 </group>
                 <group>
-                    <field name="doctor_ids" widget="many2many_tags"/>
-                    <field name="patient_ids" widget="many2many_tags"/>
+                    <field name="doctor_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    <field name="patient_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    <field name="disease_ids" widget="many2many_tags" options="{'no_create': True}"/>
                 </group>
                 <footer>
                     <button name="action_generate_report" string="Generate" type="object" class="btn-primary"/>
@@ -30,6 +30,7 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
         <field name="binding_view_types">list,form</field>
+        <field name="binding_type">report</field>
     </record>
 
     <record id="visit_report_wizard_patient_action" model="ir.actions.act_window">
@@ -39,5 +40,6 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="model_hr_hospital_patient"/>
         <field name="binding_view_types">list,form</field>
+        <field name="binding_type">report</field>
     </record>
 </odoo>

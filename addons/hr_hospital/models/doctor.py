@@ -50,3 +50,17 @@ class HospitalDoctor(models.Model):
                 trainee = self.search([('mentor_id', '=', doctor.id)])
                 if trainee:
                     raise ValidationError(self.env._('This doctor is currently reserved for mentors.'))
+
+    def action_quick_create_visit(self):
+        self.ensure_one()
+
+        return {
+            'name': self.env._('New Visit for Doctor %s', self.full_name),
+            'type': 'ir.actions.act_window',
+            'res_model': 'hr_hospital.visit',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_doctor_id': self.id,
+            }
+        }

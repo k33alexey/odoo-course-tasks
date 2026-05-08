@@ -25,6 +25,9 @@ class HospitalPatient(models.Model):
         context={'active_test': False})  # ПАМЯТКА: для xml, чтоб видеть архив.записи
 
     def write(self, vals):
+        if 'doctor_id' not in vals:
+            return super().write(vals)
+
         doctor_id = vals.get('doctor_id')
         patients_to_update = self.filtered(
             lambda val: 'doctor_id' in vals and val.doctor_id.id != doctor_id
@@ -35,7 +38,7 @@ class HospitalPatient(models.Model):
         if patients_to_update:
             assigned_date = self.env.context.get('assigned_date') or fields.Date.today()
 
-            patients_to_update.mapped('personal_doctor_ids').filtered(lambda val: val.active).write({'active': False})
+            patients_to_update.mapped('personal_doctor_ids').filtered('active').write({'active': False})
 
             if doctor_id:
                 history_vals = [{
@@ -54,7 +57,7 @@ class HospitalPatient(models.Model):
         self.ensure_one()
 
         return {
-            'name': self.env._('Visits of %s', self.full_name),
+            'name': self.env._('Visits of %s',self.full_name),
             'type': 'ir.actions.act_window',
             'res_model': 'hr_hospital.visit',
             'view_mode': 'list,form',
