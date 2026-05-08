@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- hierarchy panel -->
-    <record id="disease_view_hierarchy_search" model="ir.ui.view">
-        <field name="name">hr_hospital.disease.search</field>
-        <field name="model">hr_hospital.disease</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <searchpanel>
-                    <field name="parent_id"
-                           icon="fa-filter"
-                           hierarchize="0"
-                           enable_counters="1"/>
-                </searchpanel>
-            </search>
-        </field>
-    </record>
-
     <!-- list -->
     <record id="disease_view_list" model="ir.ui.view">
         <field name="name">hr.hospital.disease.list</field>
@@ -45,6 +28,23 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- search -->
+    <record id="disease_view_hierarchy_search" model="ir.ui.view">
+        <field name="name">hr_hospital.disease.search</field>
+        <field name="model">hr_hospital.disease</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <searchpanel>
+                    <field name="parent_id"
+                           icon="fa-filter"
+                           hierarchize="0"
+                           enable_counters="1"/>
+                </searchpanel>
+            </search>
         </field>
     </record>
 
