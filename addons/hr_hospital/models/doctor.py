@@ -13,10 +13,11 @@ class HospitalDoctor(models.Model):
 
     active = fields.Boolean(string='Active', default=True)
     category_id = fields.Many2one(comodel_name='hr_hospital.doctor.category', string='Doctor Category', required=True)
+    category_color = fields.Integer(related='category_id.color', string='Category Color', readonly=False)
+    color = fields.Integer(string='Color Index', default=0)
     is_intern = fields.Boolean(string='Is Intern', compute='_compute_is_intern', default=False, store=True)
     system_user_id = fields.Many2one(comodel_name='res.users', string='System User')
     mentor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Mentor')
-    intern_label = fields.Char(string='Status Label', compute='_compute_is_intern')
     intern_ids = fields.One2many(
         comodel_name='hr_hospital.doctor',
         inverse_name='mentor_id',
@@ -33,14 +34,13 @@ class HospitalDoctor(models.Model):
 
     @api.depends('category_id')
     def _compute_is_intern(self):
-        intern_category = self.env.ref('hr_hospital.doctor_category_intern', raise_if_not_found=False)
+        intern_category = self.env.ref(xml_id='hr_hospital.doctor_category_intern', raise_if_not_found=False)
         for doctor in self:
             doctor.is_intern = doctor.category_id == intern_category
-            doctor.intern_label = self.env._('Intern') if doctor.category_id == intern_category else False
 
     @api.constrains('category_id', 'mentor_id')
     def _check_mentor(self):
-        intern_category = self.env.ref('hr_hospital.doctor_category_intern', raise_if_not_found=False)
+        intern_category = self.env.ref(xml_id='hr_hospital.doctor_category_intern', raise_if_not_found=False)
         for doctor in self:
             if doctor.mentor_id and doctor.mentor_id.category_id == intern_category:
                 raise ValidationError(self.env._('Intern is not allowed in mentor'))

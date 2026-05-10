@@ -58,6 +58,13 @@ class Visit(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('hr_hospital.visit') or 'New'
         return super().create(vals_list)
 
+    @api.model
+    def get_state_color(self):
+        self.ensure_one()
+
+        colors = {'done': 'success', 'planned': 'secondary', 'cancel': 'danger'}
+        return colors.get(self.state, 'info')
+
     @api.constrains('active', 'doctor_id', 'visit_date', 'completion_date')
     def _check_visit(self):
         if self.env.context.get('install_mode'):

@@ -25,7 +25,8 @@
         'views/patient_views.xml',
         'views/visit_views.xml',
         'wizards/reassign_doctor_wizard_views.xml',
-        'wizards/visit_report_wizard_views.xml'
+        'wizards/visit_report_wizard_views.xml',
+        'report/doctor_report_views.xml'
     ],
     'demo': [
         'demo/doctor_demo.xml',

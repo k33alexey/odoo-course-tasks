@@ -4,8 +4,9 @@
         <record id="seq_hospital_visit" model="ir.sequence">
             <field name="name">Hospital Visit Sequence</field>
             <field name="code">hr_hospital.visit</field>
-            <field name="prefix">OSV-</field>
+            <field name="prefix">OSV/%(year)s/</field>
             <field name="padding">5</field>
+            <field name="use_date_range" eval="True"/>
         </record>
     </data>
 </odoo>

@@ -1,3 +1,5 @@
+import random
+
 from odoo import fields, models
 
 
@@ -12,6 +14,9 @@ class DoctorCategory(models.Model):
         inverse_name='id',
         string='Doctors',
         readonly=True)
+    color = fields.Integer(
+        string='Color Index',
+        default=lambda self: random.randint(1, 11))
 
     _name_unique = models.Constraint(
         definition='unique(name)',

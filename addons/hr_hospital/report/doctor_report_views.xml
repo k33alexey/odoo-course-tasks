@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- paperformat -->
+    <record id="paper_format_a4_statement" model="report.paperformat">
+        <field name="name">A4 - statement</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">52</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">52</field>
+        <field name="dpi">90</field>
+        <field name="css_margins" eval="True"/>
+    </record>
+
+    <!-- template visit lines -->
+    <template id="hr_hospital.doctor_report_visit_lines_template">
+        <div class="text-center">
+            <h2>Visits</h2>
+            <hr/>
+        </div>
+        <div class="container-fluid">
+
+            <!-- header -->
+            <div class="row align-items-center bg-light fw-bold border-bottom py-2" style="font-size: 14px;">
+                <div class="col-2">Date</div>
+                <div class="col-2">Patient</div>
+                <div class="col-2">Status</div>
+                <div class="col-4">Doctor's Notes</div>
+                <div class="col-2 text-end">Diagnosis</div>
+            </div>
+
+            <!-- lines -->
+            <t t-foreach="visits" t-as="visit">
+                <div class="row align-items-center border-bottom py-2">
+                    <div class="col-2 text-nowrap">
+                        <i class="fa fa-calendar me-2"/>
+                        <span t-field="visit.visit_date" t-options='{"format": "dd.MM.yyyy HH:mm"}'/>
+                    </div>
+                    <div class="col-2">
+                        <div>
+                            <strong><span t-field="visit.patient_id.full_name"/></strong>
+                        </div>
+                        <div class="small">
+                            <span t-field="visit.patient_id.gender" class="me-2"/>
+                            <span t-field="visit.patient_id.birth_date" class="me-2"/>
+                            <t t-if="visit.patient_id.phone">
+                                <br/>
+                                <i class="fa fa-phone me-1"/>
+                                <span t-field="visit.patient_id.phone"/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-2 text-truncate">
+                        <span t-attf-class="badge rounded-pill bg-{{visit.get_state_color()}}" t-field="visit.state"/>
+                    </div>
+                    <div class="col-4">
+                        <span class="text-truncate" t-field="visit.notes"/>
+                    </div>
+                    <div class="col-2 text-end text-truncate">
+                        <span t-field="visit.disease_id.name"/>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+
+    <!-- template footer -->
+    <template id="hr_hospital.doctor_report_footer_template">
+        <div class="footer o_standard_footer">
+            <div class="row">
+                <div class="col-6 text-start">
+                    <i class="fa fa-clock-o me-1"/>
+                    <span>Printed on: </span>
+                    <span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/>
+                </div>
+                <div class="col-6 text-end">
+                    <i class="fa fa-map-marker me-1"/>
+                    <span t-field="res_company.city"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- template main -->
+    <template id="hr_hospital.doctor_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doctor">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div>
+                            <h3>
+                                <span t-field="doctor.full_name"/>
+                            </h3>
+                            <p>
+                                <strong>Category: </strong>
+                                <span t-field="doctor.category_id"/>
+                            </p>
+                        </div>
+                        <!-- template visit lines -->
+                        <t t-call="hr_hospital.doctor_report_visit_lines_template">
+                            <t t-set="visits"
+                               t-value="env['hr_hospital.visit'].search([('doctor_id', '=', doctor.id)], order='visit_date desc')"/>
+                        </t>
+                    </div>
+                    <!-- template footer-->
+                    <t t-call="hr_hospital.doctor_report_footer_template"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+      <!-- action -->
+    <record id="doctor_action_report" model="ir.actions.report">
+        <field name="name">Doctor report</field>
+        <field name="model">hr_hospital.doctor</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_hospital.doctor_report_template</field>
+        <field name="report_file">hr_hospital.doctor_report_template</field>
+        <field name="print_report_name">"Doctor Card"</field>
+        <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_a4_statement"/>
+    </record>
+
+</odoo>

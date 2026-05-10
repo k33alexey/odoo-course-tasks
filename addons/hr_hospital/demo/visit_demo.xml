@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="visit_demo_1" model="hr_hospital.visit">
-        <field name="name">OSV-00001</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-04-01</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_1"/>
         <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
@@ -12,7 +12,7 @@
     </record>
 
       <record id="visit_demo_2" model="hr_hospital.visit">
-        <field name="name">OSV-00002</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-03-01</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_1"/>
         <field name="patient_id" ref="hr_hospital.patient_robert_chase"/>
@@ -23,7 +23,7 @@
     </record>
 
       <record id="visit_demo_3" model="hr_hospital.visit">
-        <field name="name">OSV-00003</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-02</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_3"/>
         <field name="patient_id" ref="hr_hospital.patient_jane_smith"/>
@@ -34,7 +34,7 @@
     </record>
 
       <record id="visit_demo_4" model="hr_hospital.visit">
-        <field name="name">OSV-00004</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-02</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_2"/>
         <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
@@ -45,7 +45,7 @@
     </record>
 
       <record id="visit_demo_5" model="hr_hospital.visit">
-        <field name="name">OSV-00005</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-03</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_5"/>
         <field name="patient_id" ref="hr_hospital.patient_robert_chase"/>
@@ -56,7 +56,7 @@
     </record>
 
       <record id="visit_demo_6" model="hr_hospital.visit">
-        <field name="name">OSV-00005</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-03</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_5"/>
         <field name="patient_id" ref="hr_hospital.patient_jane_smith"/>
@@ -67,7 +67,7 @@
     </record>
 
       <record id="visit_demo_7" model="hr_hospital.visit">
-        <field name="name">OSV-00007</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-03</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_4"/>
         <field name="patient_id" ref="hr_hospital.patient_robert_chase"/>
@@ -78,7 +78,7 @@
     </record>
 
       <record id="visit_demo_8" model="hr_hospital.visit">
-        <field name="name">OSV-00008</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-04</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_5"/>
         <field name="patient_id" ref="hr_hospital.patient_jane_smith"/>
@@ -89,7 +89,7 @@
     </record>
 
       <record id="visit_demo_9" model="hr_hospital.visit">
-        <field name="name">OSV-00009</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-04</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_1"/>
         <field name="patient_id" ref="hr_hospital.patient_robert_chase"/>
@@ -100,7 +100,7 @@
     </record>
 
       <record id="visit_demo_10" model="hr_hospital.visit">
-        <field name="name">OSV-00010</field>
+        <field name="name">New</field>
         <field name="visit_date">2026-05-04</field>
         <field name="doctor_id" ref="hr_hospital.demo_object_doctor_1"/>
         <field name="patient_id" ref="hr_hospital.patient_john_doe"/>
