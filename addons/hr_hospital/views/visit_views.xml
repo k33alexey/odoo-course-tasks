@@ -33,13 +33,17 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" options="{'clickable': False}"/>
-                    <button name="action_view_visits_by_disease"
-                            string="Patient visits by disease"
-                            type="object"
-                            class="oe_highlight"/>
                 </header>
                 <sheet>
                     <field name="state" widget="badge" decoration-success="state == 'done'"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_visits_by_disease"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-copy">
+                            <field name="count_by_disease" widget="statinfo" string="Similar visits"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="True"/>

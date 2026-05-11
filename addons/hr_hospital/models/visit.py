@@ -44,12 +44,25 @@ class Visit(models.Model):
         string='Diagnose'
     )
     notes = fields.Html(string='Summary')
+    count_by_disease = fields.Integer(string='Count by disease', compute='_compute_count_by_disease')
 
     @api.depends('name', 'visit_date')
     def _compute_display_name(self):
         for visit in self:
             date_part = fields.Date.to_string(visit.visit_date.date()) if visit.visit_date else ''
             visit.display_name = f"Visit #{visit.name} from {date_part}"
+
+    @api.depends('disease_id')
+    def _compute_count_by_disease(self):
+        for visit in self:
+            if visit.disease_id:
+                visit.count_by_disease = self.env['hr_hospital.visit'].search_count(
+                    [
+                        ('disease_id', '=', visit.disease_id)
+                    ],
+                )
+            else:
+                visit.count_by_disease = 0
 
     @api.model_create_multi
     def create(self, vals_list):
