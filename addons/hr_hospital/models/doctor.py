@@ -30,7 +30,7 @@ class HospitalDoctor(models.Model):
         for doctor in self:
             full_name = doctor.full_name or ''
             category = doctor.category_id.name or self.env._('No Category')
-            doctor.display_name = f"{full_name} ({category})"
+            doctor.display_name = f'{full_name} ({category})'
 
     @api.depends('category_id')
     def _compute_is_intern(self):
@@ -62,5 +62,5 @@ class HospitalDoctor(models.Model):
             'target': 'new',
             'context': {
                 'default_doctor_id': self.id,
-            }
+            },
         }

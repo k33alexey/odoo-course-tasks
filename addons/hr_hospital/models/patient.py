@@ -22,16 +22,15 @@ class HospitalPatient(models.Model):
         inverse_name='patient_id',
         string='Personal Doctor History',
         readonly=True,
-        context={'active_test': False})  # ПАМЯТКА: для xml, чтоб видеть архив.записи
+        context={'active_test': False},  # ПАМЯТКА: для xml, чтоб видеть архив.записи
+    )
 
     def write(self, vals):
         if 'doctor_id' not in vals:
             return super().write(vals)
 
         doctor_id = vals.get('doctor_id')
-        patients_to_update = self.filtered(
-            lambda val: 'doctor_id' in vals and val.doctor_id.id != doctor_id
-        )
+        patients_to_update = self.filtered(lambda val: 'doctor_id' in vals and val.doctor_id.id != doctor_id)
 
         result = super().write(vals)
 
@@ -41,12 +40,15 @@ class HospitalPatient(models.Model):
             patients_to_update.mapped('personal_doctor_ids').filtered('active').write({'active': False})
 
             if doctor_id:
-                history_vals = [{
-                    'patient_id': patient.id,
-                    'doctor_id': doctor_id,
-                    'assigned_date': assigned_date,
-                    'active': True,
-                } for patient in patients_to_update]
+                history_vals = [
+                    {
+                        'patient_id': patient.id,
+                        'doctor_id': doctor_id,
+                        'assigned_date': assigned_date,
+                        'active': True,
+                    }
+                    for patient in patients_to_update
+                ]
 
                 if history_vals:
                     self.env['hr_hospital.doctor.history'].create(history_vals)

@@ -19,7 +19,7 @@ class DoctorHistory(models.Model):
             category = doctor_history.doctor_id.category_id.name or self.env._('No Category')
             date_str = doctor_history.assigned_date.strftime('%d.%m.%Y') if doctor_history.assigned_date else ''
 
-            doctor_history.display_name = f"{patient_name} - {doctor_name} ({category}) {date_str}"
+            doctor_history.display_name = f'{patient_name} - {doctor_name} ({category}) {date_str}'
 
     @api.onchange('assigned_date', 'shift_date')
     def _onchange_dates(self):
@@ -29,8 +29,8 @@ class DoctorHistory(models.Model):
                     doctor_history.shift_date = False
                     return {
                         'warning': {
-                            'title': self.env._("Invalid shift date"),
-                            'message': self.env._("Shift date cannot be earlier than assigned date."),
+                            'title': self.env._('Invalid shift date'),
+                            'message': self.env._('Shift date cannot be earlier than assigned date.'),
                         }
                     }
         return {}

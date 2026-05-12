@@ -20,14 +20,9 @@ class HospitalDisease(models.Model):
     )
     parent_path = fields.Char(index=True)
     parent_id = fields.Many2one(
-        comodel_name='hr_hospital.disease',
-        string='Parent Disease',
-        ondelete='cascade',
-        index=True)
-    child_ids = fields.One2many(
-        comodel_name='hr_hospital.disease',
-        inverse_name='parent_id',
-        string='Child Diseases')
+        comodel_name='hr_hospital.disease', string='Parent Disease', ondelete='cascade', index=True
+    )
+    child_ids = fields.One2many(comodel_name='hr_hospital.disease', inverse_name='parent_id', string='Child Diseases')
 
     @api.constrains('parent_id')
     def _check_hierarchy(self):
@@ -38,6 +33,6 @@ class HospitalDisease(models.Model):
     def _compute_display_name(self):
         for disease in self:
             if disease.parent_id:
-                disease.display_name = f"{disease.parent_id.display_name} / {disease.name}"
+                disease.display_name = f'{disease.parent_id.display_name} / {disease.name}'
             else:
                 disease.display_name = disease.name
