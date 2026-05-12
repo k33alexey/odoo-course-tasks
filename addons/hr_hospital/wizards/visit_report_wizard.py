@@ -1,4 +1,4 @@
-from odoo import models, fields, api, Command
+from odoo import Command, api, fields, models
 
 
 class VisitReportWizard(models.TransientModel):

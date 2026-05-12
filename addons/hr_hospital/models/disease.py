@@ -1,7 +1,7 @@
 import logging
-import random
+import secrets
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -16,7 +16,8 @@ class HospitalDisease(models.Model):
     code = fields.Char(string='ICD Code')
     color = fields.Integer(
         string='Color Index',
-        default=lambda self: random.randint(1, 11))
+        default=lambda self: secrets.randbelow(11) + 1,
+    )
     parent_path = fields.Char(index=True)
     parent_id = fields.Many2one(
         comodel_name='hr_hospital.disease',

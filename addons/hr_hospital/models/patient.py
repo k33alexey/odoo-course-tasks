@@ -1,6 +1,6 @@
 import logging
 
-from odoo import models, fields
+from odoo import fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -57,7 +57,7 @@ class HospitalPatient(models.Model):
         self.ensure_one()
 
         return {
-            'name': self.env._('Visits of %s',self.full_name),
+            'name': self.env._('Visits of %s', self.full_name),
             'type': 'ir.actions.act_window',
             'res_model': 'hr_hospital.visit',
             'view_mode': 'list,form',

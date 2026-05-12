@@ -1,9 +1,11 @@
 from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api
-from odoo.addons.mail.tools import mail_validation
-from odoo.addons.phone_validation.tools import phone_validation
+
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import email_normalize_all
+
+from odoo.addons.mail.tools import mail_validation
+from odoo.addons.phone_validation.tools import phone_validation
 
 
 class MedicInfo(models.AbstractModel):
@@ -21,22 +23,16 @@ class MedicInfo(models.AbstractModel):
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
     phone_state = fields.Selection(
-        selection=[
-            ('correct', 'Correct'),
-            ('incorrect', 'Incorrect')
-        ],
+        selection=[('correct', 'Correct'), ('incorrect', 'Incorrect')],
         string='Phone Quality',
-        compute="_compute_phone_state",
-        store=True
+        compute='_compute_phone_state',
+        store=True,
     )
     email_state = fields.Selection(
-        selection=[
-            ('correct', 'Correct'),
-            ('incorrect', 'Incorrect')
-        ],
+        selection=[('correct', 'Correct'), ('incorrect', 'Incorrect')],
         string='Email Quality',
-        compute="_compute_email_state",
-        store=True
+        compute='_compute_email_state',
+        store=True,
     )
     gender = fields.Selection(
         selection=[
@@ -44,7 +40,8 @@ class MedicInfo(models.AbstractModel):
             ('female', 'Female'),
         ],
         string='Gender',
-        default='male')
+        default='male',
+    )
     blood_type = fields.Selection(
         selection=[
             ('o_plus', 'O(I)+'),
@@ -56,14 +53,11 @@ class MedicInfo(models.AbstractModel):
             ('ab_plus', 'AB(IV)+'),
             ('ab_minus', 'AB(IV)-'),
         ],
-        string='Blood Type')
+        string='Blood Type',
+    )
     birth_date = fields.Date(string='Date of Birth')
     age = fields.Integer(string='Age', compute='_compute_age', store=False)
-    full_name = fields.Char(
-        string='Full name',
-        compute='_compute_full_name',
-        store=True,
-        index=True)
+    full_name = fields.Char(string='Full name', compute='_compute_full_name', store=True, index=True)
     country_id = fields.Many2one(comodel_name='res.country', string='Country')
     language_id = fields.Many2one(comodel_name='res.lang', string='Language')
 

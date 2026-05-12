@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class DoctorHistory(models.Model):
@@ -33,3 +33,4 @@ class DoctorHistory(models.Model):
                             'message': self.env._("Shift date cannot be earlier than assigned date."),
                         }
                     }
+        return {}
