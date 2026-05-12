@@ -11,13 +11,7 @@ class Visit(models.Model):
     _description = 'Hospital Visit'
 
     active = fields.Boolean('Active', default=True)
-    name = fields.Char(
-        string='Number',
-        required=True,
-        copy=False,
-        readonly=True,
-        default='New'
-    )
+    name = fields.Char(string='Number', required=True, copy=False, readonly=True, default='New')
     visit_date = fields.Datetime(string='Visit Date', default=fields.Datetime.now)
     completion_date = fields.Datetime(string='Completion Date')
     state = fields.Selection(
@@ -27,22 +21,11 @@ class Visit(models.Model):
             ('done', 'Done'),
         ],
         string='Status',
-        default='planned'
+        default='planned',
     )
-    doctor_id = fields.Many2one(
-        comodel_name='hr_hospital.doctor',
-        string='Doctor',
-        required=True
-    )
-    patient_id = fields.Many2one(
-        comodel_name='hr_hospital.patient',
-        string='Patient',
-        required=True
-    )
-    disease_id = fields.Many2one(
-        comodel_name='hr_hospital.disease',
-        string='Diagnose'
-    )
+    doctor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Doctor', required=True)
+    patient_id = fields.Many2one(comodel_name='hr_hospital.patient', string='Patient', required=True)
+    disease_id = fields.Many2one(comodel_name='hr_hospital.disease', string='Diagnose')
     notes = fields.Html(string='Summary')
     count_by_disease = fields.Integer(string='Count by disease', compute='_compute_count_by_disease')
 
@@ -50,16 +33,14 @@ class Visit(models.Model):
     def _compute_display_name(self):
         for visit in self:
             date_part = fields.Date.to_string(visit.visit_date.date()) if visit.visit_date else ''
-            visit.display_name = f"Visit #{visit.name} from {date_part}"
+            visit.display_name = f'{visit.name} from {date_part}'
 
     @api.depends('disease_id')
     def _compute_count_by_disease(self):
         for visit in self:
             if visit.disease_id:
                 visit.count_by_disease = self.env['hr_hospital.visit'].search_count(
-                    [
-                        ('disease_id', '=', visit.disease_id)
-                    ],
+                    [('disease_id', '=', visit.disease_id)],
                 )
             else:
                 visit.count_by_disease = 0
