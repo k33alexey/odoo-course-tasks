@@ -10,7 +10,7 @@ class Visit(models.Model):
     _name = 'hr_hospital.visit'
     _description = 'Hospital Visit'
 
-    active = fields.Boolean('Active', default=True)
+    active = fields.Boolean(string='Active', default=True)
     name = fields.Char(string='Number', required=True, copy=False, readonly=True, default='New')
     visit_date = fields.Datetime(string='Visit Date', default=fields.Datetime.now)
     completion_date = fields.Datetime(string='Completion Date')
@@ -83,7 +83,7 @@ class Visit(models.Model):
         self.ensure_one()
 
         return {
-            'name': self.env._('Visits by %s', self.disease_id.id),
+            'name': self.env._(source='Visits by %s' % self.disease_id.id),
             'type': 'ir.actions.act_window',
             'res_model': 'hr_hospital.visit',
             'view_mode': 'list',
