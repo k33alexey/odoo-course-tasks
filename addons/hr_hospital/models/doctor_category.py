@@ -4,6 +4,12 @@ from odoo import fields, models
 
 
 class DoctorCategory(models.Model):
+    """
+    Model for managing medical specialties and professional categories.
+    Used to classify doctors and apply specific business logic based on
+    their professional level (e.g., distinguishing mentors from interns).
+    """
+
     _name = 'hr_hospital.doctor.category'
     _description = 'Doctor Category'
 

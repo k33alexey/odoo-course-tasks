@@ -6,6 +6,12 @@ _logger = logging.getLogger(__name__)
 
 
 class HospitalPatient(models.Model):
+    """
+    Model for managing patient profiles and their medical relationships.
+    Integrates with Odoo's mail thread for communication history and
+    automatically maintains a log of personal doctor assignments.
+    """
+
     _name = 'hr_hospital.patient'
     _description = 'Patient'
     _inherit = ['hr_hospital.medic.info', 'mail.thread', 'mail.activity.mixin']
@@ -26,6 +32,14 @@ class HospitalPatient(models.Model):
     )
 
     def write(self, vals):
+        """
+        Overrides the standard write method to automatically update
+        the doctor assignment history. When 'doctor_id' changes, it
+        archives the old assignment and creates a new history record.
+        :param vals: dictionary of fields to update.
+        :return: bool result of the write operation.
+        """
+
         if 'doctor_id' not in vals:
             return super().write(vals)
 
@@ -56,10 +70,16 @@ class HospitalPatient(models.Model):
         return result
 
     def action_view_hospital_visits(self):
+        """
+        Action to display a list of all visits associated with this patient.
+        Provides a filtered view of the 'hr_hospital.visit' model.
+        :return: dict representing the ir.actions.act_window.
+        """
+
         self.ensure_one()
 
         return {
-            'name': self.env._(source="Visits of %s") % self.full_name,
+            'name': self.env._(source='Visits of %s') % self.full_name,
             'type': 'ir.actions.act_window',
             'res_model': 'hr_hospital.visit',
             'view_mode': 'list,form',
