@@ -7,6 +7,7 @@
         <field name="gender">male</field>
         <field name="phone">+380660950011</field>
         <field name="doctor_id" ref="demo_object_doctor_1"/>
+        <field name="user_id" ref="demo_object_user_1"/>
     </record>
 
     <record id="patient_jane_smith" model="hr_hospital.patient">
@@ -16,6 +17,7 @@
         <field name="gender">female</field>
         <field name="phone">+380730954321</field>
         <field name="doctor_id" ref="demo_object_doctor_1"/>
+        <field name="user_id" ref="demo_object_user_2"/>
     </record>
 
     <record id="patient_robert_chase" model="hr_hospital.patient">
@@ -25,5 +27,6 @@
         <field name="gender">male</field>
         <field name="phone">+380950957711</field>
         <field name="doctor_id" ref="demo_object_doctor_2"/>
+        <field name="user_id" ref="demo_object_user_3"/>
     </record>
 </odoo>

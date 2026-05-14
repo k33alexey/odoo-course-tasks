@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="demo_object_user_1" model="res.users">
+            <field name="name">user1</field>
+            <field name="login">user1</field>
+            <field name="password">user1</field>
+            <field name="email">user1@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_2" model="res.users">
+            <field name="name">user2</field>
+            <field name="login">user2</field>
+            <field name="password">user2</field>
+            <field name="email">user2@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_3" model="res.users">
+            <field name="name">user3</field>
+            <field name="login">user3</field>
+            <field name="password">user3</field>
+            <field name="email">user1@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_4" model="res.users">
+            <field name="name">user4</field>
+            <field name="login">user4</field>
+            <field name="password">user4</field>
+            <field name="email">user4@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_5" model="res.users">
+            <field name="name">user5</field>
+            <field name="login">user5</field>
+            <field name="password">user5</field>
+            <field name="email">user5@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_6" model="res.users">
+            <field name="name">user6</field>
+            <field name="login">user6</field>
+            <field name="password">user6</field>
+            <field name="email">user6@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_7" model="res.users">
+            <field name="name">user7</field>
+            <field name="login">user7</field>
+            <field name="password">user7</field>
+            <field name="email">user7@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_8" model="res.users">
+            <field name="name">user8</field>
+            <field name="login">user8</field>
+            <field name="password">user8</field>
+            <field name="email">user8@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_9" model="res.users">
+            <field name="name">user9</field>
+            <field name="login">user9</field>
+            <field name="password">user9</field>
+            <field name="email">user9@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+
+        <record id="demo_object_user_10" model="res.users">
+            <field name="name">user10</field>
+            <field name="login">user10</field>
+            <field name="password">user10</field>
+            <field name="email">user10@example.com</field>
+            <field name="groups_id" eval="[(Command.link(ref('base.group_user')))]"/>
+        </record>
+    </data>
+</odoo>

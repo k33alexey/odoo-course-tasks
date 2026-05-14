@@ -17,7 +17,7 @@ class HospitalPatient(models.Model):
     _inherit = ['hr_hospital.medic.info', 'mail.thread', 'mail.activity.mixin']
 
     doctor_id = fields.Many2one(comodel_name='hr_hospital.doctor', string='Personal doctor', tracking=True)
-    policy_number = fields.Char(string='Policy Number', size=20)
+    policy_number = fields.Char(string='Policy Number', size=20, help='Policy number of the patient')
     visit_ids = fields.One2many(
         comodel_name='hr_hospital.visit',
         inverse_name='patient_id',

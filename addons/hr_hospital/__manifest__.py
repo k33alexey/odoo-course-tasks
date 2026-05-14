@@ -3,7 +3,13 @@
     'version': '19.0.1.2.2',
     'category': 'Healthcare',
     'summary': "Manage doctors, patients, diseases and hospital visits",
-    'description': "",
+    'description':
+        """
+        ======================================================================================
+        This module provides a comprehensive system for managing hospital operations,
+        focusing on doctor-patient relationships, visit history, and medical classifications.
+        ======================================================================================
+        """,
     'author': "Oleksii Kalinin",
     'website': "https://github.com/k33alexey/odoo-school",
     'license': "OPL-1",
@@ -13,6 +19,8 @@
         'phone_validation',
     ],
     'data': [
+        'security/hr_hospital_groups.xml',
+        'security/hr_hospital_security.xml',
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'data/disease_data.xml',
@@ -29,6 +37,7 @@
         'report/doctor_report_views.xml'
     ],
     'demo': [
+        'demo/user_demo.xml',
         'demo/doctor_demo.xml',
         'demo/patient_demo.xml',
         'demo/visit_demo.xml',

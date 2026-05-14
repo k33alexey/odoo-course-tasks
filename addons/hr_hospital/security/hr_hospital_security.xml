@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1"/>
+
+    <!-- rule patient -->
+    <record id="hr_hospital_rule_patient" model="ir.rule">
+        <field name="name">Hospital patients can only view onw visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[('patient_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="Command.link(ref('group_hr_hospital_patient'))"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="False"/>
+    </record>
+
+    <!-- rule intern -->
+    <record id="hr_hospital_rule_intern" model="ir.rule">
+        <field name="name">Hospital patients can only view onw visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[('doctor_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="Command.link(ref('group_hr_hospital_intern'))"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+    <!-- rule doctor -->
+    <record id="hr_hospital_rule_doctor" model="ir.rule">
+        <field name="name">Hospital patients can only view onw visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[
+            '|',
+            ('doctor_id.user_id', '=', user.id),
+            ('doctor_id.mentor_id.user_id', '=', user.id)
+        ]</field>
+        <field name="groups" eval="Command.link(ref('group_hr_hospital_doctor'))"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="False"/>
+    </record>
+
+    <!-- rule manager -->
+    <record id="hr_hospital_rule_manager" model="ir.rule">
+        <field name="name">Hospital patients can only view onw visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="Command.link(ref('group_hr_hospital_manager'))"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_write" eval="False"/>
+    </record>
+
+    <!-- rule admin -->
+    <record id="hr_hospital_rule_admin" model="ir.rule">
+        <field name="name">Hospital patients can only view onw visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="Command.link(ref('group_hr_hospital_admin'))"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_write" eval="True"/>
+    </record>
+
+</odoo>
