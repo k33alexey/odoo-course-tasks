@@ -137,7 +137,7 @@
                     default_group_by="category_id"
                     quick_create="False"
                     group_create="False"
-                    archivable="false" >
+                    archivable="false">
                 <field name="id"/>
                 <field name="full_name"/>
                 <field name="category_id"/>
