@@ -9,17 +9,22 @@
         <field name="sequence">1</field>
     </record>
 
+    <record id="privilege_hr_hospital" model="res.groups.privilege">
+        <field name="name">Hostel</field>
+        <field name="category_id" ref="hr_hospital.category_hr_hospital"/>
+    </record>
+
     <!-- group patient -->
     <record id="group_hr_hospital_patient" model="res.groups">
         <field name="name">Role / Patient</field>
-        <field name="category_id" ref="hr_hospital.category_hr_hospital"/>
+        <field name="privilege_id" ref="privilege_hr_hospital"/>
         <field name="comment">Patients of the Hospital</field>
     </record>
 
     <!-- group intern -->
     <record id="group_hr_hospital_intern" model="res.groups">
         <field name="name">Role / Intern</field>
-        <field name="category_id" ref="hr_hospital.category_hr_hospital"/>
+        <field name="privilege_id" ref="privilege_hr_hospital"/>
         <field name="implied_ids" eval="[Command.link(ref('group_hr_hospital_patient'))]"/>
         <field name="comment">Interns of the Hospital</field>
     </record>
@@ -27,7 +32,7 @@
     <!-- group doctor -->
     <record id="group_hr_hospital_doctor" model="res.groups">
         <field name="name">Role / Doctor</field>
-        <field name="category_id" ref="hr_hospital.category_hr_hospital"/>
+        <field name="privilege_id" ref="privilege_hr_hospital"/>
         <field name="implied_ids" eval="[Command.link(ref('group_hr_hospital_intern'))]"/>
         <field name="comment">Doctors of the Hospital</field>
     </record>
@@ -35,7 +40,7 @@
     <!-- group manager -->
     <record id="group_hr_hospital_manager" model="res.groups">
         <field name="name">Role / Manager</field>
-        <field name="category_id" ref="hr_hospital.category_hr_hospital"/>
+        <field name="privilege_id" ref="privilege_hr_hospital"/>
         <field name="implied_ids" eval="[Command.link(ref('group_hr_hospital_doctor'))]"/>
         <field name="comment">Managers of the Hospital</field>
     </record>
@@ -43,9 +48,9 @@
     <!-- group admin -->
     <record id="group_hr_hospital_admin" model="res.groups">
         <field name="name">Role / Administrator</field>
-        <field name="category_id" ref="hr_hospital.category_hr_hospital"/>
+        <field name="privilege_id" ref="privilege_hr_hospital"/>
         <field name="implied_ids" eval="[Command.link(ref('group_hr_hospital_manager'))]"/>
-        <field name="users" eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"/>
+        <field name="user_ids" eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"/>
         <field name="comment">Administrators of the Hospital (full rights)</field>
     </record>
 </odoo>
