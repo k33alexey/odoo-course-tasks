@@ -66,7 +66,7 @@ class HospitalDoctor(models.Model):
         intern_category = self.env.ref(xml_id='hr_hospital.doctor_category_intern', raise_if_not_found=False)
         for doctor in self:
             if doctor.mentor_id and doctor.mentor_id.category_id == intern_category:
-                raise ValidationError(self.env._('Intern is not allowed in mentor'))
+                raise ValidationError(self.env._('Intern is not allowed to be a mentor'))
             if doctor.mentor_id == doctor:
                 raise ValidationError(self.env._('A doctor cannot be their own mentor.'))
             if doctor.category_id == intern_category:
