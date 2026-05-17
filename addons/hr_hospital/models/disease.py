@@ -18,7 +18,7 @@ class HospitalDisease(models.Model):
     _description = 'Disease'
     _parent_store = True
 
-    name = fields.Char(string='Disease Name', required=True)
+    name = fields.Char(string='Disease Name', required=True, translate=True)
     code = fields.Char(string='ICD Code')
     color = fields.Integer(
         string='Color Index',
