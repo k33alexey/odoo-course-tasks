@@ -84,7 +84,7 @@ class HospitalDoctor(models.Model):
         self.ensure_one()
 
         return {
-            'name': self.env._(source='New Visit for Doctor %s' % self.full_name),
+            'name': self.env._(source='New Visit for Doctor %(name)s', name=self.full_name),
             'type': 'ir.actions.act_window',
             'res_model': 'hr_hospital.visit',
             'view_mode': 'form',

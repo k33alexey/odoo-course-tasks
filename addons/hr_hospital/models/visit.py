@@ -136,7 +136,7 @@ class Visit(models.Model):
         self.ensure_one()
 
         return {
-            'name': self.env._(source='Visits by %s' % self.disease_id.id),
+            'name': self.env._(source='Visits by %(disease)s', disease=self.disease_id.name),
             'type': 'ir.actions.act_window',
             'res_model': 'hr_hospital.visit',
             'view_mode': 'list',

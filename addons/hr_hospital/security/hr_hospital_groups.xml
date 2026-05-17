@@ -10,7 +10,7 @@
     </record>
 
     <record id="privilege_hr_hospital" model="res.groups.privilege">
-        <field name="name">Hostel</field>
+        <field name="name">Hospital</field>
         <field name="category_id" ref="hr_hospital.category_hr_hospital"/>
     </record>
 
