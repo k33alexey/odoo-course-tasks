@@ -1,37 +1,61 @@
-===================
-Hospital Management
-===================
+======================================
+Hospital Management System (hr_hospital)
+======================================
 
-.. ![](/hr_hospital/static/description/icon.png)
+This module adds a hospital management system functionality for Odoo.
+It allows tracking doctors, patients, diseases, and managing visits.
+Created as part of the Odoo School UA course, section 'Module formalization'.
 
-This module provides a comprehensive system for managing hospital operations,
-focusing on doctor-patient relationships, visit history, and medical classifications.
+Installation
+============
 
-Features
-========
+To install this module, you need to:
 
-* **Doctor Management**: Organize medical staff by categories and manage mentoring hierarchy (Mentors and Interns).
-* **Patient Records**: Maintain detailed patient information including blood types and contact details.
-* **Visit Tracking**: Manage the full lifecycle of hospital visits with status automation.
-* **Medical History**: Automatic tracking of personal doctor assignments.
-* **Disease Directory**: Hierarchical classification of diseases (ICD-compliant).
+#. Clone the repository with the module into your local ``addons`` directory.
+#. Make sure the directory is mounted in your ``docker-compose.yml`` file.
+#. Update the Odoo applications list inside the Docker container.
+#. Install the module via the Odoo web interface.
 
 Usage
 =====
 
-1. Go to **Hospital** menu.
-2. Configure **Doctor Categories** and **Diseases**.
-3. Create **Doctor** profiles and assign **Mentors** to **Interns**.
-4. Register **Patients** and schedule **Visits**.
+User manual
+-----------
 
-Technical Notes
-===============
+To manage hospital records:
 
-* Inherits from ``mail.thread`` and ``mail.activity.mixin`` for communication.
-* Uses ``image.mixin`` for person avatars.
-* Includes strict validation for mentoring rules and visit status changes.
+* Go to **Hospital** main menu.
+* Navigate to **Doctors** or **Patients** to manage records.
+
+REST API Testing (Postman)
+--------------------------
+
+The module provides a clean REST API (HTTP type) to interact with doctor records without JSON-RPC wrappers:
+
+* **GET** ``http://localhost:8069/hr_hospital/doctor`` — Retrieve the list of all doctors.
+* **POST** ``http://localhost:8069/hr_hospital/doctor`` — Create a new doctor. Send raw JSON body (e.g., ``{"name": "Dr. House"}``).
+
+Notes:
+------
+
+- When modifying Python controllers or models, don't forget to update the module from the terminal using Docker CLI:
+
+  .. code-block:: bash
+
+     docker compose exec web odoo -u hr_hospital -d postgres --stop-after-init
+     docker compose restart web
+
+- Make sure your Postman Desktop Agent is running when testing API locally on macOS to avoid localhost blockages.
 
 Credits
 =======
 
-* **Author**: Kalinin Alexey <k33alexey@gmail.com>
+Authors
+-------
+
+* Kalinin Alexey
+
+Contributors
+------------
+
+* Kalinin Alexey <k33alexey@gmail.com>
