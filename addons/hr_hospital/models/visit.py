@@ -41,7 +41,8 @@ class Visit(models.Model):
         """
         Formats the visit name for display, combining the unique
         sequence number and the date of the visit.
-        Example: 'VISIT/2026/00001 from 13.05.2026'
+        Data: sequence_data.xml
+        Example: 'OSV/2026/00001 from 13.05.2026'
         """
 
         for visit in self:

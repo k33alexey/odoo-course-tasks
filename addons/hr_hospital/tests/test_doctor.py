@@ -27,6 +27,7 @@ class TestHospitalDoctor(TestHospitalCommon):
             {
                 'name': 'Surgeon',
                 'color': 5,
+                'sequence': 20,
             }
         )
 
