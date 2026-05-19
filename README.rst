@@ -32,8 +32,8 @@ REST API Testing (Postman)
 
 The module provides a clean REST API (HTTP type) to interact with doctor records without JSON-RPC wrappers:
 
-* **GET** ``http://localhost:8069/hr_hospital/doctor`` — Retrieve the list of all doctors.
-* **POST** ``http://localhost:8069/hr_hospital/doctor`` — Create a new doctor. Send raw JSON body (e.g., ``{"name": "Dr. House"}``).
+* **GET** ``http://example.com/api/hospital/doctor`` — Retrieve the list of all doctors.
+* **POST** ``http://example.com/api/hospital/doctor`` — Create a new doctor. Send raw JSON body (e.g., ``{"name": "Dr. House"}``).
 
 Notes:
 ------

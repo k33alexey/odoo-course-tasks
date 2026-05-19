@@ -8,7 +8,7 @@ from odoo.http import request
 class HospitalController(http.Controller):
     """Controller responsible for handling HTTP API requests related to the hospital module."""
 
-    @http.route(route='/hr_hospital/doctor', type='http', auth='public', methods=['GET'], csrf=False)
+    @http.route(route='/api/hospital/doctor', type='http', auth='public', methods=['GET'], csrf=False)
     def get_doctors(self):
         """Retrieve a list of all doctors in the system.
 
@@ -32,7 +32,7 @@ class HospitalController(http.Controller):
             json.dumps({'status': 'success', 'data': result}), headers=[('Content-Type', 'application/json')]
         )
 
-    @http.route(route='/hr_hospital/doctor/<int:doctor_id>', type='http', auth='public', methods=['GET'], csrf=False)
+    @http.route(route='/api/hospital/doctor/<int:doctor_id>', type='http', auth='public', methods=['GET'], csrf=False)
     def get_doctor(self, doctor_id):
         """Retrieve a doctor by id in the system.
 
@@ -62,7 +62,7 @@ class HospitalController(http.Controller):
             headers=[('Content-Type', 'application/json')],
         )
 
-    @http.route(route='/hr_hospital/doctor', type='http', auth='public', methods=['POST'], csrf=False)
+    @http.route(route='/api/hospital/doctor', type='http', auth='public', methods=['POST'], csrf=False)
     def post_doctor(self):
         return request.make_response(
             json.dumps({'status': 'success'}),

@@ -2,8 +2,8 @@
 ----------
 
 * **Added REST API Controllers:** Implemented native HTTP endpoints for external integrations.
-* Added ``GET /hr_hospital/doctor`` endpoint to retrieve the list of all doctors in clean JSON format.
-* Added ``POST /hr_hospital/doctor`` endpoint for creating new doctor records with built-in basic validation and CSRF bypass for external tools like Postman.
+* Added ``GET /api/hospital/doctor`` endpoint to retrieve the list of all doctors in clean JSON format.
+* Added ``POST /api/hospital/doctor`` endpoint for creating new doctor records with built-in basic validation and CSRF bypass for external tools like Postman.
 * Optimized database resource processing by replacing heavy search loops with high-performance list comprehensions.
 
 19.0.1.2.2
