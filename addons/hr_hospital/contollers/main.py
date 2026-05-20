@@ -8,7 +8,7 @@ from odoo.http import request
 class HospitalController(http.Controller):
     """Controller responsible for handling HTTP API requests related to the hospital module."""
 
-    @http.route(route='/api/hospital/doctor', type='http', auth='public', methods=['GET'], csrf=False)
+    @http.route(route='/api/hospital/doctor', type='http', website=True, auth='public', methods=['GET'], csrf=False)
     def get_doctors(self):
         """Retrieve a list of all doctors in the system.
 
