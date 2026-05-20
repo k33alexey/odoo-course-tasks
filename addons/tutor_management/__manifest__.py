@@ -1,6 +1,6 @@
 {
     'name': "Tutor Management",
-    'version': '19.0.1.0.1',
+    'version': '19.0.1.0.3',
     'summary': 'Manage tutors, students, specializations, and lessons',
     'category': 'Education',
     'description':
