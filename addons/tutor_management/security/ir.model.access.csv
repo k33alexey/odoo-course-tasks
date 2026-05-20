@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tutor_tutor,tutor.tutor tutor,model_tutor_tutor,tutor_management.group_tutor_tutor,1,1,1,0
+access_tutor_specialization_tutor,tutor.specialization tutor,model_tutor_specialization,tutor_management.group_tutor_tutor,1,1,1,0
+access_student_tutor,tutor.student tutor,model_tutor_student,tutor_management.group_tutor_tutor,1,1,1,0
+access_lesson_tutor,tutor.lesson tutor,model_tutor_lesson,tutor_management.group_tutor_tutor,1,1,1,0
+access_tutor_student,tutor.tutor student,model_tutor_tutor,tutor_management.group_tutor_student,1,0,0,0
+access_tutor_specialization_student,tutor.specialization student,model_tutor_specialization,tutor_management.group_tutor_student,1,0,0,0
+access_student_student,tutor.student student,model_tutor_student,tutor_management.group_tutor_student,1,0,0,0
+access_lesson_student,tutor.lesson student,model_tutor_lesson,tutor_management.group_tutor_student,1,0,0,0
+access_tutor_admin,tutor.tutor admin,model_tutor_tutor,tutor_management.group_tutor_admin,1,1,1,1
+access_tutor_specialization_admin,tutor.specialization admin,model_tutor_specialization,tutor_management.group_tutor_admin,1,1,1,1
+access_student_admin,tutor.student admin,model_tutor_student,tutor_management.group_tutor_admin,1,1,1,1
+access_lesson_admin,tutor.lesson admin,model_tutor_lesson,tutor_management.group_tutor_admin,1,1,1,1

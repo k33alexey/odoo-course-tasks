@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1"/>
+
+    <!-- tutor category -->
+    <record id="category_tutor" model="ir.module.category">
+        <field name="name">Tutor Management</field>
+        <field name="description">User access levels for the Tutor Management</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="privilege_tutor" model="res.groups.privilege">
+        <field name="name">Tutor Management</field>
+        <field name="category_id" ref="tutor_management.category_tutor"/>
+    </record>
+
+    <!-- group student -->
+    <record id="group_tutor_student" model="res.groups">
+        <field name="name">Role / Student</field>
+        <field name="privilege_id" ref="privilege_tutor"/>
+        <field name="comment">Students of the Tutor Management</field>
+    </record>
+
+    <!-- group tutor -->
+    <record id="group_tutor_tutor" model="res.groups">
+        <field name="name">Role / Tutor</field>
+        <field name="privilege_id" ref="privilege_tutor"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_tutor_student'))]"/>
+        <field name="comment">Tutors of the Tutor Management</field>
+    </record>
+
+    <!-- group admin -->
+    <record id="group_tutor_admin" model="res.groups">
+        <field name="name">Role / Administrator</field>
+        <field name="privilege_id" ref="privilege_tutor"/>
+        <field name="implied_ids" eval="[Command.link(ref('group_tutor_tutor'))]"/>
+        <field name="user_ids" eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"/>
+        <field name="comment">Administrators of the Tutor Management (full rights)</field>
+    </record>
+</odoo>
