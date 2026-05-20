@@ -72,8 +72,8 @@ class MedicInfo(models.AbstractModel):
     @api.depends('birth_date')
     def _compute_age(self):
         """
-        Calculates the person's age based on their birth date and the
-        current system date. Returns 0 if birth date is not set.
+        Calculates the person's age based on their birthdate and the
+        current system date. Returns 0 if birthdate is not set.
         """
 
         today_date = fields.Date.today()
