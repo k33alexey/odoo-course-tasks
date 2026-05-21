@@ -29,3 +29,4 @@ Changelog
 
   - Added manifest
   - Added LICENCE
+  - Added description
