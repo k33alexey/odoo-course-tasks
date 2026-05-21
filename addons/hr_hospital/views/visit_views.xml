@@ -88,8 +88,6 @@
                             context="{'group_by': 'state'}"/>
                     <filter string="Doctor" name="group_by_doctor"
                             context="{'group_by': 'doctor_id'}"/>
-                    <filter string="State" name="group_by_state"
-                            context="{'group_by': 'state'}"/>
                     <filter string="Disease" name="group_by_disease"
                             context="{'group_by': 'disease_id'}"/>
                 </group>
