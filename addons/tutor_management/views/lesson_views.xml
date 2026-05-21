@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- list -->
+    <record id="lesson_view_list" model="ir.ui.view">
+        <field name="name">tutor.lesson.list</field>
+        <field name="model">tutor.lesson</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="name" string="Number"/>
+                <field name="appointment_date"/>
+                <field name="spec_id"/>
+                <field name="tutor_id"/>
+                <field name="student_id"/>
+                <field name="state" widget="badge"
+                       decoration-muted="state == 'planned'"
+                       decoration-success="state == 'done'"
+                       decoration-danger="state == 'cancel'"/>
+                <button name="action_archive"
+                        type="object"
+                        icon="fa-archive"
+                        string="Archive"
+                        invisible="not active"/>
+                <button name="action_unarchive"
+                        type="object"
+                        icon="oi-unarchive"
+                        string="Unarchive"
+                        invisible="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- form -->
+    <record id="lesson_view_form" model="ir.ui.view">
+        <field name="name">tutor.lesson.form</field>
+        <field name="model">tutor.lesson</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': False}"/>
+                </header>
+                <sheet>
+                    <field name="state" widget="badge" decoration-success="state == 'done'"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_lessons_by_spec"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-copy">
+                            <field name="count_by_spec" widget="statinfo" string="Similar lessons"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="True"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Planning">
+                            <field name="appointment_date"/>
+                            <field name="tutor_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Student Info">
+                            <field name="student_id" options="{'no_quick_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details" name="details">
+                            <separator string="Specialization"/>
+                            <field name="spec_id"/>
+                            <separator string="Tutor Notes"/>
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- search -->
+    <record id="lesson_view_search" model="ir.ui.view">
+        <field name="name">tutor.lesson.search</field>
+        <field name="model">tutor.lesson</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="tutor_id"/>
+                <filter string="Date" name="filter_lesson_month" date="appointment_date" default_period="month"/>
+                <group>
+                    <filter string="State" name="group_by_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Tutor" name="group_by_tutor"
+                            context="{'group_by': 'tutor_id'}"/>
+                    <filter string="Specialization" name="group_by_spec"
+                            context="{'group_by': 'spec_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="tutor_id"
+                           icon="fa-users"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <!-- calendar -->
+    <record id="lesson_view_calendar" model="ir.ui.view">
+        <field name="name">tutor.lesson.calendar</field>
+        <field name="model">tutor.lesson</field>
+        <field name="arch" type="xml">
+            <calendar string="Lessons"
+                      date_start="appointment_date"
+                      color="tutor_id"
+                      mode="month">
+                <field name="student_id"/>
+                <field name="tutor_id" filters="1"/>
+                <field name="state" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- pivot -->
+    <record id="lesson_view_pivot" model="ir.ui.view">
+        <field name="name">tutor.lesson.pivot</field>
+        <field name="model">tutor.lesson</field>
+        <field name="arch" type="xml">
+            <pivot string="Lesson analyse" sample="1">
+                <field name="tutor_id" type="row"/>
+                <field name="state" type="col"/>
+                <field name="appointment_date" interval="month" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- graph -->
+    <record id="lesson_view_graph" model="ir.ui.view">
+        <field name="name">tutor.lesson.graph</field>
+        <field name="model">tutor.lesson</field>
+        <field name="arch" type="xml">
+            <graph string="Lessons by Month"
+                   type="bar"
+                   stacked="1">
+                <field name="appointment_date" interval="month"/>
+                <field name="spec_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- action -->
+    <record id="lesson_action" model="ir.actions.act_window">
+        <field name="name">Lessons</field>
+        <field name="res_model">tutor.lesson</field>
+        <field name="view_mode">list,form,calendar,pivot,graph</field>
+        <field name="context">{'default_name': 'New'}
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the first lesson!
+            </p>
+        </field>
+    </record>
+
+    <!-- lesson menu -->
+    <menuitem id="tutor_menu_lesson"
+              name="Lessons"
+              parent="tutor_menu"
+              action="lesson_action"
+              sequence="10"/>
+
+</odoo>
+
