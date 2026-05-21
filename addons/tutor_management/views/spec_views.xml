@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- list -->
+    <record id="tutor_spec_view_list" model="ir.ui.view">
+        <field name="name">tutor.spec.list</field>
+        <field name="model">tutor.specialization</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- form -->
+    <record id="tutor_spec_view_form" model="ir.ui.view">
+        <field name="name">tutor.spec.form</field>
+        <field name="model">tutor.specialization</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- action -->
+    <record id="tutor_spec_view_action" model="ir.actions.act_window">
+        <field name="name">Tutor Specialization</field>
+        <field name="res_model">tutor.specialization</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first specialization!
+            </p>
+        </field>
+    </record>
+
+    <!-- menu -->
+    <menuitem id="tutor_spec_menu"
+              name="Specializations"
+              parent="tutor_management.tutor_menu_reference"
+              action="tutor_spec_view_action" sequence="50"/>
+</odoo>
