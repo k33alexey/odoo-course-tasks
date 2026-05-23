@@ -2,8 +2,9 @@ services:
   web:
     build:
       context: .
+      dockerfile: Dockerfile
       args:
-        ODOO_VERSION: ${ODOO_VERSION}
+        - ODOO_VERSION=${ODOO_VERSION}
     depends_on:
       - db
     ports:
@@ -18,7 +19,8 @@ services:
       # Важно для дебага: заставляем Odoo работать в один поток
       - ODOO_WORKERS=0
     command: >
-      odoo --http-interface=0.0.0.0
+      odoo
+      --http-interface=0.0.0.0
       --db_host=db
       --db_user=${DB_USER}
       --db_password=${DB_PASSWORD}
