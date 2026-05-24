@@ -1,0 +1,10 @@
+1. Атрибуты модели (_name, _description, _inherit, _order и т.д.).
+2. Поля (fields.Char, fields.Many2one и т.д.).
+3. SQL Constraints (_sql_constraints).
+4. Методы Compute, Inverse и Search (в паре с @api.depends).
+5. Методы Onchange (с @api.onchange).
+6. Методы Constrains (с @api.constrains).
+7. CRUD-методы (create, write, unlink).
+8. Технические методы / ORM Overrides (например, name_get, read_group)
+9. Action-методы (бизнес-логика, вызываемая кнопками, например action_done).
+10. Прочие внутренние/вспомогательные методы (начинающиеся с нижнего подчеркивания _ в паре с @api_models)

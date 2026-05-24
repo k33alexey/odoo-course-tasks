@@ -6,21 +6,9 @@
               web_icon="tutor_management,static/description/icon.png"
               sequence="1"/>
 
-    <!-- lesson menu -->
-    <menuitem id="tutor_menu_lesson"
-              name="Lessons"
-              parent="tutor_menu"
-              sequence="10"/>
-
-    <!-- tutor menu -->
-    <menuitem id="tutor_menu_tutor"
-              name="Tutors"
-              parent="tutor_menu"
-              sequence="20"/>
-
     <!-- reference menu -->
     <menuitem id="tutor_menu_reference"
               name="References"
               parent="tutor_menu"
-              sequence="30"/>
+              sequence="50"/>
 </odoo>

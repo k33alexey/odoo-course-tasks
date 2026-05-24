@@ -7,23 +7,33 @@ class Tutor(models.Model):
     _inherit = ['tutor.abstract.person']
 
     active = fields.Boolean(string='Active', default=True)
-    spec_id = fields.Many2many(comodel_name='tutor.specialization', string='Tutor specialization', required=True)
-    specialization_color = fields.Integer(related='spec_id.color', string='Specialization color', readonly=False)
+    spec_ids = fields.Many2many(comodel_name='tutor.specialization', string='Tutor specialization', required=True)
+    specialization_color = fields.Integer(related='spec_ids.color', string='Specialization color', readonly=False)
     color = fields.Integer(string='Color Index', default=0)
+    lesson_ids = fields.One2many(
+        comodel_name='tutor.lesson',
+        inverse_name='tutor_id',
+        string='Lesson history',
+        readonly=True,
+    )
 
-    @api.depends('full_name', 'spec_id')
+    @api.depends('full_name', 'spec_ids', 'spec_ids.name')
     def _compute_display_name(self):
         """
         Constructs a readable name for the record.
-        Example: 'Ivanov Ivan Ivanovich (Mathematics)'
+        Example: 'Ivanov Ivan Ivanovich (Mathematics, Physics)'
         """
-
         for tutor in self:
             full_name = tutor.full_name or ''
-            spec = tutor.spec_id.name or self.env._('No specialization')
-            tutor.display_name = f'{full_name} ({spec})'
 
-    def action_quick_create_visit(self):
+            if tutor.spec_ids:
+                spec_list = ', '.join(tutor.spec_ids.mapped('name'))
+            else:
+                spec_list = self.env._('No specialization')
+
+            tutor.display_name = f'{full_name} ({spec_list})'
+
+    def action_quick_create_lesson(self):
         """
         Helper method to open a new lesson wizard or form pre-filled
         with the current tutor's information.

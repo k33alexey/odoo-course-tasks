@@ -14,5 +14,9 @@ class TutorSpecialization(models.Model):
         string='Color Index',
         default=lambda self: secrets.randbelow(11) + 1,
     )
+    price = fields.Monetary(string='Price', default=500, required=True)
+    currency_id = fields.Many2one(
+        comodel_name='res.currency', string='Currency', default=lambda self: self.env.company.currency_id
+    )
 
     _name_unique = models.Constraint(definition='unique(name)', message='The name must be unique!')

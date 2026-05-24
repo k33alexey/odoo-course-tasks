@@ -78,19 +78,6 @@ class Visit(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('hr_hospital.visit') or 'New'
         return super().create(vals_list)
 
-    @api.model
-    def get_state_color(self):
-        """
-        Returns a bootstrap-style color class based on the current state.
-        Useful for dynamic styling in Kanban or custom web views.
-        :return: string representing a CSS color class.
-        """
-
-        self.ensure_one()
-
-        colors = {'done': 'success', 'planned': 'secondary', 'cancel': 'danger'}
-        return colors.get(self.state, 'info')
-
     @api.constrains('active', 'doctor_id', 'visit_date', 'completion_date')
     def _check_visit(self):
         """
@@ -126,6 +113,18 @@ class Visit(models.Model):
             raise ValidationError(self.env._('Not allowed to archive the record. Visit already done'))
 
         return super().action_archive()
+
+    def get_state_color(self):
+        """
+        Returns a bootstrap-style color class based on the current state.
+        Useful for dynamic styling in Kanban or custom web views.
+        :return: string representing a CSS color class.
+        """
+
+        self.ensure_one()
+
+        colors = {'done': 'success', 'planned': 'secondary', 'cancel': 'danger'}
+        return colors.get(self.state, 'info')
 
     def action_view_visits_by_disease(self):
         """

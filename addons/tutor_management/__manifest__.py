@@ -14,13 +14,26 @@
     'website': "https://github.com/k33alexey/odoo-school",
     'license': "OPL-1",
     'depends': [
+        'base',
         'mail',
         'phone_validation',
     ],
     'data': [
+        # security
         'security/tutor_groups.xml',
         'security/tutor_security.xml',
         'security/ir.model.access.csv',
+        # sequence
+        'data/sequence_data.xml',
+        # data
+
+        # menu
+        'views/tutor_menu.xml',
+        # view
+        'views/lesson_views.xml',
+        'views/tutor_views.xml',
+        'views/student_views.xml',
+        'views/spec_views.xml'
     ],
     'demo': [
     ],

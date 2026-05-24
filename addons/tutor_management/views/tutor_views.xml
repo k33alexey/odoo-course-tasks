@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- list -->
+    <record id="tutor_view_list" model="ir.ui.view">
+        <field name="name">tutor.tutor.list</field>
+        <field name="model">tutor.tutor</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="not active">
+                <field name="full_name"/>
+                <field name="age"/>
+                <field name="spec_ids" widget="many2many_tags"/>
+                <field name="phone" optional="show"/>
+                <field name="email" optional="show"/>
+                <button name="action_archive"
+                        type="object"
+                        icon="fa-archive"
+                        string="Archive"
+                        invisible="not active"/>
+                <button name="action_unarchive"
+                        type="object"
+                        icon="oi-unarchive"
+                        string="Unarchive"
+                        invisible="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- form -->
+    <record id="tutor_view_form" model="ir.ui.view">
+        <field name="name">tutor.tutor.form</field>
+        <field name="model">tutor.tutor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image_1920" widget="image" class="oe_avatar"
+                           options="{'preview_image': 'image_128'}"/>
+                    <group>
+                        <group>
+                            <separator string="Tutor information"/>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="middle_name"/>
+                            <field name="spec_ids" widget="many2many_tags"/>
+                            <field name="birth_date"/>
+                            <field name="gender" widget="radio" options="{'horizontal': True}"/>
+                        </group>
+                        <group>
+                            <separator string="Contact Information"/>
+                            <field name="email_state" invisible="True"/>
+                            <field name="phone_state" invisible="True"/>
+                            <field name="email" string="Email" widget="email"/>
+                            <field name="phone" widget="phone"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lessons">
+                            <field name="lesson_ids" readonly="True">
+                                <list default_order="appointment_date desc">
+                                    <field name="appointment_date"/>
+                                    <field name="student_id"/>
+                                    <field name="spec_id"/>
+                                    <field name="state" widget="badge"
+                                           decoration-muted="state == 'planned'"
+                                           decoration-success="state == 'done'"
+                                           decoration-danger="state == 'cancel'"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- search -->
+    <record id="tutor_view_search" model="ir.ui.view">
+        <field name="name">tutor.tutor.search</field>
+        <field name="model">tutor.tutor</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="full_name"
+                       string="Tutor or phone"
+                       filter_domain="[
+                                '|',
+                                ('full_name', 'ilike', self),
+                                ('phone', 'ilike', self)
+                           ]"/>
+                <group>
+                    <filter name="group_by_specialization_id"
+                            string="Specialization"
+                            context="{'group_by': 'spec_ids'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- action -->
+    <record id="tutor_action" model="ir.actions.act_window">
+        <field name="name">Tutors</field>
+        <field name="res_model">tutor.tutor</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">
+            {
+                'search_default_group_by_specialization_id': 1
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first tutor!
+            </p>
+        </field>
+    </record>
+
+    <!-- menu -->
+    <menuitem id="tutor_tutor_menu"
+              name="Tutors"
+              parent="tutor_menu"
+              action="tutor_action"
+              sequence="20"/>
+
+</odoo>

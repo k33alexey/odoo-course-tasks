@@ -1,6 +1,24 @@
 Changelog
 =========
 
+19.0.1.0.5
+-----------------------
+
+* **Views Update:**
+
+  - Added main menu (`tutor_menu.xml`).
+  - Added view for tutor model (`tutor_views.xml`).
+  - Added view for student model (`student_views.xml`).
+  - Added view for lesson model (`lesson_views.xml`).
+  - Added view for tutor specialization model (`spec_views.xml`).
+
+19.0.1.0.4
+-----------------------
+
+* **Sequence Update:**
+
+  - Added sequence for lesson model (`sequence_data.xml`).
+
 19.0.1.0.3
 -----------------------
 

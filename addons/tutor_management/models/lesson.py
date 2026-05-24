@@ -9,11 +9,11 @@ _logger = logging.getLogger(__name__)
 class Lesson(models.Model):
     _name = 'tutor.lesson'
     _description = 'Lesson'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    active = fields.Boolean(string='Active', default=True)
+    active = fields.Boolean(string='Active', default=True, tracking=True)
     name = fields.Char(string='Number', required=True, copy=False, readonly=True, default='New')
-
-    appointment_date = fields.Datetime(string='Appointment Date', required=True)
+    appointment_date = fields.Datetime(string='Appointment Date', required=True, tracking=True)
     state = fields.Selection(
         selection=[
             ('planned', 'Planned'),
@@ -22,12 +22,19 @@ class Lesson(models.Model):
         ],
         string='Status',
         default='planned',
+        tracking=True,
     )
-    tutor_id = fields.Many2one(comodel_name='tutor.tutor', string='Tutor', required=True)
-    student_id = fields.Many2one(comodel_name='tutor.student', string='Student', required=True)
+    tutor_id = fields.Many2one(comodel_name='tutor.tutor', string='Tutor', required=True, tracking=True)
+    student_id = fields.Many2one(comodel_name='tutor.student', string='Student', required=True, tracking=True)
     notes = fields.Html(string='Notes')
     count_by_spec = fields.Integer(string='Count by specialization', compute='_compute_count_by_spec')
-    spec_id = fields.Many2one(comodel_name='tutor.specialization', string='Specialization')
+    spec_id = fields.Many2one(comodel_name='tutor.specialization', string='Specialization', tracking=True)
+    allowed_spec_ids = fields.Many2many(comodel_name='tutor.specialization', compute='_compute_allowed_spec_ids')
+
+    @api.depends('tutor_id')
+    def _compute_allowed_spec_ids(self):
+        for lesson in self:
+            lesson.allowed_spec_ids = lesson.tutor_id.spec_ids if lesson.tutor_id else self.env['tutor.specialization']
 
     @api.depends('name', 'create_date')
     def _compute_display_name(self):
@@ -57,32 +64,10 @@ class Lesson(models.Model):
             else:
                 lesson.count_by_spec = 0
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        """
-        Overrides creation to assign a unique sequence number to each lesson
-        from the 'tutor.lesson' sequence defined in data.
-        :param vals_list: List of dictionaries for record creation.
-        :return: Created lesson records.
-        """
-
-        for vals in vals_list:
-            if vals.get('name', 'New') == 'New':
-                vals['name'] = self.env['ir.sequence'].next_by_code('tutor.lesson') or 'New'
-        return super().create(vals_list)
-
-    @api.model
-    def get_state_color(self):
-        """
-        Returns a bootstrap-style color class based on the current state.
-        Useful for dynamic styling in Kanban or custom web views.
-        :return: string representing a CSS color class.
-        """
-
-        self.ensure_one()
-
-        colors = {'done': 'success', 'planned': 'secondary', 'cancel': 'danger'}
-        return colors.get(self.state, 'info')
+    @api.onchange('tutor_id')
+    def _onchange_tutor_id(self):
+        if not self.tutor_id or (self.spec_id and self.spec_id not in self.tutor_id.spec_ids):
+            self.spec_id = False
 
     @api.constrains('active', 'tutor_id', 'student_id', 'appointment_date')
     def _check_lesson(self):
@@ -98,6 +83,20 @@ class Lesson(models.Model):
             if lesson.state == 'done':
                 raise ValidationError(self.env._('Cannot change the values. Lesson already done'))
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        """
+        Overrides creation to assign a unique sequence number to each lesson
+        from the 'tutor.lesson' sequence defined in data.
+        :param vals_list: List of dictionaries for record creation.
+        :return: Created lesson records.
+        """
+
+        for vals in vals_list:
+            if vals.get('name', 'New') == 'New':
+                vals['name'] = self.env['ir.sequence'].next_by_code('tutor.lesson') or 'New'
+        return super().create(vals_list)
+
     def unlink(self):
         """
         Restricts the deletion of lessons that have reached the 'Done' state.
@@ -107,7 +106,17 @@ class Lesson(models.Model):
         if any(lesson.state == 'done' for lesson in self):
             raise ValidationError(self.env._('Not allowed to delete the record. Lesson already done'))
 
-        return super().unlink()
+        # def get_state_color(self):
+        # """
+        # Returns a bootstrap-style color class based on the current state.
+        # Useful for dynamic styling in Kanban or custom web views.
+        # :return: string representing a CSS color class.
+        # """
+        #
+        # self.ensure_one()
+        #
+        # colors = {'done': 'success', 'planned': 'secondary', 'cancel': 'danger'}
+        # return colors.get(self.state, 'info')
 
     def action_archive(self):
         """
@@ -119,6 +128,18 @@ class Lesson(models.Model):
 
         return super().action_archive()
 
+    def action_done(self):
+        self.ensure_one()
+        self.write({'state': 'done'})
+
+    def action_cancel(self):
+        self.ensure_one()
+        self.write({'state': 'cancel'})
+
+    def action_draft(self):
+        self.ensure_one()
+        self.write({'state': 'planned'})
+
     def action_view_lessons_by_spec(self):
         """
         Opens a list view showing all lessons associated with
@@ -129,7 +150,7 @@ class Lesson(models.Model):
         self.ensure_one()
 
         return {
-            'name': self.env._(source='Lessons by %(disease)s', disease=self.spec_id.name),
+            'name': self.env._(source='Lessons by %(spec)s', spec=self.spec_id.name),
             'type': 'ir.actions.act_window',
             'res_model': 'tutor.lesson',
             'view_mode': 'list',
