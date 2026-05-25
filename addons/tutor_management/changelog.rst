@@ -1,12 +1,28 @@
 Changelog
 =========
 
+19.0.1.0.9
+-----------------------
+
+* **Test Update:**
+
+  - Added common tests (`common.py`).
+  - Added lesson tests (`lesson.py`).
+
 19.0.1.0.8
 -----------------------
+
+* **Translate Update:**
+
+  - Added ukrainian translate (`spec_data.xml`).
 
 * **Data Update:**
 
   - Added specialization data (`spec_data.xml`).
+  - Added lesson demo-data (`lesson_demo.xml`).
+  - Added student demo-data (`student_demo.xml`).
+  - Added tutor demo-data (`tutor_demo.xml`).
+  - Added user demo-data (`user_demo.xml`).
 
 19.0.1.0.7
 -----------------------

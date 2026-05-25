@@ -1,0 +1,925 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tutor_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260513\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-25 15:04+0000\n"
+"PO-Revision-Date: 2026-05-25 15:04+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/wizards/tutor_reassign_wizard.py:0
+msgid "%(count)s lessons reassigned to %(name)s"
+msgstr "%(count)s занять перепризначено на %(name)s"
+
+#. module: tutor_management
+#: model:ir.actions.report,print_report_name:tutor_management.tutor_action_report
+msgid "'Tutor Card - %s' % (object.full_name)"
+msgstr "'Картка репетитора - %s' % (object.full_name)"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_report_footer_template
+msgid ""
+"<i class=\"fa fa-clock-o me-1\"/>\n"
+"                    <span>Printed on: </span>"
+msgstr ""
+"<i class=\"fa fa-clock-o me-1\"/>\n"
+"                    <span>Надруковано: </span>"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_report_template
+msgid "<strong>Specializations: </strong>"
+msgstr "<strong>Спеціалізації: </strong>"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_needaction
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_needaction
+msgid "Action Needed"
+msgstr "Необхідна дія"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__active
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__active
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__active
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_ids
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_ids
+msgid "Activities"
+msgstr "Дії"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_exception_decoration
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Оформлення виключення дії"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_state
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_state
+msgid "Activity State"
+msgstr "Стан дії"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_type_icon
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Іконка типу дії"
+
+#. module: tutor_management
+#: model:res.groups,comment:tutor_management.group_tutor_admin
+msgid "Administrators of the Tutor Management (full rights)"
+msgstr "Адміністратори керування репетиторами (повні права)"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__age
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__age
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__age
+msgid "Age"
+msgstr "Вік"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__allowed_spec_ids
+msgid "Allowed Spec"
+msgstr "Дозволені спец."
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__appointment_date
+msgid "Appointment Date"
+msgstr "Дата запису"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_list
+#: model_terms:ir.ui.view,arch_db:tutor_management.student_view_list
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_list
+msgid "Archive"
+msgstr "Архівувати"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_attachment_count
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_attachment_count
+msgid "Attachment Count"
+msgstr "Кількість прикріплень"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_lesson__state__cancel
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_reassign_wizard_view_form
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Cancelled"
+msgstr "Скасовано"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/models/lesson.py:0
+msgid "Cannot change fields in a completed lesson."
+msgstr "Неможливо змінити поля у виконаному занятті."
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__color
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__color
+msgid "Color Index"
+msgstr "Індекс кольору"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.student_view_form
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_form
+msgid "Contact Information"
+msgstr "Контактна інформація"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_abstract_person__email_state__correct
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_abstract_person__phone_state__correct
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_student__email_state__correct
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_student__phone_state__correct
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_tutor__email_state__correct
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_tutor__phone_state__correct
+msgid "Correct"
+msgstr "Правильно"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__count_by_spec
+msgid "Count by Specialization"
+msgstr "Кількість за спеціалізацією"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__country_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__country_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__country_id
+msgid "Country"
+msgstr "Країна"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_form
+msgid "Create lesson"
+msgstr "Створити заняття"
+
+#. module: tutor_management
+#: model_terms:ir.actions.act_window,help:tutor_management.lesson_action
+msgid "Create the first lesson!"
+msgstr "Створіть перше заняття!"
+
+#. module: tutor_management
+#: model_terms:ir.actions.act_window,help:tutor_management.tutor_spec_view_action
+msgid "Create the first specialization!"
+msgstr "Створіть першу спеціалізацію!"
+
+#. module: tutor_management
+#: model_terms:ir.actions.act_window,help:tutor_management.student_action
+msgid "Create your first student!"
+msgstr "Створіть свого першого учня!"
+
+#. module: tutor_management
+#: model_terms:ir.actions.act_window,help:tutor_management.tutor_action
+msgid "Create your first tutor!"
+msgstr "Створіть свого першого репетитора!"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__create_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__create_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__create_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__create_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__create_uid
+msgid "Created by"
+msgstr "Створено"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__create_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__create_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__create_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__create_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__create_date
+msgid "Created on"
+msgstr "Створено"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__currency_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_search
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_report_lesson_lines_template
+msgid "Date"
+msgstr "Дата"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__birth_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__birth_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__birth_date
+msgid "Date of Birth"
+msgstr "Дата народження"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Details"
+msgstr "Деталі"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__display_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__display_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__display_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__display_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__display_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__display_name
+msgid "Display Name"
+msgstr "Назва для відображення"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_lesson__state__done
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Done"
+msgstr "Виконано"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__email
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__email
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__email
+#: model_terms:ir.ui.view,arch_db:tutor_management.student_view_form
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_form
+msgid "Email"
+msgstr "Email"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__email_state
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__email_state
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__email_state
+msgid "Email Quality"
+msgstr "Якість Email"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_abstract_person__gender__female
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_student__gender__female
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_tutor__gender__female
+msgid "Female"
+msgstr "Жінка"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__first_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__first_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__first_name
+msgid "First Name"
+msgstr "Ім'я"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_follower_ids
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_follower_ids
+msgid "Followers"
+msgstr "Підписники"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_partner_ids
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Підписники (Партнери)"
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__activity_type_icon
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Іконка Font awesome, наприклад fa-tasks"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__from_tutor_id
+msgid "From Tutor"
+msgstr "Від репетитора"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__full_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__full_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__full_name
+msgid "Full Name"
+msgstr "Повне ім'я"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__gender
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__gender
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__gender
+msgid "Gender"
+msgstr "Стать"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__has_message
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__has_message
+msgid "Has Message"
+msgstr "Є повідомлення"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__id
+msgid "ID"
+msgstr "ID"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_exception_icon
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_exception_icon
+msgid "Icon"
+msgstr "Іконка"
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__activity_exception_icon
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Іконка для відображення виключної дії."
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__message_needaction
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Якщо позначено, нові повідомлення потребують вашої уваги."
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__message_has_error
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__message_has_sms_error
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__message_has_error
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Якщо позначено, деякі повідомлення мають помилку доставки."
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__image_1920
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__image_1920
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__image_1920
+msgid "Image"
+msgstr "Зображення"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__image_1024
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__image_1024
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__image_1024
+msgid "Image 1024"
+msgstr "Зображення 1024"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__image_128
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__image_128
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__image_128
+msgid "Image 128"
+msgstr "Зображення 128"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__image_256
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__image_256
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__image_256
+msgid "Image 256"
+msgstr "Зображення 256"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__image_512
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__image_512
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__image_512
+msgid "Image 512"
+msgstr "Зображення 512"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_lesson__state__in_progress
+msgid "In Progress"
+msgstr "В процесі"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_abstract_person__email_state__incorrect
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_abstract_person__phone_state__incorrect
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_student__email_state__incorrect
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_student__phone_state__incorrect
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_tutor__email_state__incorrect
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_tutor__phone_state__incorrect
+msgid "Incorrect"
+msgstr "Неправильно"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_is_follower
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_is_follower
+msgid "Is Follower"
+msgstr "Підписник"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__language_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__language_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__language_id
+msgid "Language"
+msgstr "Мова"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__last_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__last_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__last_name
+msgid "Last Name"
+msgstr "Прізвище"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__write_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__write_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__write_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__write_uid
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__write_uid
+msgid "Last Updated by"
+msgstr "Останнім оновив"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__write_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__write_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__write_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__write_date
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__write_date
+msgid "Last Updated on"
+msgstr "Останнє оновлення"
+
+#. module: tutor_management
+#: model:ir.model,name:tutor_management.model_tutor_lesson
+msgid "Lesson"
+msgstr "Заняття"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_pivot
+msgid "Lesson Analysis"
+msgstr "Аналіз занять"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__lesson_count
+msgid "Lesson Count"
+msgstr "Кількість занять"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__lesson_ids
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__lesson_ids
+msgid "Lesson History"
+msgstr "Історія занять"
+
+#. module: tutor_management
+#: model:ir.actions.act_window,name:tutor_management.lesson_action
+#: model:ir.ui.menu,name:tutor_management.tutor_lesson_menu
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_calendar
+#: model_terms:ir.ui.view,arch_db:tutor_management.student_view_form
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_report_lesson_lines_template
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_form
+msgid "Lessons"
+msgstr "Заняття"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_graph
+msgid "Lessons Revenue by Specialization"
+msgstr "Дохід від занять за спеціалізаціями"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/models/lesson.py:0
+msgid "Lessons by %(spec)s"
+msgstr "Заняття за %(spec)s"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Lessons for"
+msgstr "Заняття для"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__lesson_ids
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_reassign_wizard_view_form
+msgid "Lessons to Reassign"
+msgstr "Заняття для перепризначення"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_abstract_person__gender__male
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_student__gender__male
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_tutor__gender__male
+msgid "Male"
+msgstr "Чоловік"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Mark as Done"
+msgstr "Позначити як виконане"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_has_error
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_has_error
+msgid "Message Delivery error"
+msgstr "Помилка доставки повідомлення"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_ids
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_ids
+msgid "Messages"
+msgstr "Повідомлення"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__middle_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__middle_name
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__middle_name
+msgid "Middle Name"
+msgstr "По батькові"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__my_activity_date_deadline
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Дедлайн моєї дії"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/models/tutor.py:0
+msgid "New Lesson for Tutor %(name)s"
+msgstr "Нове заняття для репетитора %(name)s"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_date_deadline
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Дедлайн наступної дії"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_summary
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_summary
+msgid "Next Activity Summary"
+msgstr "Опис наступної дії"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_type_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_type_id
+msgid "Next Activity Type"
+msgstr "Тип наступної дії"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_reassign_wizard_view_form
+msgid "No Planned Lessons Found for This Tutor!"
+msgstr "Не знайдено запланованих занять для цього репетитора!"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/models/tutor.py:0
+msgid "No Specialization"
+msgstr "Без спеціалізації"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/wizards/tutor_reassign_wizard.py:0
+msgid "No planned lessons found for this tutor."
+msgstr "Не знайдено запланованих занять для цього репетитора."
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/models/lesson.py:0
+msgid "Not allowed to archive the record. Lesson already done"
+msgstr "Заборонено архівувати запис. Заняття вже виконано"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/models/lesson.py:0
+msgid "Not allowed to delete the record. Lesson already done"
+msgstr "Заборонено видаляти запис. Заняття вже виконано"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__notes
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_report_lesson_lines_template
+msgid "Notes"
+msgstr "Примітки"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__name
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_list
+msgid "Number"
+msgstr "Номер"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_needaction_counter
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Кількість дій"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_has_error_counter
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_has_error_counter
+msgid "Number of errors"
+msgstr "Кількість помилок"
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__message_needaction_counter
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Кількість повідомлень, що потребують дії"
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__message_has_error_counter
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Кількість повідомлень з помилкою доставки"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_abstract_person__gender__other
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_student__gender__other
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_tutor__gender__other
+msgid "Other"
+msgstr "Інше"
+
+#. module: tutor_management
+#: model:ir.model,name:tutor_management.model_tutor_student
+msgid "Patient"
+msgstr "Учень"
+
+#. module: tutor_management
+#: model:ir.model,name:tutor_management.model_tutor_abstract_person
+msgid "Person"
+msgstr "Особа"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__phone
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__phone
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__phone
+msgid "Phone"
+msgstr "Телефон"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__phone_state
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__phone_state
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__phone_state
+msgid "Phone Quality"
+msgstr "Якість телефону"
+
+#. module: tutor_management
+#: model:ir.model.fields.selection,name:tutor_management.selection__tutor_lesson__state__planned
+msgid "Planned"
+msgstr "Заплановано"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Planning"
+msgstr "Планування"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__price
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__price
+msgid "Price"
+msgstr "Ціна"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_reassign_wizard_view_form
+msgid "Reassign"
+msgstr "Перепризначити"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_reassign_wizard_view_form
+msgid "Reassign Lessons"
+msgstr "Перепризначити заняття"
+
+#. module: tutor_management
+#: model:ir.actions.act_window,name:tutor_management.tutor_reassign_wizard_action
+#: model:ir.ui.menu,name:tutor_management.tutor_reassign_wizard_menu
+msgid "Reassign Tutor"
+msgstr "Перепризначити репетитора"
+
+#. module: tutor_management
+#: model:ir.model,name:tutor_management.model_tutor_reassign_wizard
+msgid "Reassign Tutor for Planned Lessons"
+msgstr "Перепризначення репетитора для запланованих занять"
+
+#. module: tutor_management
+#: model:ir.ui.menu,name:tutor_management.tutor_menu_reference
+msgid "References"
+msgstr "Довідники"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__activity_user_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__activity_user_id
+msgid "Responsible User"
+msgstr "Відповідальний користувач"
+
+#. module: tutor_management
+#: model:res.groups,name:tutor_management.group_tutor_admin
+msgid "Role / Administrator"
+msgstr "Роль / Адміністратор"
+
+#. module: tutor_management
+#: model:res.groups,name:tutor_management.group_tutor_student
+msgid "Role / Student"
+msgstr "Роль / Учень"
+
+#. module: tutor_management
+#: model:res.groups,name:tutor_management.group_tutor_tutor
+msgid "Role / Tutor"
+msgstr "Роль / Репетитор"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__message_has_sms_error
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Помилка доставки SMS"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__sequence
+msgid "Sequence"
+msgstr "Послідовність"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Set to Planned"
+msgstr "Встановити як заплановане"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/wizards/tutor_reassign_wizard.py:0
+msgid "Source and destination tutors must be different!"
+msgstr "Початковий та кінцевий репетитори мають бути різними!"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__spec_id
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_search
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_search
+msgid "Specialization"
+msgstr "Спеціалізація"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__specialization_color
+msgid "Specialization Color"
+msgstr "Колір спеціалізації"
+
+#. module: tutor_management
+#: model:ir.ui.menu,name:tutor_management.tutor_spec_menu
+msgid "Specializations"
+msgstr "Спеціалізації"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Start Lesson"
+msgstr "Розпочати заняття"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_search
+msgid "State"
+msgstr "Стан"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__state
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_report_lesson_lines_template
+msgid "Status"
+msgstr "Статус"
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__activity_state
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Статус на основі дій\n"
+"Протерміновано: Термін виконання вже минув\n"
+"Сьогодні: Термін виконання сьогодні\n"
+"Заплановано: Майбутні дії."
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__student_id
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_report_lesson_lines_template
+msgid "Student"
+msgstr "Учень"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Student Info"
+msgstr "Інформація про учня"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.student_view_form
+msgid "Student Information"
+msgstr "Інформація про учня"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.student_view_search
+msgid "Student or Phone"
+msgstr "Учень або телефон"
+
+#. module: tutor_management
+#: model:ir.actions.act_window,name:tutor_management.student_action
+#: model:ir.ui.menu,name:tutor_management.tutor_student_menu
+msgid "Students"
+msgstr "Учні"
+
+#. module: tutor_management
+#: model:res.groups,comment:tutor_management.group_tutor_student
+msgid "Students of the Tutor Management"
+msgstr "Учні системи керування репетиторами"
+
+#. module: tutor_management
+#. odoo-python
+#: code:addons/tutor_management/wizards/tutor_reassign_wizard.py:0
+msgid "Success"
+msgstr "Успіх"
+
+#. module: tutor_management
+#: model:ir.model.constraint,message:tutor_management.constraint_tutor_specialization_name_unique
+msgid "The name must be unique!"
+msgstr "Назва має бути унікальною!"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_reassign_wizard__to_tutor_id
+msgid "To Tutor"
+msgstr "До репетитора"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_graph
+msgid "Total"
+msgstr "Всього"
+
+#. module: tutor_management
+#: model:ir.model,name:tutor_management.model_tutor_tutor
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_lesson__tutor_id
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_search
+msgid "Tutor"
+msgstr "Репетитор"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_form
+msgid "Tutor Information"
+msgstr "Інформація про репетитора"
+
+#. module: tutor_management
+#: model:ir.module.category,name:tutor_management.category_tutor
+#: model:ir.ui.menu,name:tutor_management.tutor_menu
+#: model:res.groups.privilege,name:tutor_management.privilege_tutor
+msgid "Tutor Management"
+msgstr "Керування репетиторами"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_form
+msgid "Tutor Notes"
+msgstr "Примітки репетитора"
+
+#. module: tutor_management
+#: model:ir.actions.report,name:tutor_management.tutor_action_report
+msgid "Tutor Report"
+msgstr "Звіт репетитора"
+
+#. module: tutor_management
+#: model:ir.actions.act_window,name:tutor_management.tutor_spec_view_action
+#: model:ir.model,name:tutor_management.model_tutor_specialization
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__spec_ids
+msgid "Tutor Specialization"
+msgstr "Спеціалізація репетитора"
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_search
+msgid "Tutor or Phone"
+msgstr "Репетитор або телефон"
+
+#. module: tutor_management
+#: model:ir.actions.act_window,name:tutor_management.tutor_action
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_specialization__tutor_ids
+#: model:ir.ui.menu,name:tutor_management.tutor_tutor_menu
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_spec_view_form
+msgid "Tutors"
+msgstr "Репетитори"
+
+#. module: tutor_management
+#: model:res.groups,comment:tutor_management.group_tutor_tutor
+msgid "Tutors of the Tutor Management"
+msgstr "Репетитори системи керування репетиторами"
+
+#. module: tutor_management
+#: model:ir.model.fields,help:tutor_management.field_tutor_lesson__activity_exception_decoration
+#: model:ir.model.fields,help:tutor_management.field_tutor_student__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Тип виключної дії в записі."
+
+#. module: tutor_management
+#: model_terms:ir.ui.view,arch_db:tutor_management.lesson_view_list
+#: model_terms:ir.ui.view,arch_db:tutor_management.student_view_list
+#: model_terms:ir.ui.view,arch_db:tutor_management.tutor_view_list
+msgid "Unarchive"
+msgstr "Розархівувати"
+
+#. module: tutor_management
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_abstract_person__user_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_student__user_id
+#: model:ir.model.fields,field_description:tutor_management.field_tutor_tutor__user_id
+msgid "User"
+msgstr "Користувач"
+
+#. module: tutor_management
+#: model:ir.module.category,description:tutor_management.category_tutor
+msgid "User access levels for the Tutor Management"
+msgstr "Рівні доступу користувачів для керування репетиторами"
