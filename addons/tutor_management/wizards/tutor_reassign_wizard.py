@@ -8,6 +8,7 @@ class TutorReassignWizard(models.TransientModel):
     Allows for bulk updates of lesson assignments when a tutor
     is unavailable or there's a need to balance workload.
     """
+
     _name = 'tutor.reassign.wizard'
     _description = 'Reassign Tutor for Planned Lessons'
 
@@ -21,45 +22,62 @@ class TutorReassignWizard(models.TransientModel):
         string='To Tutor',
         required=True,
     )
-    lesson_ids = fields.Many2many(
-        comodel_name='tutor.lesson',
+    line_ids = fields.One2many(
+        comodel_name='tutor.reassign.wizard.line',
+        inverse_name='wizard_id',
         string='Lessons to Reassign',
-        compute='_compute_lesson_ids',
     )
 
-    @api.depends('from_tutor_id')
-    def _compute_lesson_ids(self):
+    @api.onchange('from_tutor_id')
+    def _onchange_from_tutor_id(self):
         """
-        Automatically identifies all lessons in 'planned' state for the
-        selected 'from' tutor. These records will be the target of the
-        reassignment operation.
+        Populates the lines with planned lessons for the selected tutor.
+        Allows users to selectively mark lessons for reassignment.
         """
-        for record in self:
-            if record.from_tutor_id:
-                lessons = self.env['tutor.lesson'].search(
-                    [('tutor_id', '=', record.from_tutor_id.id), ('state', '=', 'planned')]
+        self.line_ids = [Command.clear()]
+        if self.from_tutor_id:
+            lessons = self.env['tutor.lesson'].search(
+                [('tutor_id', '=', self.from_tutor_id.id), ('state', '=', 'planned')]
+            )
+            lines = [
+                Command.create(
+                    {
+                        'lesson_id': lesson.id,
+                        'reassign': True,
+                    }
                 )
-                record.lesson_ids = [Command.set(lessons.ids)]
-            else:
-                record.lesson_ids = [Command.clear()]
+                for lesson in lessons
+            ]
+
+            self.line_ids = lines
 
     def action_reassign(self):
         """
-        Executes the reassignment of all identified lessons to the new tutor.
+        Executes the reassignment of marked lessons to the new tutor.
         Validates that the source and destination tutors are different and
-        that there are lessons to process.
-        :return: Client notification action with success message and page reload.
-        :raises UserError: If tutors are identical or no lessons are found.
+        that at least one lesson is selected.
+        :return: Client notification action with success message or warning.
+        :raises UserError: If tutors are identical.
         """
         self.ensure_one()
 
         if self.from_tutor_id == self.to_tutor_id:
             raise UserError(self.env._('Source and destination tutors must be different!'))
 
-        lessons = self.lesson_ids
+        selected_lines = self.line_ids.filtered('reassign')
+        lessons = selected_lines.mapped('lesson_id')
 
         if not lessons:
-            raise UserError(self.env._('No planned lessons found for this tutor.'))
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': self.env._('Warning'),
+                    'message': self.env._('Please select at least one lesson row to reassign.'),
+                    'type': 'danger',
+                    'sticky': False,
+                },
+            }
 
         lessons.write({'tutor_id': self.to_tutor_id.id})
 

@@ -87,12 +87,8 @@
                     <group string="Student Info">
                         <field name="student_id" options="{'no_quick_create': True}"/>
                     </group>
-                    <notebook>
-                        <page string="Details" name="details">
-                            <separator string="Tutor Notes"/>
-                            <field name="notes" readonly="state in ['done', 'cancel']"/>
-                        </page>
-                    </notebook>
+                    <separator string="Tutor Notes"/>
+                    <field name="notes" readonly="state in ['done', 'cancel']"/>
                 </sheet>
                 <chatter/>
             </form>

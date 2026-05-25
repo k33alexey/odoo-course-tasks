@@ -13,3 +13,5 @@ access_student_admin,tutor.student admin,model_tutor_student,tutor_management.gr
 access_lesson_admin,tutor.lesson admin,model_tutor_lesson,tutor_management.group_tutor_admin,1,1,1,1
 access_tutor_reassign_wizard_tutor,tutor.reassign.wizard tutor,model_tutor_reassign_wizard,tutor_management.group_tutor_tutor,1,1,1,1
 access_tutor_reassign_wizard_admin,tutor.reassign.wizard admin,model_tutor_reassign_wizard,tutor_management.group_tutor_admin,1,1,1,1
+access_tutor_reassign_wizard_line_tutor,tutor.reassign.wizard.line tutor,model_tutor_reassign_wizard_line,tutor_management.group_tutor_tutor,1,1,1,1
+access_tutor_reassign_wizard_line_admin,tutor.reassign.wizard.line admin,model_tutor_reassign_wizard_line,tutor_management.group_tutor_admin,1,1,1,1
