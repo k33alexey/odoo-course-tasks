@@ -2,6 +2,11 @@ from odoo import api, fields, models
 
 
 class Tutor(models.Model):
+    """
+    Represents a tutor in the system.
+    Tutors have specializations and a history of lessons.
+    Inherits from abstract person to share basic personal data fields.
+    """
     _name = 'tutor.tutor'
     _description = 'Tutor'
     _inherit = ['tutor.abstract.person']

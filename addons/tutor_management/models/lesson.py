@@ -7,6 +7,12 @@ _logger = logging.getLogger(__name__)
 
 
 class Lesson(models.Model):
+    """
+    Main model representing a tutoring session between a tutor and a student.
+    Manages lesson states, pricing based on specialization, and ensures
+    data integrity by restricting changes to completed lessons.
+    """
+
     _name = 'tutor.lesson'
     _description = 'Lesson'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -39,6 +45,11 @@ class Lesson(models.Model):
 
     @api.depends('tutor_id')
     def _compute_allowed_spec_ids(self):
+        """
+        Filters the available specializations based on the selected tutor's
+        expertise. Ensures that a tutor can only be assigned to lessons
+        within their known subjects.
+        """
         for lesson in self:
             lesson.allowed_spec_ids = lesson.tutor_id.spec_ids if lesson.tutor_id else self.env['tutor.specialization']
 
@@ -72,28 +83,21 @@ class Lesson(models.Model):
 
     @api.onchange('tutor_id')
     def _onchange_tutor_id(self):
+        """
+        Resets the specialization if the newly selected tutor does not
+        support the previously chosen one.
+        """
         if not self.tutor_id or (self.spec_id and self.spec_id not in self.tutor_id.spec_ids):
             self.spec_id = False
 
     @api.onchange('spec_id')
     def _onchange_spec_id(self):
+        """
+        Automatically updates the lesson price based on the default price
+        of the selected specialization.
+        """
         if self.spec_id:
             self.price = self.spec_id.price
-
-    # @api.constrains('active', 'tutor_id', 'student_id', 'appointment_date', 'state')
-    # def _check_lesson(self):
-    #     """
-    #     Prevents modifications to key fields if the lesson status is 'Done'.
-    #     Ensures historical lesson data integrity.
-    #     :raises ValidationError: If an attempt is made to edit a completed lesson.
-    #     """
-    #
-    #     if self.env.context.get('install_mode'):
-    #         return
-    #
-    #     for lesson in self:
-    #         if lesson._origin.state == 'done':
-    #             raise ValidationError(self.env._('Cannot change a completed lesson.'))
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -110,6 +114,11 @@ class Lesson(models.Model):
         return super().create(vals_list)
 
     def write(self, vals):
+        """
+        Ensures that lessons in 'Done' state cannot be modified,
+        except for changing the state itself (if allowed by logic).
+        :raises ValidationError: If trying to edit fields of a completed lesson.
+        """
         for lesson in self:
             if lesson.state == 'done':
                 if any(key not in ['state'] for key in vals):
@@ -130,6 +139,10 @@ class Lesson(models.Model):
 
     @api.model
     def _expand_states(self, states, domain):
+        """
+        Used for Kanban view grouping to ensure all possible states are
+        visible as columns, even if they contain no records.
+        """
         return [key for key, _ in self._fields['state'].selection]
 
     def get_state_color(self):
@@ -151,7 +164,8 @@ class Lesson(models.Model):
 
     def action_archive(self):
         """
-        Prevents archiving of completed lessons
+        Prevents archiving of completed lessons to preserve history.
+        :raises ValidationError: If lesson is done.
         """
 
         if any(lesson.state == 'done' for lesson in self):
@@ -160,18 +174,22 @@ class Lesson(models.Model):
         return super().action_archive()
 
     def action_done(self):
+        """Sets the lesson state to 'Done'."""
         self.ensure_one()
         self.write({'state': 'done'})
 
     def action_cancel(self):
+        """Sets the lesson state to 'Cancel'."""
         self.ensure_one()
         self.write({'state': 'cancel'})
 
     def action_in_progress(self):
+        """Sets the lesson state to 'In Progress'."""
         self.ensure_one()
         self.write({'state': 'in_progress'})
 
     def action_draft(self):
+        """Resets the lesson state to 'Planned'."""
         self.ensure_one()
         self.write({'state': 'planned'})
 

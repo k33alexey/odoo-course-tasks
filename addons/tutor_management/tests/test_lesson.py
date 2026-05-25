@@ -27,13 +27,13 @@ class TestLesson(TutorManagementCommon):
 
     def test_01_lesson_creation_sequence(self):
         """Test that lesson name is automatically generated from sequence."""
-        self.assertNotEqual(self.lesson.name, 'New', msg="Lesson name should not be 'New'")
+        self.assertNotEqual(self.lesson.name, second='New', msg="Lesson name should not be 'New'")
         self.assertTrue(self.lesson.name.startswith('LSN/'), msg="Lesson name should start with 'LSN/'")
 
     def test_02_lesson_done_modification_constraint(self):
         """Test that modifying a lesson in 'done' state raises ValidationError."""
         self.lesson.action_done()
-        self.assertEqual(self.lesson.state, 'done')
+        self.assertEqual(self.lesson.state, second='done')
 
         with self.assertRaises(ValidationError, msg="Should not be able to modify a 'done' lesson"):
             self.lesson.write({'appointment_date': '2026-05-26 10:00:00'})

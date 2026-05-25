@@ -4,6 +4,11 @@ from odoo import fields, models
 
 
 class Specialization(models.Model):
+    """
+    Defines areas of expertise (subjects, skills) for tutors.
+    Each specialization can have its own base price, which is
+    automatically applied to lessons of this type.
+    """
     _name = 'tutor.specialization'
     _description = 'Tutor Specialization'
 

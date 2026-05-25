@@ -3,6 +3,11 @@ from odoo.exceptions import UserError
 
 
 class TutorReassignWizard(models.TransientModel):
+    """
+    Wizard to reassign planned lessons from one tutor to another.
+    Allows for bulk updates of lesson assignments when a tutor
+    is unavailable or there's a need to balance workload.
+    """
     _name = 'tutor.reassign.wizard'
     _description = 'Reassign Tutor for Planned Lessons'
 
@@ -24,6 +29,11 @@ class TutorReassignWizard(models.TransientModel):
 
     @api.depends('from_tutor_id')
     def _compute_lesson_ids(self):
+        """
+        Automatically identifies all lessons in 'planned' state for the
+        selected 'from' tutor. These records will be the target of the
+        reassignment operation.
+        """
         for record in self:
             if record.from_tutor_id:
                 lessons = self.env['tutor.lesson'].search(
@@ -34,6 +44,13 @@ class TutorReassignWizard(models.TransientModel):
                 record.lesson_ids = [Command.clear()]
 
     def action_reassign(self):
+        """
+        Executes the reassignment of all identified lessons to the new tutor.
+        Validates that the source and destination tutors are different and
+        that there are lessons to process.
+        :return: Client notification action with success message and page reload.
+        :raises UserError: If tutors are identical or no lessons are found.
+        """
         self.ensure_one()
 
         if self.from_tutor_id == self.to_tutor_id:
