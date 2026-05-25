@@ -7,13 +7,13 @@ class Tutor(models.Model):
     _inherit = ['tutor.abstract.person']
 
     active = fields.Boolean(string='Active', default=True)
-    spec_ids = fields.Many2many(comodel_name='tutor.specialization', string='Tutor specialization', required=True)
-    specialization_color = fields.Integer(related='spec_ids.color', string='Specialization color', readonly=False)
+    spec_ids = fields.Many2many(comodel_name='tutor.specialization', string='Tutor Specialization', required=True)
+    specialization_color = fields.Integer(related='spec_ids.color', string='Specialization Color', readonly=False)
     color = fields.Integer(string='Color Index', default=0)
     lesson_ids = fields.One2many(
         comodel_name='tutor.lesson',
         inverse_name='tutor_id',
-        string='Lesson history',
+        string='Lesson History',
         readonly=True,
     )
 

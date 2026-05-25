@@ -46,7 +46,7 @@ class MedicInfo(models.AbstractModel):
     )
     birth_date = fields.Date(string='Date of Birth')
     age = fields.Integer(string='Age', compute='_compute_age', store=False)
-    full_name = fields.Char(string='Full name', compute='_compute_full_name', store=True, index=True)
+    full_name = fields.Char(string='Full Name', compute='_compute_full_name', store=True, index=True)
     country_id = fields.Many2one(comodel_name='res.country', string='Country')
     language_id = fields.Many2one(comodel_name='res.lang', string='Language')
     user_id = fields.Many2one(comodel_name='res.users', string='User', ondelete='restrict')

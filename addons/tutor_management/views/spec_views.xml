@@ -42,9 +42,4 @@
         </field>
     </record>
 
-    <!-- menu -->
-    <menuitem id="tutor_spec_menu"
-              name="Specializations"
-              parent="tutor_management.tutor_menu_reference"
-              action="tutor_spec_view_action" sequence="50"/>
 </odoo>

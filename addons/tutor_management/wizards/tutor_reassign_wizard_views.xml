@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tutor_reassign_wizard_view_form" model="ir.ui.view">
+        <field name="name">tutor.reassign.wizard.form</field>
+        <field name="model">tutor.reassign.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reassign Lessons">
+                <group>
+                    <field name="from_tutor_id"
+                           options="{'no_create': True}"
+                           domain="[('id', '!=', to_tutor_id)]"/>
+                    <field name="to_tutor_id"
+                           options="{'no_create': True}"
+                           domain="[('id', '!=', from_tutor_id)]"/>
+                </group>
+
+                <div class="alert alert-warning text-center"
+                     invisible="not from_tutor_id or lesson_ids">
+                    <h1>No Planned Lessons Found for This Tutor!</h1>
+                </div>
+
+                <group string="Lessons to Reassign" invisible="not lesson_ids">
+                    <field name="lesson_ids">
+                        <list create="false" edit="false" delete="false">
+                            <field name="name"/>
+                            <field name="appointment_date"/>
+                            <field name="student_id"/>
+                            <field name="state" widget="badge"
+                                   decoration-muted="state == 'planned'"
+                                   decoration-warning="state == 'in_progress'"
+                                   decoration-success="state == 'done'"
+                                   decoration-danger="state == 'cancel'"/>
+                        </list>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_reassign" string="Reassign" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="tutor_reassign_wizard_action" model="ir.actions.act_window">
+        <field name="name">Reassign Tutor</field>
+        <field name="res_model">tutor.reassign.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

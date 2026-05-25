@@ -11,3 +11,5 @@ access_tutor_admin,tutor.tutor admin,model_tutor_tutor,tutor_management.group_tu
 access_tutor_specialization_admin,tutor.specialization admin,model_tutor_specialization,tutor_management.group_tutor_admin,1,1,1,1
 access_student_admin,tutor.student admin,model_tutor_student,tutor_management.group_tutor_admin,1,1,1,1
 access_lesson_admin,tutor.lesson admin,model_tutor_lesson,tutor_management.group_tutor_admin,1,1,1,1
+access_tutor_reassign_wizard_tutor,tutor.reassign.wizard tutor,model_tutor_reassign_wizard,tutor_management.group_tutor_tutor,1,1,1,1
+access_tutor_reassign_wizard_admin,tutor.reassign.wizard admin,model_tutor_reassign_wizard,tutor_management.group_tutor_admin,1,1,1,1

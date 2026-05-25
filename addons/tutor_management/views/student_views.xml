@@ -40,7 +40,7 @@
                            options="{'preview_image': 'image_128'}"/>
                     <group>
                         <group>
-                            <separator string="Student information"/>
+                            <separator string="Student Information"/>
                             <field name="first_name"/>
                             <field name="last_name"/>
                             <field name="middle_name"/>
@@ -82,7 +82,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="full_name"
-                       string="Student or phone"
+                       string="Student or Phone"
                        filter_domain="[
                             '|',
                             ('full_name', 'ilike', self),
@@ -103,13 +103,6 @@
             </p>
         </field>
     </record>
-
-    <!-- menu -->
-    <menuitem id="tutor_student_menu"
-              name="Students"
-              parent="tutor_menu"
-              action="student_action"
-              sequence="30"/>
 
 </odoo>
 

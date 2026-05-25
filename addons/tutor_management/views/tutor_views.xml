@@ -31,12 +31,18 @@
         <field name="model">tutor.tutor</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_quick_create_lesson"
+                            string="Create lesson"
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
                 <sheet>
                     <field name="image_1920" widget="image" class="oe_avatar"
                            options="{'preview_image': 'image_128'}"/>
                     <group>
                         <group>
-                            <separator string="Tutor information"/>
+                            <separator string="Tutor Information"/>
                             <field name="first_name"/>
                             <field name="last_name"/>
                             <field name="middle_name"/>
@@ -79,7 +85,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="full_name"
-                       string="Tutor or phone"
+                       string="Tutor or Phone"
                        filter_domain="[
                                 '|',
                                 ('full_name', 'ilike', self),
@@ -110,12 +116,5 @@
             </p>
         </field>
     </record>
-
-    <!-- menu -->
-    <menuitem id="tutor_tutor_menu"
-              name="Tutors"
-              parent="tutor_menu"
-              action="tutor_action"
-              sequence="20"/>
 
 </odoo>

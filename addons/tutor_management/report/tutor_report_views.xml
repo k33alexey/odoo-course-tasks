@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- paperformat -->
+    <record id="paper_format_a4_statement" model="report.paperformat">
+        <field name="name">A4 - Tutor Statement</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">52</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">52</field>
+        <field name="dpi">90</field>
+        <field name="css_margins" eval="True"/>
+    </record>
+
+    <!-- template lesson lines -->
+    <template id="tutor_report_lesson_lines_template">
+        <div class="text-center">
+            <h2>Lessons</h2>
+            <hr/>
+        </div>
+        <div class="container-fluid">
+
+            <!-- header -->
+            <div class="row align-items-center bg-light fw-bold border-bottom py-2" style="font-size: 14px;">
+                <div class="col-2">Date</div>
+                <div class="col-3">Student</div>
+                <div class="col-2">Status</div>
+                <div class="col-5 text-end">Notes</div>
+            </div>
+
+            <!-- lines -->
+            <t t-foreach="lessons" t-as="lesson">
+                <div class="row align-items-center border-bottom py-2">
+                    <div class="col-2 text-nowrap">
+                        <i class="fa fa-calendar me-2"/>
+                        <span t-field="lesson.appointment_date" t-options='{"format": "dd.MM.yyyy HH:mm"}'/>
+                    </div>
+                    <div class="col-3">
+                        <div>
+                            <strong><span t-field="lesson.student_id.full_name"/></strong>
+                        </div>
+                        <div class="small">
+                            <span t-field="lesson.student_id.gender" class="me-2"/>
+                            <span t-field="lesson.student_id.birth_date" class="me-2"/>
+                            <t t-if="lesson.student_id.phone">
+                                <br/>
+                                <i class="fa fa-phone me-1"/>
+                                <span t-field="lesson.student_id.phone"/>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-2 text-truncate">
+                        <span t-attf-class="badge rounded-pill bg-{{lesson.get_state_color()}}"
+                              t-field="lesson.state"/>
+                    </div>
+                    <div class="col-5">
+                        <span class="text-truncate" t-field="lesson.notes"/>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+
+    <!-- template footer -->
+    <template id="tutor_report_footer_template">
+        <div class="footer o_standard_footer">
+            <div class="row">
+                <div class="col-6 text-start">
+                    <i class="fa fa-clock-o me-1"/>
+                    <span>Printed on: </span>
+                    <span t-out="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M:%S')"/>
+                </div>
+                <div class="col-6 text-end">
+                    <i class="fa fa-map-marker me-1"/>
+                    <span t-field="res_company.city"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- template main -->
+    <template id="tutor_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="tutor">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div>
+                            <h3>
+                                <span t-field="tutor.full_name"/>
+                            </h3>
+                            <p>
+                                <strong>Specializations: </strong>
+                                <t t-foreach="tutor.spec_ids" t-as="spec">
+                                    <span class="badge border text-dark" t-field="spec.name"/>
+                                </t>
+                            </p>
+                        </div>
+                        <!-- template lesson lines -->
+                        <t t-call="tutor_management.tutor_report_lesson_lines_template">
+                            <t t-set="lessons"
+                               t-value="env['tutor.lesson'].search([('tutor_id', '=', tutor.id)], order='appointment_date desc')"/>
+                        </t>
+                    </div>
+                    <!-- template footer-->
+                    <t t-call="tutor_management.tutor_report_footer_template"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- action -->
+    <record id="tutor_action_report" model="ir.actions.report">
+        <field name="name">Tutor Report</field>
+        <field name="model">tutor.tutor</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">tutor_management.tutor_report_template</field>
+        <field name="report_file">tutor_management.tutor_report_template</field>
+        <field name="print_report_name">'Tutor Card - %s' % (object.full_name)</field>
+        <field name="binding_model_id" ref="model_tutor_tutor"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_a4_statement"/>
+    </record>
+
+</odoo>

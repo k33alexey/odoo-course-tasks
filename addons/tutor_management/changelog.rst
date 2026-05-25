@@ -1,6 +1,20 @@
 Changelog
 =========
 
+19.0.1.0.7
+-----------------------
+
+* **Wizard Update:**
+
+  - Added tutor reassignment wizard (`tutor_reassign_wizard_views.xml`).
+
+19.0.1.0.6
+-----------------------
+
+* **Report Update:**
+
+  - Added tutor report (`tutor_report_views.xml`).
+
 19.0.1.0.5
 -----------------------
 

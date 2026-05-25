@@ -6,9 +6,44 @@
               web_icon="tutor_management,static/description/icon.png"
               sequence="1"/>
 
+    <!-- lesson menu -->
+    <menuitem id="tutor_lesson_menu"
+              name="Lessons"
+              parent="tutor_menu"
+              action="tutor_management.lesson_action"
+              sequence="10"/>
+
+    <!-- tutor menu -->
+    <menuitem id="tutor_tutor_menu"
+              name="Tutors"
+              parent="tutor_menu"
+              action="tutor_management.tutor_action"
+              sequence="20"/>
+
+    <!-- student menu -->
+    <menuitem id="tutor_student_menu"
+              name="Students"
+              parent="tutor_menu"
+              action="tutor_management.student_action"
+              sequence="30"/>
+
     <!-- reference menu -->
     <menuitem id="tutor_menu_reference"
               name="References"
               parent="tutor_menu"
               sequence="50"/>
+
+    <!-- reference: specialization menu -->
+    <menuitem id="tutor_spec_menu"
+              name="Specializations"
+              parent="tutor_management.tutor_menu_reference"
+              action="tutor_management.tutor_spec_view_action"
+              sequence="10"/>
+
+    <!-- reassign tutor menu -->
+    <menuitem id="tutor_reassign_wizard_menu"
+              name="Reassign Tutor"
+              parent="tutor_menu"
+              action="tutor_management.tutor_reassign_wizard_action"
+              sequence="100"/>
 </odoo>

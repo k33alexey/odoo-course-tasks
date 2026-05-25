@@ -13,6 +13,7 @@
                 <field name="student_id"/>
                 <field name="state" widget="badge"
                        decoration-muted="state == 'planned'"
+                       decoration-warning="state == 'in_progress'"
                        decoration-success="state == 'done'"
                        decoration-danger="state == 'cancel'"/>
                 <button name="action_archive"
@@ -36,23 +37,34 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_done" type="object" string="Mark as Done"
+                    <button name="action_in_progress" type="object" string="Start Lesson"
                             class="oe_highlight" invisible="state != 'planned'"/>
+                    <button name="action_done" type="object" string="Mark as Done"
+                            class="oe_highlight" invisible="state != 'in_progress'"/>
                     <button name="action_cancel" type="object" string="Cancel"
-                            invisible="state != 'planned'"/>
+                            invisible="state not in ['planned', 'in_progress']"/>
                     <button name="action_draft" type="object" string="Set to Planned"
-                            invisible="state == 'planned'"/>
+                            invisible="state != 'cancel'"/>
                     <field name="state" widget="statusbar"
-                           statusbar_visible="planned,done"
+                           statusbar_visible="planned,in_progress,done"
                            options="{'clickable': False}"/>
                 </header>
                 <sheet>
+                    <widget name="web_ribbon" title="Done" bg_color="text-bg-success"
+                            invisible="state != 'done'"/>
+                    <widget name="web_ribbon" title="Cancelled" bg_color="text-bg-danger"
+                            invisible="state != 'cancel'"/>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_view_lessons_by_spec"
                                 type="object"
                                 class="oe_stat_button"
                                 icon="fa-list">
-                            <field name="count_by_spec" widget="statinfo" string="Similar lessons"/>
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="count_by_spec"/></span>
+                                <span class="o_stat_text">
+                                    Lessons for <field name="tutor_id" readonly="True"/>
+                                </span>
+                            </div>
                         </button>
                     </div>
                     <div class="oe_title">
@@ -60,23 +72,21 @@
                             <field name="name" readonly="True"/>
                         </h1>
                     </div>
-                    <group>
-                        <group string="Planning">
-                            <field name="appointment_date"/>
-                            <field name="tutor_id" options="{'no_create': True}"/>
-                            <field name="allowed_spec_ids" invisible="True"/>
-                            <field name="spec_id"
-                                   domain="[('id', 'in', allowed_spec_ids)]"
-                                   options="{'no_create': True}"/>
-                        </group>
-                        <group string="Student info">
-                            <field name="student_id" options="{'no_quick_create': True}"/>
-                        </group>
+                    <group string="Planning">
+                        <field name="appointment_date"/>
+                        <field name="tutor_id" options="{'no_create': True}"/>
+                        <field name="allowed_spec_ids" invisible="True"/>
+                        <field name="spec_id"
+                               domain="[('id', 'in', allowed_spec_ids)]"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <group string="Student Info">
+                        <field name="student_id" options="{'no_quick_create': True}"/>
                     </group>
                     <notebook>
                         <page string="Details" name="details">
-                            <separator string="Tutor notes"/>
-                            <field name="notes"/>
+                            <separator string="Tutor Notes"/>
+                            <field name="notes" readonly="state in ['done', 'cancel']"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -101,7 +111,14 @@
                                     <strong class="o_kanban_record_title"><field name="name"/></strong>
                                 </div>
                                 <field name="state" widget="label_selection"
-                                       options="{'classes': {'planned': 'default', 'done': 'success', 'cancel': 'danger'}}"/>
+                                       options="{'classes':
+                                            {
+                                                'planned': 'secondary',
+                                                'in_progress': 'warning',
+                                                'done': 'success',
+                                                'cancel': 'danger'
+                                            }
+                                       }"/>
                             </div>
                             <div class="o_kanban_record_body">
                                 <div><i class="fa fa-calendar me-1"/> <field name="appointment_date"/></div>
@@ -161,7 +178,7 @@
         <field name="name">tutor.lesson.pivot</field>
         <field name="model">tutor.lesson</field>
         <field name="arch" type="xml">
-            <pivot string="Lesson analyse" sample="1">
+            <pivot string="Lesson Analysis" sample="1">
                 <field name="tutor_id" type="row"/>
                 <field name="state" type="col"/>
                 <field name="appointment_date" interval="month" type="row"/>
@@ -196,13 +213,6 @@
             </p>
         </field>
     </record>
-
-    <!-- menu -->
-    <menuitem id="tutor_lesson_menu"
-              name="Lessons"
-              parent="tutor_menu"
-              action="lesson_action"
-              sequence="10"/>
 
 </odoo>
 

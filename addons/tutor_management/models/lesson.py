@@ -17,17 +17,19 @@ class Lesson(models.Model):
     state = fields.Selection(
         selection=[
             ('planned', 'Planned'),
-            ('cancel', 'Cancel'),
+            ('in_progress', 'In Progress'),
             ('done', 'Done'),
+            ('cancel', 'Cancel'),
         ],
         string='Status',
         default='planned',
         tracking=True,
+        group_expand='_expand_states',
     )
     tutor_id = fields.Many2one(comodel_name='tutor.tutor', string='Tutor', required=True, tracking=True)
     student_id = fields.Many2one(comodel_name='tutor.student', string='Student', required=True, tracking=True)
     notes = fields.Html(string='Notes')
-    count_by_spec = fields.Integer(string='Count by specialization', compute='_compute_count_by_spec')
+    count_by_spec = fields.Integer(string='Count by Specialization', compute='_compute_count_by_spec')
     spec_id = fields.Many2one(comodel_name='tutor.specialization', string='Specialization', tracking=True)
     allowed_spec_ids = fields.Many2many(comodel_name='tutor.specialization', compute='_compute_allowed_spec_ids')
 
@@ -69,7 +71,7 @@ class Lesson(models.Model):
         if not self.tutor_id or (self.spec_id and self.spec_id not in self.tutor_id.spec_ids):
             self.spec_id = False
 
-    @api.constrains('active', 'tutor_id', 'student_id', 'appointment_date')
+    @api.constrains('active', 'tutor_id', 'student_id', 'appointment_date', 'state')
     def _check_lesson(self):
         """
         Prevents modifications to key fields if the lesson status is 'Done'.
@@ -79,9 +81,10 @@ class Lesson(models.Model):
 
         if self.env.context.get('install_mode'):
             return
+
         for lesson in self:
-            if lesson.state == 'done':
-                raise ValidationError(self.env._('Cannot change the values. Lesson already done'))
+            if lesson._origin.state == 'done':
+                raise ValidationError(self.env._('Cannot change a completed lesson.'))
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -106,17 +109,28 @@ class Lesson(models.Model):
         if any(lesson.state == 'done' for lesson in self):
             raise ValidationError(self.env._('Not allowed to delete the record. Lesson already done'))
 
-        # def get_state_color(self):
-        # """
-        # Returns a bootstrap-style color class based on the current state.
-        # Useful for dynamic styling in Kanban or custom web views.
-        # :return: string representing a CSS color class.
-        # """
-        #
-        # self.ensure_one()
-        #
-        # colors = {'done': 'success', 'planned': 'secondary', 'cancel': 'danger'}
-        # return colors.get(self.state, 'info')
+        return super().unlink()
+
+    @api.model
+    def _expand_states(self, states, domain):
+        return [key for key, _ in self._fields['state'].selection]
+
+    def get_state_color(self):
+        """
+        Returns a bootstrap-style color class based on the current state.
+        Useful for dynamic styling in Kanban or custom web views.
+        :return: string representing a CSS color class.
+        """
+
+        self.ensure_one()
+
+        colors = {
+            'done': 'success',
+            'planned': 'secondary',
+            'in_progress': 'warning',
+            'cancel': 'danger',
+        }
+        return colors.get(self.state, 'info')
 
     def action_archive(self):
         """
@@ -135,6 +149,10 @@ class Lesson(models.Model):
     def action_cancel(self):
         self.ensure_one()
         self.write({'state': 'cancel'})
+
+    def action_in_progress(self):
+        self.ensure_one()
+        self.write({'state': 'in_progress'})
 
     def action_draft(self):
         self.ensure_one()
