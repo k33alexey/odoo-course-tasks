@@ -8,7 +8,7 @@ from odoo.addons.mail.tools import mail_validation
 from odoo.addons.phone_validation.tools import phone_validation
 
 
-class MedicInfo(models.AbstractModel):
+class AbstractPerson(models.AbstractModel):
     _name = 'tutor.abstract.person'
 
     _rec_name = 'full_name'

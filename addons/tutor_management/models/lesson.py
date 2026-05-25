@@ -31,6 +31,10 @@ class Lesson(models.Model):
     notes = fields.Html(string='Notes')
     count_by_spec = fields.Integer(string='Count by Specialization', compute='_compute_count_by_spec')
     spec_id = fields.Many2one(comodel_name='tutor.specialization', string='Specialization', tracking=True)
+    price = fields.Monetary(string='Price', required=True)
+    currency_id = fields.Many2one(
+        comodel_name='res.currency', string='Currency', default=lambda self: self.env.company.currency_id
+    )
     allowed_spec_ids = fields.Many2many(comodel_name='tutor.specialization', compute='_compute_allowed_spec_ids')
 
     @api.depends('tutor_id')
@@ -70,6 +74,11 @@ class Lesson(models.Model):
     def _onchange_tutor_id(self):
         if not self.tutor_id or (self.spec_id and self.spec_id not in self.tutor_id.spec_ids):
             self.spec_id = False
+
+    @api.onchange('spec_id')
+    def _onchange_spec_id(self):
+        if self.spec_id:
+            self.price = self.spec_id.price
 
     @api.constrains('active', 'tutor_id', 'student_id', 'appointment_date', 'state')
     def _check_lesson(self):

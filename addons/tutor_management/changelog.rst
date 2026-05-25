@@ -1,6 +1,13 @@
 Changelog
 =========
 
+19.0.1.0.8
+-----------------------
+
+* **Data Update:**
+
+  - Added specialization data (`spec_data.xml`).
+
 19.0.1.0.7
 -----------------------
 

@@ -29,7 +29,7 @@ class Tutor(models.Model):
             if tutor.spec_ids:
                 spec_list = ', '.join(tutor.spec_ids.mapped('name'))
             else:
-                spec_list = self.env._('No specialization')
+                spec_list = self.env._('No Specialization')
 
             tutor.display_name = f'{full_name} ({spec_list})'
 
@@ -43,7 +43,7 @@ class Tutor(models.Model):
         self.ensure_one()
 
         return {
-            'name': self.env._(source='New lesson for tutor %(name)s', name=self.full_name),
+            'name': self.env._(source='New Lesson for Tutor %(name)s', name=self.full_name),
             'type': 'ir.actions.act_window',
             'res_model': 'tutor.lesson',
             'view_mode': 'form',

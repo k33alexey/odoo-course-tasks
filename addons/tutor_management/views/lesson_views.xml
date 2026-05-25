@@ -11,6 +11,8 @@
                 <field name="spec_id"/>
                 <field name="tutor_id"/>
                 <field name="student_id"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="price"/>
                 <field name="state" widget="badge"
                        decoration-muted="state == 'planned'"
                        decoration-warning="state == 'in_progress'"
@@ -79,6 +81,8 @@
                         <field name="spec_id"
                                domain="[('id', 'in', allowed_spec_ids)]"
                                options="{'no_create': True}"/>
+                        <field name="currency_id" invisible="True"/>
+                        <field name="price"/>
                     </group>
                     <group string="Student Info">
                         <field name="student_id" options="{'no_quick_create': True}"/>
@@ -191,11 +195,11 @@
         <field name="name">tutor.lesson.graph</field>
         <field name="model">tutor.lesson</field>
         <field name="arch" type="xml">
-            <graph string="Lessons by Month"
-                   type="bar"
-                   stacked="1">
-                <field name="appointment_date" interval="month"/>
+            <graph string="Lessons Revenue by Specialization"
+                   type="pie"
+                   sample="1">
                 <field name="spec_id"/>
+                <field name="price" string="Total" type="measure"/>
             </graph>
         </field>
     </record>

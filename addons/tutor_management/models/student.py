@@ -1,7 +1,7 @@
 from odoo import fields, models
 
 
-class HospitalPatient(models.Model):
+class Student(models.Model):
     _name = 'tutor.student'
     _description = 'Patient'
     _inherit = ['tutor.abstract.person', 'mail.thread', 'mail.activity.mixin']

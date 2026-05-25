@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
+                <field name="currency_id" column_invisible="True"/>
                 <field name="price"/>
             </list>
         </field>
@@ -21,10 +22,21 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="currency_id" invisible="1"/>
+                        <field name="currency_id" invisible="True"/>
                         <field name="price"/>
-                        <field name="sequence"/>
                     </group>
+                    <notebook>
+                        <page string="Tutors">
+                            <field name="tutor_ids" readonly="True">
+                                <list>
+                                    <field name="full_name"/>
+                                    <field name="age"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

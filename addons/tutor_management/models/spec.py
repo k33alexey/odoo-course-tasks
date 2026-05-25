@@ -3,7 +3,7 @@ import secrets
 from odoo import fields, models
 
 
-class TutorSpecialization(models.Model):
+class Specialization(models.Model):
     _name = 'tutor.specialization'
     _description = 'Tutor Specialization'
 

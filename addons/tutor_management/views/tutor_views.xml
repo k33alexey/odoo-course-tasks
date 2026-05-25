@@ -8,7 +8,7 @@
             <list decoration-muted="not active">
                 <field name="full_name"/>
                 <field name="age"/>
-                <field name="spec_ids" widget="many2many_tags"/>
+                <field name="spec_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="phone" optional="show"/>
                 <field name="email" optional="show"/>
                 <button name="action_archive"
@@ -46,7 +46,7 @@
                             <field name="first_name"/>
                             <field name="last_name"/>
                             <field name="middle_name"/>
-                            <field name="spec_ids" widget="many2many_tags"/>
+                            <field name="spec_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="birth_date"/>
                             <field name="gender" widget="radio" options="{'horizontal': True}"/>
                         </group>

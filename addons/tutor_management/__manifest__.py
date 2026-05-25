@@ -1,6 +1,6 @@
 {
     'name': "Tutor Management",
-    'version': '19.0.1.0.7',
+    'version': '19.0.1.0.8',
     'summary': 'Manage tutors, students, specializations, and lessons',
     'category': 'Education',
     'description':
@@ -26,7 +26,7 @@
         # sequence
         'data/sequence_data.xml',
         # data
-
+        'data/spec_data.xml',
         # view
         'views/lesson_views.xml',
         'views/tutor_views.xml',
@@ -40,6 +40,10 @@
         'report/tutor_report_views.xml'
     ],
     'demo': [
+        'demo/user_demo.xml',
+        'demo/student_demo.xml',
+        'demo/tutor_demo.xml',
+        'demo/lesson_demo.xml',
     ],
     'application': True,
     'installable': True,
