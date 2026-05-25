@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="demo_student_1" model="tutor.student">
+            <field name="first_name">John</field>
+            <field name="last_name">Doe</field>
+            <field name="phone">+380991112233</field>
+            <field name="email">john.doe@example.com</field>
+            <field name="gender">male</field>
+            <field name="birth_date">2005-05-15</field>
+            <field name="user_id" ref="demo_user_5"/>
+        </record>
+
+        <record id="demo_student_2" model="tutor.student">
+            <field name="first_name">Jane</field>
+            <field name="last_name">Smith</field>
+            <field name="phone">+380992223344</field>
+            <field name="email">jane.smith@example.com</field>
+            <field name="gender">female</field>
+            <field name="birth_date">2006-03-20</field>
+            <field name="user_id" ref="demo_user_6"/>
+        </record>
+
+        <record id="demo_student_3" model="tutor.student">
+            <field name="first_name">Alice</field>
+            <field name="last_name">Brown</field>
+            <field name="phone">+380993334455</field>
+            <field name="email">alice.brown@example.com</field>
+            <field name="gender">female</field>
+            <field name="birth_date">2007-11-10</field>
+            <field name="user_id" ref="demo_user_7"/>
+        </record>
+
+        <record id="demo_student_4" model="tutor.student">
+            <field name="first_name">Bob</field>
+            <field name="last_name">White</field>
+            <field name="phone">+380994445566</field>
+            <field name="email">bob.white@example.com</field>
+            <field name="gender">male</field>
+            <field name="birth_date">2005-12-01</field>
+            <field name="user_id" ref="demo_user_8"/>
+        </record>
+
+        <record id="demo_student_5" model="tutor.student">
+            <field name="first_name">Charlie</field>
+            <field name="last_name">Green</field>
+            <field name="phone">+380995556677</field>
+            <field name="email">charlie.green@example.com</field>
+            <field name="gender">male</field>
+            <field name="birth_date">2008-01-25</field>
+            <field name="user_id" ref="demo_user_9"/>
+        </record>
+
+        <record id="demo_student_6" model="tutor.student">
+            <field name="first_name">Eduard</field>
+            <field name="last_name">Marley</field>
+            <field name="phone">+380991726677</field>
+            <field name="email">bob.marley@example.com</field>
+            <field name="gender">male</field>
+            <field name="birth_date">2010-07-20</field>
+            <field name="user_id" ref="demo_user_10"/>
+        </record>
+
+    </data>
+</odoo>

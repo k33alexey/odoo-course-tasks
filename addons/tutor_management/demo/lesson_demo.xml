@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="demo_lesson_1" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_1"/>
+            <field name="student_id" ref="demo_student_1"/>
+            <field name="spec_id" ref="math"/>
+            <field name="appointment_date">2026-05-01 10:00:00</field>
+            <field name="price">500</field>
+            <field name="state">done</field>
+            <field name="notes">Review of linear equations.</field>
+        </record>
+
+        <record id="demo_lesson_2" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_2"/>
+            <field name="student_id" ref="demo_student_2"/>
+            <field name="spec_id" ref="english"/>
+            <field name="appointment_date">2026-05-05 14:00:00</field>
+            <field name="price">700</field>
+            <field name="state">done</field>
+            <field name="notes">Conversational practice and vocabulary expansion.</field>
+        </record>
+
+        <record id="demo_lesson_3" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_3"/>
+            <field name="student_id" ref="demo_student_4"/>
+            <field name="spec_id" ref="computer_science"/>
+            <field name="appointment_date">2026-05-10 11:30:00</field>
+            <field name="price">700</field>
+            <field name="state">done</field>
+            <field name="notes">Introduction to data structures.</field>
+        </record>
+
+        <record id="demo_lesson_4" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_1"/>
+            <field name="student_id" ref="demo_student_3"/>
+            <field name="spec_id" ref="physics"/>
+            <field name="appointment_date">2026-05-12 09:00:00</field>
+            <field name="price">600</field>
+            <field name="state">cancel</field>
+            <field name="notes">Cancelled by student due to personal reasons.</field>
+        </record>
+
+        <record id="demo_lesson_5" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_2"/>
+            <field name="student_id" ref="demo_student_5"/>
+            <field name="spec_id" ref="spanish"/>
+            <field name="appointment_date">2026-05-15 16:00:00</field>
+            <field name="price">750</field>
+            <field name="state">done</field>
+            <field name="notes">Verb conjugations in present tense.</field>
+        </record>
+
+        <record id="demo_lesson_6" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_1"/>
+            <field name="student_id" ref="demo_student_6"/>
+            <field name="spec_id" ref="math"/>
+            <field name="appointment_date">2026-05-18 10:00:00</field>
+            <field name="price">500</field>
+            <field name="state">done</field>
+            <field name="notes">Geometry: properties of triangles.</field>
+        </record>
+
+        <record id="demo_lesson_7" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_3"/>
+            <field name="student_id" ref="demo_student_1"/>
+            <field name="spec_id" ref="computer_science"/>
+            <field name="price">700</field>
+            <field name="appointment_date">2026-05-20 13:00:00</field>
+            <field name="state">done</field>
+            <field name="notes">Algorithm complexity and Big O notation.</field>
+        </record>
+
+        <record id="demo_lesson_8" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_2"/>
+            <field name="student_id" ref="demo_student_3"/>
+            <field name="spec_id" ref="english"/>
+            <field name="appointment_date">2026-05-22 15:00:00</field>
+            <field name="price">700</field>
+            <field name="state">done</field>
+            <field name="notes">Reading comprehension and essay structure.</field>
+        </record>
+
+        <record id="demo_lesson_9" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_1"/>
+            <field name="student_id" ref="demo_student_2"/>
+            <field name="spec_id" ref="physics"/>
+            <field name="appointment_date">2026-05-26 11:00:00</field>
+            <field name="price">600</field>
+            <field name="state">planned</field>
+            <field name="notes">Thermodynamics: First Law.</field>
+        </record>
+
+        <record id="demo_lesson_10" model="tutor.lesson">
+            <field name="tutor_id" ref="tutor_3"/>
+            <field name="student_id" ref="demo_student_5"/>
+            <field name="spec_id" ref="computer_science"/>
+            <field name="appointment_date">2026-05-28 14:30:00</field>
+            <field name="price">700</field>
+            <field name="state">planned</field>
+            <field name="notes">Web development basics: HTML and CSS.</field>
+        </record>
+
+    </data>
+</odoo>
