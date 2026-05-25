@@ -80,20 +80,20 @@ class Lesson(models.Model):
         if self.spec_id:
             self.price = self.spec_id.price
 
-    @api.constrains('active', 'tutor_id', 'student_id', 'appointment_date', 'state')
-    def _check_lesson(self):
-        """
-        Prevents modifications to key fields if the lesson status is 'Done'.
-        Ensures historical lesson data integrity.
-        :raises ValidationError: If an attempt is made to edit a completed lesson.
-        """
-
-        if self.env.context.get('install_mode'):
-            return
-
-        for lesson in self:
-            if lesson._origin.state == 'done':
-                raise ValidationError(self.env._('Cannot change a completed lesson.'))
+    # @api.constrains('active', 'tutor_id', 'student_id', 'appointment_date', 'state')
+    # def _check_lesson(self):
+    #     """
+    #     Prevents modifications to key fields if the lesson status is 'Done'.
+    #     Ensures historical lesson data integrity.
+    #     :raises ValidationError: If an attempt is made to edit a completed lesson.
+    #     """
+    #
+    #     if self.env.context.get('install_mode'):
+    #         return
+    #
+    #     for lesson in self:
+    #         if lesson._origin.state == 'done':
+    #             raise ValidationError(self.env._('Cannot change a completed lesson.'))
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -108,6 +108,14 @@ class Lesson(models.Model):
             if vals.get('name', 'New') == 'New':
                 vals['name'] = self.env['ir.sequence'].next_by_code('tutor.lesson') or 'New'
         return super().create(vals_list)
+
+    def write(self, vals):
+        for lesson in self:
+            if lesson.state == 'done':
+                if any(key not in ['state'] for key in vals):
+                    raise ValidationError(self.env._('Cannot change fields in a completed lesson.'))
+
+        return super().write(vals)
 
     def unlink(self):
         """
