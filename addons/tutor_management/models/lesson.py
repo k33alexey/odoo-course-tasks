@@ -73,13 +73,16 @@ class Lesson(models.Model):
         across all lessons. Used for quick statistical reference.
         """
 
+        specs = self.mapped('spec_id')
+        grouped = self.env['tutor.lesson']._read_group(
+            domain=[('spec_id', 'in', specs.ids)],
+            groupby=['spec_id'],
+            aggregates=['__count'],
+        )
+        counts = {spec.id: count for spec, count in grouped}
+
         for lesson in self:
-            if lesson.spec_id:
-                lesson.count_by_spec = self.env['tutor.lesson'].search_count(
-                    [('spec_id', '=', lesson.spec_id)],
-                )
-            else:
-                lesson.count_by_spec = 0
+            lesson.count_by_spec = counts.get(lesson.spec_id.id, 0)
 
     @api.onchange('tutor_id')
     def _onchange_tutor_id(self):
