@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class Student(models.Model):
@@ -7,8 +7,9 @@ class Student(models.Model):
     Extends the abstract person model to include lesson history and
     statistical counters for management purposes.
     """
+
     _name = 'tutor.student'
-    _description = 'Patient'
+    _description = 'Student'
     _inherit = ['tutor.abstract.person', 'mail.thread', 'mail.activity.mixin']
 
     lesson_ids = fields.One2many(
@@ -19,6 +20,7 @@ class Student(models.Model):
     )
     lesson_count = fields.Integer(compute='_compute_lesson_count')
 
+    @api.depends('lesson_ids')
     def _compute_lesson_count(self):
         """
         Calculates the total number of lessons associated with the student.

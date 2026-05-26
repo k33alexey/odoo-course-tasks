@@ -13,8 +13,7 @@ class Tutor(models.Model):
 
     active = fields.Boolean(string='Active', default=True)
     spec_ids = fields.Many2many(comodel_name='tutor.specialization', string='Tutor Specialization', required=True)
-    specialization_color = fields.Integer(related='spec_ids.color', string='Specialization Color', readonly=False)
-    color = fields.Integer(string='Color Index', default=0)
+    color = fields.Integer(string='Color Index', default=10)
     lesson_ids = fields.One2many(
         comodel_name='tutor.lesson',
         inverse_name='tutor_id',

@@ -14,7 +14,7 @@ class Specialization(models.Model):
 
     name = fields.Char(string='Name', required=True)
     sequence = fields.Integer(string='Sequence', default=10, required=True)
-    tutor_ids = fields.One2many(comodel_name='tutor.tutor', inverse_name='id', string='Tutors', readonly=True)
+    tutor_ids = fields.Many2many(comodel_name='tutor.tutor', string='Tutors', readonly=True)
     color = fields.Integer(
         string='Color Index',
         default=lambda self: secrets.randbelow(11) + 1,

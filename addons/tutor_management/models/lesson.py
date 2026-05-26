@@ -121,7 +121,7 @@ class Lesson(models.Model):
         """
         for lesson in self:
             if lesson.state == 'done':
-                if any(key not in ['state'] for key in vals):
+                if 'state' not in vals:
                     raise ValidationError(self.env._('Cannot change fields in a completed lesson.'))
 
         return super().write(vals)
