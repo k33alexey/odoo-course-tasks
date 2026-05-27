@@ -24,7 +24,7 @@ class AbstractPerson(models.AbstractModel):
         'image.mixin',
     ]
 
-    active = fields.Boolean('Active', default=True)
+    active = fields.Boolean(string='Active', default=True)
     last_name = fields.Char(string='Last Name', required=True)
     first_name = fields.Char(string='First Name', required=True)
     middle_name = fields.Char(string='Middle Name', required=False)
