@@ -1,4 +1,4 @@
-import secrets
+import random
 
 from odoo import fields, models
 
@@ -17,7 +17,7 @@ class Specialization(models.Model):
     tutor_ids = fields.Many2many(comodel_name='tutor.tutor', string='Tutors', readonly=True)
     color = fields.Integer(
         string='Color Index',
-        default=lambda self: secrets.randbelow(11) + 1,
+        default=lambda self: random.randint(1, 11),
     )
     price = fields.Monetary(string='Price', default=500, required=True)
     currency_id = fields.Many2one(

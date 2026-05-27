@@ -17,12 +17,11 @@ class AbstractPerson(models.AbstractModel):
     """
 
     _name = 'tutor.abstract.person'
-
-    _rec_name = 'full_name'
     _description = 'Person'
     _inherit = [
         'image.mixin',
     ]
+    _rec_name = 'full_name'
 
     active = fields.Boolean(string='Active', default=True)
     last_name = fields.Char(string='Last Name', required=True)

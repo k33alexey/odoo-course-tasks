@@ -51,6 +51,27 @@ class TutorReassignWizard(models.TransientModel):
 
             self.line_ids = lines
 
+    def action_toggle_selection(self):
+        """
+        Toggles the 'reassign' field for all lines.
+        If all are selected, it deselects all. Otherwise, it selects all.
+        :return: A dictionary to keep the wizard open.
+        """
+        self.ensure_one()
+        if not self.line_ids:
+            return {}
+
+        all_selected = all(line.reassign for line in self.line_ids)
+        self.line_ids.write({'reassign': not all_selected})
+
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
     def action_reassign(self):
         """
         Executes the reassignment of marked lessons to the new tutor.

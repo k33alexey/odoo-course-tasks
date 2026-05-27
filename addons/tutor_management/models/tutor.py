@@ -7,6 +7,7 @@ class Tutor(models.Model):
     Tutors have specializations and a history of lessons.
     Inherits from abstract person to share basic personal data fields.
     """
+
     _name = 'tutor.tutor'
     _description = 'Tutor'
     _inherit = ['tutor.abstract.person']

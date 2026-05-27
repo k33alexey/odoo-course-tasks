@@ -31,7 +31,8 @@
                 <div class="col-2">Date</div>
                 <div class="col-3">Student</div>
                 <div class="col-2">Status</div>
-                <div class="col-5 text-end">Notes</div>
+                <div class="col-3">Notes</div>
+                <div class="col-2 text-end">Price</div>
             </div>
 
             <!-- lines -->
@@ -59,11 +60,25 @@
                         <span t-attf-class="badge rounded-pill bg-{{lesson.get_state_color()}}"
                               t-field="lesson.state"/>
                     </div>
-                    <div class="col-5">
+                    <div class="col-3">
                         <span class="text-truncate" t-field="lesson.notes"/>
+                    </div>
+                    <div class="col-2 text-end">
+                        <span t-field="lesson.price"
+                              t-options='{"widget": "monetary", "display_currency": lesson.currency_id}'/>
                     </div>
                 </div>
             </t>
+
+            <!-- total -->
+            <div class="row align-items-center fw-bold py-3">
+                <div class="col-10 text-end">Total:</div>
+                <div class="col-2 text-end">
+                    <t t-set="total_price" t-value="sum(lessons.mapped('price'))"/>
+                    <span t-out="total_price"
+                          t-options='{"widget": "monetary", "display_currency": lessons and lessons[0].currency_id or res_company.currency_id}'/>
+                </div>
+            </div>
         </div>
     </template>
 
