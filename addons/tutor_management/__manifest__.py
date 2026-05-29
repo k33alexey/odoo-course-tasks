@@ -19,7 +19,7 @@
         'phone_validation',
     ],
     'data': [
-        # security-
+        # security
         'security/tutor_groups.xml',
         'security/tutor_security.xml',
         'security/ir.model.access.csv',
