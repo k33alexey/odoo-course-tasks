@@ -5,3 +5,4 @@
 __pycache__/
 *.pyc
 GEMINI.md
+/addons/hr_hospital/
