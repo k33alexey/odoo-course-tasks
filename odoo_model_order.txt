@@ -1,0 +1,91 @@
+
+################################
+# 0. imports
+################################
+# 1. future
+# 2. standard-library
+# 3. third-party (lxml, psycopg2, werkzeug, dateutil, etc.)
+# 4. first-party (odoo)
+# 5. local-folder (odoo.addons)
+
+class MyModel(models.Model):
+    ################################
+    # 1. model attributes
+    ################################
+    _name = 'my.model'
+    _description = 'My Model'
+    _order = 'name desc'
+
+    ################################
+    # 2. default methods
+    ################################
+    @api.model
+    def _default_user(self):
+        return self.env.uid
+
+    @api.model
+    def _selection_type_options(self):
+        return [('internal', _('Internal')), ('external', _('External'))]
+
+    ################################
+    # 3. fields
+    ################################
+    name = fields.Char(string="Name", required=True)
+    user_id = fields.Many2one('res.users', string="User", default=_default_user)
+    total_amount = fields.Float(compute='_compute_total', store=True)
+
+    ################################
+    # 4. sql constraints
+    ################################
+    _sql_constraints = [
+        ('code_unique', 'unique(code)', 'The code must be unique!'),
+    ]
+
+    ################################
+    # 5. compute and search methods
+    ################################
+    @api.depends('user_id')
+    def _compute_total(self):
+        for record in self:
+            record.total_amount = ... # логика вычисления
+
+
+    ################################
+    # 6. constrains
+    ################################
+    @api.constrains('name')
+    def _check_name_unique(self):
+        for record in self:
+            if not record.name:
+                raise UserError(_("Name cannot be empty."))
+
+    ################################
+    # 7. onchange
+    ################################
+    @api.onchange('user_id')
+    def _onchange_user_id(self):
+        # логика изменения UI при выборе пользователя
+        pass
+
+    ################################
+    # 8. CRUD
+    ################################
+    def create(self, vals):
+        # до выполнения записи
+        res = super().create(vals)
+        # после выполнения записи
+        return res
+
+    def write(self, vals):
+        return super().write(vals)
+
+    def unlink(self):
+        return super().unlink()
+
+    ################################
+    # 9. actions
+    ################################
+    def action_confirm(self):
+        self.ensure_one()
+        # бизнес-логика действия
+        return {'type': 'ir.actions.act_window_close'}
