@@ -11,7 +11,7 @@
         ======================================================================================
         """,
     'author': "Oleksii Kalinin",
-    'website': "https://github.com/k33alexey/odoo-school",
+    'website': "https://github.com/k33alexey/",
     'license': "OPL-1",
     'depends': [
         'base',
